@@ -1,0 +1,38 @@
+.track-item {
+    border-top: 1px solid #cccccc;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    >p.number {
+        width: 32px;
+        text-align: center;
+    }
+
+    >div.data {
+        flex: 1;
+
+        >p.name {
+            font-size: 1.2em;
+        }
+
+        >p.artists {
+            font-size: .85em;
+            line-height: 1;
+            padding-bottom: 4px;
+            color: #757575;
+        }
+    }
+
+    >input.track-score {
+        width: 40px;
+        height: 40px;
+        color: #757575;
+        font-weight: bold;
+        text-align: center;
+        padding: 0;
+        border: 2px solid #757575;
+        border-radius: 50%;
+    }
+}

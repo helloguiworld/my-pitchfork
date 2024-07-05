@@ -1,0 +1,17 @@
+footer {
+    color: #ffffff;
+    background-color: #1a1a1a;
+    padding: 3rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    >p.dev {
+        // font-family: TiemposHeadline, helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    >p.instagram {
+        font-size: 0.85rem;
+    }
+}

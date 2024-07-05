@@ -1,0 +1,37 @@
+#search-page {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+
+
+    div.albums {
+        flex: 1;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        >span {
+            margin: auto;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        >div.rai-container {
+            margin: auto;
+        }
+    }
+
+    div.search {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        
+        >input {
+            flex: 1;
+            max-width: 800px;
+            padding: .4rem .8rem;
+        }
+    }
+}

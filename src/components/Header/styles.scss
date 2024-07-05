@@ -1,0 +1,15 @@
+header {
+    position: sticky;
+    top: 0;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    padding: 0.8rem;
+    border-bottom: 1px solid #ffffff;
+    display: flex;
+    justify-content: center;
+
+    >p.title {
+        cursor: pointer;
+        font-size: 2em;
+    }
+}

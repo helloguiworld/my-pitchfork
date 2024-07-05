@@ -1,0 +1,29 @@
+.album-card {
+    cursor: pointer;
+
+    >img.cover {
+        height: 12vh;
+    }
+
+    >div.album-names {
+        flex: 1;
+
+        >p.name {
+            font-family: TiemposHeadline, helvetica, sans-serif;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+    }
+
+    >div.tracks-data {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        font-size: .8rem;
+
+        >p.album-type {
+            font-weight: bold;
+            letter-spacing: 0.06875em;
+        }
+    }
+}

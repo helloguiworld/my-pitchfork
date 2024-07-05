@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("./assets/fonts/TiemposHeadline-Bold.woff2");
+}
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("./assets/fonts/TiemposHeadline-BoldItalic.woff2");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Walfork";
+    src: url("./assets/fonts/Walfork-Regular.woff");
+}
+@font-face {
+    font-family: "Walfork";
+    src: url("./assets/fonts/Walfork-Demi.woff");
+    font-weight: 600;
+}

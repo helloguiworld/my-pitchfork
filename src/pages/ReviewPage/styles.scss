@@ -1,0 +1,99 @@
+#review-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    >div.album-data {
+        align-self: stretch;
+        text-align: center;
+        padding: 10vh 0 30vh;
+        display: flex;
+        gap: 20px;
+
+        >div.text {
+            flex: 1;
+            padding: 0 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            >p.type {
+                font-weight: bold;
+                font-size: .75rem;
+                letter-spacing: 0.06875em;
+            }
+
+            >p.name {
+                font-family: TiemposHeadline, helvetica, sans-serif;
+                font-style: italic;
+                font-size: 2rem;
+                // padding: 1rem 0;
+            }
+
+            >p.artists {
+                font-size: 1.75rem;
+            }
+
+            >p.year {
+                font-size: .875rem;
+            }
+        }
+
+        >div.others {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            >img.cover {
+                max-height: 312px;
+            }
+
+            >p.score {
+                width: 134px;
+                height: 134px;
+                font-size: 3rem;
+                font-weight: bold;
+                border: 7px solid #000000;
+                border-radius: 50%;
+                margin-left: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    >div.scores {
+        width: 100%;
+        max-width: 800px;
+        margin-bottom: 10vh;
+        display: flex;
+        flex-direction: column;
+
+        >p.title {
+            font-size: 2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #review-page {
+        >div.album-data {
+            flex-direction: column;
+
+            >div.others {
+                >img.cover {
+                    width: 204px;
+                }
+                >p.score {
+                    margin-left: 16px;
+                }
+            }
+        }
+    }
+}
