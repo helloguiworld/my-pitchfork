@@ -1,7 +1,7 @@
 // import { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Album, albumTypeTitle } from '../../services/spotifyService'
+import { Album, getAlbumTitleByType } from '../../services/spotifyService'
 
 import Card from '../Card'
 
@@ -29,7 +29,7 @@ export default function AlbumCard(props: AlbumCardProps) {
             </div>
 
             <div className="tracks-data">
-                <p className='album-type'>{albumTypeTitle(props.album.type, props.album.totalTracks)}</p>
+                <p className='album-type'>{getAlbumTitleByType(props.album.type, props.album.totalTracks)}</p>
                 {
                     props.album.totalTracks > 1 &&
                     <p className="total-tracks">

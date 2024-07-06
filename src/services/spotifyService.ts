@@ -1,6 +1,6 @@
 import api from "."
 
-export function albumTypeTitle(type: string, tracks: number) {
+export function getAlbumTitleByType(type: string, tracks: number) {
     if (type != 'single')
         return "ALBUM"
 

@@ -1,69 +1,114 @@
 #review-page {
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 
-    >div.album-data {
+    >div.album-review {
         align-self: stretch;
         text-align: center;
-        padding: 10vh 0 30vh;
+        padding: 10vh 0;
         display: flex;
-        gap: 20px;
-
-        >div.text {
-            flex: 1;
-            padding: 0 32px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        
+        >div.album {
+            padding: 32px;
+            // margin: 10vh 0 30vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
+            gap: 20px;
 
-            >p.type {
-                font-weight: bold;
-                font-size: .75rem;
-                letter-spacing: 0.06875em;
+            &.track-review {
+                background-color: #000000;
+                color: #ffffff;
+
+                >div.text>p.type {
+                    color: #ff3530;
+                }
+
+                >div.others>div.score-box>p.score {
+                    color: #ffffff;
+                    border-color: #ffffff;
+                }
             }
 
-            >p.name {
-                font-family: TiemposHeadline, helvetica, sans-serif;
-                font-style: italic;
-                font-size: 2rem;
-                // padding: 1rem 0;
+            >div.text {
+                flex: 1;
+                padding: 0 32px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+
+                >p.type {
+                    font-weight: bold;
+                    font-size: .75rem;
+                    letter-spacing: 0.06875em;
+                }
+
+                >p.name {
+                    font-family: TiemposHeadline, helvetica, sans-serif;
+                    font-style: italic;
+                    font-size: 3rem;
+                }
+
+                >p.artists {
+                    font-size: 1.75rem;
+                }
+
+                >p.year {
+                    font-size: .875rem;
+                }
             }
 
-            >p.artists {
-                font-size: 1.75rem;
-            }
-
-            >p.year {
-                font-size: .875rem;
-            }
-        }
-
-        >div.others {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            >img.cover {
-                max-height: 312px;
-            }
-
-            >p.score {
-                width: 134px;
-                height: 134px;
-                font-size: 3rem;
-                font-weight: bold;
-                border: 7px solid #000000;
-                border-radius: 50%;
-                margin-left: 32px;
+            >div.others {
+                flex: 1;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                >img.cover {
+                    max-height: 312px;
+                }
+
+                >div.score-box {
+                    margin-left: 32px;
+                    display: flex;
+                    flex-direction: column;
+
+                    >.crown {
+                        fill: #ff3530;
+                        margin: 0 24px 16px;
+                    }
+
+                    >p.score {
+                        width: 134px;
+                        height: 134px;
+                        color: #2b2b2b;
+                        font-size: 3rem;
+                        font-weight: bold;
+                        border: 7px solid #2b2b2b;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        &.best-new {
+                            color: #ff3530;
+                            border-color: #ff3530;
+                        }
+                    }
+
+                    >p.target {
+                        font-weight: bold;
+                        font-size: .75rem;
+                        letter-spacing: 0.06875em;
+                        margin-top: 16px;
+                        color: #ff3530;
+                    }
+                }
             }
         }
     }
@@ -71,27 +116,75 @@
     >div.scores {
         width: 100%;
         max-width: 800px;
+        padding: 20px;
         margin-bottom: 10vh;
         display: flex;
         flex-direction: column;
 
-        >p.title {
-            font-size: 2rem;
+        >div.scores-header {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: end;
+            gap: 10px;
+
+            button {
+                height: 2.5rem;
+
+                &.best-new {
+                    fill: #ff3530;
+                    border-color: #ff3530;
+
+                    .crown {
+                        height: 14px;
+                    }
+
+                    &:hover,
+                    &.on {
+                        fill: #ffffff;
+                        background-color: #ff3530;
+                    }
+
+                    &.on:hover {
+                        fill: #ff3530;
+                        background-color: #ffffff;
+                    }
+                }
+            }
+
+            >p.title {
+                flex: 1;
+                font-size: 2rem;
+                line-height: 1;
+            }
         }
     }
 }
 
 @media screen and (max-width: 800px) {
     #review-page {
-        >div.album-data {
-            flex-direction: column;
+        >div.album-review {
+            min-height: calc(768px - var(--header-height));
 
-            >div.others {
-                >img.cover {
-                    width: 204px;
+            >div.album {
+                padding: 32px 16px;
+                flex-direction: column;
+
+                >div.text {
+                    p.name {
+                        font-size: 2rem;
+                    }
                 }
-                >p.score {
-                    margin-left: 16px;
+
+                >div.others {
+                    >img.cover {
+                        flex: 1;
+                        max-width: 204px;
+                        margin: 8px;
+                    }
+
+                    >p.score {
+                        margin-left: 16px;
+                    }
                 }
             }
         }

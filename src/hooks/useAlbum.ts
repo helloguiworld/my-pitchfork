@@ -29,7 +29,7 @@ export default function useAlbum(id: string | undefined) {
                         id: track.id,
                         name: track.name,
                         artists: track.artists.map((artist: any) => artist.name),
-                        number: index,
+                        number: index + 1,
                     })),
                     totalTracks: album.total_tracks,
                 })
