@@ -25,10 +25,6 @@ export default function ReviewPage(props: ReviewPageProps) {
 
     const { album, fetching, error, setNewTrackScore, albumScore } = useAlbum(id)
 
-    function downloadReview() {
-
-    }
-
     useEffect(() => {
         if (album)
             setAlbumTypeTitle(getAlbumTitleByType(album.type, album.totalTracks))
@@ -69,19 +65,22 @@ export default function ReviewPage(props: ReviewPageProps) {
                                 </div>
                             </div>
                         </div>
+                        <p className="author">By Guilherme Feitosa</p>
                     </div>
 
                     <div className="scores">
                         <div className="scores-header">
                             <p className='title'>Track Scores</p>
                             <Button
-                                className={'best-new' + (isBestNew ? " on" : "")}
+                                className={'best-new'}
+                                isOn={isBestNew}
                                 onClick={() => setIsBestNew(!isBestNew)}
+                                color={"#ff3530"}
                             >
                                 <Crown />
                             </Button>
                             <Button
-                                onClick={() => reviewCapture("#root")}
+                                onClick={() => reviewCapture("#root", album.name)}
                             >
                                 D
                             </Button>

@@ -4,8 +4,20 @@
     justify-content: center;
     align-items: center;
 
-    &:hover {
+    fill: var(--color);
+    color: var(--color);
+    border-color: var(--color);
+
+    &:hover,
+    &.on {
+        fill: #ffffff;
         color: #ffffff;
-        background-color: #000000;
+        background-color: var(--color);
+    }
+
+    &.on:hover {
+        fill: var(--color);
+        color: var(--color);
+        background-color: #ffffff;
     }
 }

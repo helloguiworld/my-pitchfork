@@ -12,10 +12,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: stretch;
-        
+
         >div.album {
             padding: 32px;
-            // margin: 10vh 0 30vh;
             display: flex;
             gap: 20px;
 
@@ -80,7 +79,7 @@
 
                     >.crown {
                         fill: #ff3530;
-                        margin: 0 24px 16px;
+                        margin-bottom: 16px;
                     }
 
                     >p.score {
@@ -111,6 +110,11 @@
                 }
             }
         }
+
+        >p.author {
+            font-size: 14px;
+            margin-top: 16px;
+        }
     }
 
     >div.scores {
@@ -130,24 +134,8 @@
             button {
                 height: 2.5rem;
 
-                &.best-new {
-                    fill: #ff3530;
-                    border-color: #ff3530;
-
-                    .crown {
-                        height: 14px;
-                    }
-
-                    &:hover,
-                    &.on {
-                        fill: #ffffff;
-                        background-color: #ff3530;
-                    }
-
-                    &.on:hover {
-                        fill: #ff3530;
-                        background-color: #ffffff;
-                    }
+                &.best-new>.crown {
+                    height: 14px;
                 }
             }
 
@@ -164,6 +152,7 @@
     #review-page {
         >div.album-review {
             min-height: calc(768px - var(--header-height));
+            padding: 16px 0;
 
             >div.album {
                 padding: 32px 16px;

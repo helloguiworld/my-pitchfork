@@ -15,10 +15,11 @@ export default function reviewCapture(selector: string, fileName?: string) {
             scrollY: 0,
             windowWidth: 432,
             height: 768,
+            scale: 1080 / 432,
         }
     ).then(canvas => {
         let link = document.createElement('a')
-        link.download = `myPytchfork - ${fileName || "album review"}.png`
+        link.download = `myPytchfork - ${fileName || "Album Review"}.png`
         link.href = canvas.toDataURL()
         link.click()
     })
