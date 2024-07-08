@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Page from '../../components/Page'
@@ -19,15 +19,47 @@ export type ReviewPageParams = {
 }
 
 export default function ReviewPage(props: ReviewPageProps) {
+    const albumBoxRef = useRef<HTMLDivElement>(null)
+
     const [albumTypeTitle, setAlbumTypeTitle] = useState('')
+    const [needTextResizing, setNeedTextResizing] = useState(false)
     const [isBestNew, setIsBestNew] = useState(false)
+
     const { id } = useParams<ReviewPageParams>()
 
-    const { album, fetching, error, setNewTrackScore, albumScore } = useAlbum(id)
+    const { album, fetching, error, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
+
+    function testSizes(a: number, b: number) {
+        console.log(
+            a,
+            b,
+            a + b
+        )
+    }
+
+    function calcTextSizeFactor(text: string) {
+        return [...text].reduce((acc, curr) => acc + ('A' <= curr && curr <= 'Z' ? 1.3 : 1), 0)
+    }
+
+    function checkTextAmount() {
+        const albumNameElement = document.querySelector('p.name')
+        const albumArtistsElement = document.querySelector('p.artists')
+        if (albumNameElement?.textContent && albumArtistsElement?.textContent) {
+            const albumNameTextSizeFactor = calcTextSizeFactor(albumNameElement.textContent)
+            const albumArtistsTextSizeFactor = calcTextSizeFactor(albumArtistsElement.textContent)
+            setNeedTextResizing(
+                albumNameTextSizeFactor > 55 ||
+                albumNameTextSizeFactor + albumArtistsTextSizeFactor > 80
+            )
+            testSizes(albumNameTextSizeFactor, albumArtistsTextSizeFactor)
+        }
+    }
 
     useEffect(() => {
-        if (album)
+        if (album) {
             setAlbumTypeTitle(getAlbumTitleByType(album.type, album.totalTracks))
+            checkTextAmount()
+        }
     }, [album])
 
     return (
@@ -36,7 +68,14 @@ export default function ReviewPage(props: ReviewPageProps) {
                 album &&
                 <>
                     <div className="album-review">
-                        <div className={"album" + (albumTypeTitle == "TRACK" ? " track-review" : "")}>
+                        <div
+                            className={
+                                "album" +
+                                (albumTypeTitle == "TRACK" ? " track-review" : "") +
+                                (needTextResizing ? " resized-text" : "")
+                            }
+                            ref={albumBoxRef}
+                        >
                             <div className="text">
                                 <p className="type">{albumTypeTitle + "S"}</p>
                                 <p className="name">{album.name}</p>
@@ -92,6 +131,7 @@ export default function ReviewPage(props: ReviewPageProps) {
                                         <TrackItem
                                             key={track.id}
                                             track={track}
+                                            trackScore={trackScores[track.id] || 0}
                                             setNewTrackScore={setNewTrackScore}
                                         />
                                 )

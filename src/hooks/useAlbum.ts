@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import spotifyService, { Album } from '../services/spotifyService'
 
+import useStoredTrackScores from './useStoredTrackScores'
+
 export type TrackScores = {
     [key: string]: number,
 }
@@ -9,8 +11,15 @@ export default function useAlbum(id: string | undefined) {
     const [album, setAlbum] = useState<Album | null>(null)
     const [fetching, setFetching] = useState<boolean>(false)
     const [error, setError] = useState({})
-    const [trackScores, setTrackScores] = useState<TrackScores | null>(null)
+    const [trackScores, setTrackScores] = useState<TrackScores>({})
     const [albumScore, setAlbumScore] = useState<Number>(0)
+
+    const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()
+
+    function setNewTrackScore(id: string, score: number) {
+        setTrackScores(prevTrackScores => ({ ...prevTrackScores, [id]: score }))
+        setStoredTrackScore(id, score)
+    }
 
     async function readAlbum(id: string) {
         console.log(id)
@@ -39,17 +48,20 @@ export default function useAlbum(id: string | undefined) {
             .finally(() => setFetching(false))
     }
 
-    function setNewTrackScore(id: string, score: number) {
-        setTrackScores(prevTrackScores => ({ ...prevTrackScores, [id]: score }))
-    }
-
     useEffect(() => {
         if (id)
             readAlbum(id)
     }, [id])
 
     useEffect(() => {
-        console.log(trackScores)
+        if (album?.tracks) {
+            const albumTrackIds = album.tracks.map(track => track.id)
+            const retrievedTrackScores = getStoredTrackScoresByIds(albumTrackIds)
+            setTrackScores(retrievedTrackScores)
+        }
+    }, [album])
+
+    useEffect(() => {
         if (album && trackScores) {
             const scores = Object.values(trackScores)
             const scoresSum = scores.reduce((acc, curr) => acc + curr, 0)

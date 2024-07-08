@@ -14,6 +14,8 @@
         align-items: stretch;
 
         >div.album {
+            font-size: 1rem;
+
             padding: 32px;
             display: flex;
             gap: 20px;
@@ -50,11 +52,11 @@
                 >p.name {
                     font-family: TiemposHeadline, helvetica, sans-serif;
                     font-style: italic;
-                    font-size: 3rem;
+                    font-size: 3em;
                 }
 
                 >p.artists {
-                    font-size: 1.75rem;
+                    font-size: 1.75em;
                 }
 
                 >p.year {
@@ -152,15 +154,20 @@
     #review-page {
         >div.album-review {
             min-height: calc(768px - var(--header-height));
-            padding: 16px 0;
+            padding: 0;
 
             >div.album {
                 padding: 32px 16px;
                 flex-direction: column;
 
+                &.resized-text {
+                    background-color: blue;
+                    font-size: .75rem;
+                }
+
                 >div.text {
                     p.name {
-                        font-size: 2rem;
+                        font-size: 2em;
                     }
                 }
 

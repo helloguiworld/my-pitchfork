@@ -6,18 +6,15 @@ import './styles.scss'
 export type TrackItemProps = {
     track: Track,
     setNewTrackScore: Function,
+    trackScore: number,
 }
 
 export default function TrackItem(props: TrackItemProps) {
-    const [score, setScore] = useState(0.0)
-
     function onChange(event: ChangeEvent<HTMLInputElement>) {
         const value = event.target.value
         const newScore = Number(value.replace(/[^0-9]/g, '')) / 10
-        if (0 <= newScore && newScore <= 10) {
-            setScore(newScore)
+        if (0 <= newScore && newScore <= 10)
             props.setNewTrackScore(props.track.id, newScore)
-        }
     }
 
     return (
@@ -29,13 +26,9 @@ export default function TrackItem(props: TrackItemProps) {
             </div>
             <input
                 className='track-score'
-                inputMode="numeric"
-                // type="number"
-                // step="0.1"
-                // min="0"
-                // max="10"
-                value={score.toFixed(1)}
+                value={props.trackScore.toFixed(1)}
                 onChange={onChange}
+                inputMode="numeric"
             />
         </div>
     )
