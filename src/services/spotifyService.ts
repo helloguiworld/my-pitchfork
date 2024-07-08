@@ -34,8 +34,8 @@ export type Album = {
 
 
 // READ
-export const getAlbums = async (q: string) => await api.get(`/search?type=album&q=${q}/`)
-export const getAlbum = async (id: string) => await api.get(`/albums/${id}/`)
+export const getAlbums = async (q: string) => await api.get(`search?type=album&q=${q}`)
+export const getAlbum = async (id: string) => await api.get(`albums/${id}`)
 
 // UPDATE
 

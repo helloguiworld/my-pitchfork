@@ -25,7 +25,7 @@ export default function AlbumCard(props: AlbumCardProps) {
             <div className="album-names">
                 <p className='name'>{props.album.name}</p>
                 <p className="artists">{props.album.artists.join(' / ')}</p>
-                {/* <p className="artists">{props.album.id}</p> */}
+                <p className="artists">{props.album.id}</p>
             </div>
 
             <div className="tracks-data">

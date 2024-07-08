@@ -71,7 +71,9 @@
                 align-items: center;
 
                 >img.cover {
-                    max-height: 312px;
+                    flex: 1;
+                    max-width: 312px;
+                    aspect-ratio: 1/1;
                 }
 
                 >div.score-box {
@@ -115,7 +117,7 @@
 
         >p.author {
             font-size: 14px;
-            margin-top: 16px;
+            margin: 16px 16px 0;
         }
     }
 
@@ -135,6 +137,7 @@
 
             button {
                 height: 2.5rem;
+                font-size: 1.25rem;
 
                 &.best-new>.crown {
                     height: 14px;
@@ -148,9 +151,24 @@
             }
         }
     }
+
+    >span {
+        margin: auto;
+        letter-spacing: 1px;
+        font-size: 0.9rem;
+    }
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1023px) {
+
+    #review-page>div.album-review>div.album.resized-text {
+        font-size: .75rem;
+        background-color: blue;
+    }
+}
+
+@media screen and (max-width: 767px) {
     #review-page {
         >div.album-review {
             min-height: calc(768px - var(--header-height));
@@ -159,11 +177,6 @@
             >div.album {
                 padding: 32px 16px;
                 flex-direction: column;
-
-                &.resized-text {
-                    background-color: blue;
-                    font-size: .75rem;
-                }
 
                 >div.text {
                     p.name {

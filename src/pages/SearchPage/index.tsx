@@ -21,8 +21,7 @@ export default function SearchPage(props: SearchPageProps) {
 
     function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        if (searchInputRef.current)
-            searchInputRef.current.blur()
+        searchInputRef.current?.blur()
         searchAlbums(searchQ)
     }
 
@@ -43,7 +42,7 @@ export default function SearchPage(props: SearchPageProps) {
                 {
                     fetching ?
                         <Squares />
-                        : albums?.length ?
+                        : albums?.length > 0 ?
                             albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)
                             : <span>NO ALBUM LISTED</span>
                 }

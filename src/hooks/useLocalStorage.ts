@@ -5,7 +5,7 @@ export default function useLocalStorage<InitialValue>(key: string, defaultInitia
     const initialValue = storedValue ? JSON.parse(storedValue) : defaultInitialValue
     const [value, setValue] = useState(initialValue)
 
-    function updateLocalStorage(newValue: any) {
+    function setLocalStorage(newValue: any) {
         setValue(newValue)
         localStorage.setItem(key, JSON.stringify(newValue))
     }
@@ -15,5 +15,5 @@ export default function useLocalStorage<InitialValue>(key: string, defaultInitia
         localStorage.removeItem(key)
     }
 
-    return [value, updateLocalStorage, deleteLocalStorage]
+    return [value, setLocalStorage, deleteLocalStorage]
 }

@@ -46,6 +46,7 @@ export default function useAlbum(id: string | undefined) {
             })
             .catch((error) => setError(error))
             .finally(() => setFetching(false))
+            // .finally(() => setTimeout(() => setFetching(false), 500))
     }
 
     useEffect(() => {

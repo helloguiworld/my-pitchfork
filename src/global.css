@@ -88,6 +88,10 @@ input {
   font-family: TiemposHeadline, helvetica, sans-serif;
 }
 
+div.rai-container {
+  margin: auto;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #000000;
