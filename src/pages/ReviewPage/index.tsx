@@ -18,13 +18,13 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 import reviewCapture from '../../functions/reviewCapture'
 
 import './styles.scss'
-export type ReviewPageProps = {
-}
+// export type ReviewPageProps = {
+// }
 export type ReviewPageParams = {
     id: string,
 }
 
-export default function ReviewPage(props: ReviewPageProps) {
+export default function ReviewPage() {
     const albumBoxRef = useRef<HTMLDivElement>(null)
 
     const [albumTypeTitle, setAlbumTypeTitle] = useState('')
@@ -34,15 +34,7 @@ export default function ReviewPage(props: ReviewPageProps) {
 
     const { id } = useParams<ReviewPageParams>()
 
-    const { album, fetching, error, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
-
-    // function testSizes(a: number, b: number) {
-    //     console.log(
-    //         a,
-    //         b,
-    //         a + b
-    //     )
-    // }
+    const { album, fetching, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
 
     function calcTextSizeFactor(text: string) {
         return [...text].reduce((acc, curr) => acc + ('A' <= curr && curr <= 'Z' ? 1.3 : 1), 0)
@@ -58,7 +50,6 @@ export default function ReviewPage(props: ReviewPageProps) {
                 albumNameTextSizeFactor > 55 ||
                 albumNameTextSizeFactor + albumArtistsTextSizeFactor > 80
             )
-            // testSizes(albumNameTextSizeFactor, albumArtistsTextSizeFactor)
         }
     }
 

@@ -7,7 +7,6 @@ export default function useAlbums() {
     const [error, setError] = useState({})
 
     async function searchAlbums(q: string) {
-        console.log(q)
         setFetching(true)
         return spotifyService.getAlbums(q)
             .then(response => {

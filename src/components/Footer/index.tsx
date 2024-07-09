@@ -4,10 +4,10 @@ import pitchforkLogoImg from '../../assets/pitchfork logo.svg'
 import spotifyLogoImg from '../../assets/spotify logo.svg'
 
 import './styles.scss'
-export type FooterProps = {
-}
+// export type FooterProps = {
+// }
 
-export default function Footer(props: FooterProps) {
+export default function Footer() {
     return (
         <footer>
             <div className="credits">

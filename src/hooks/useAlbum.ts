@@ -22,7 +22,6 @@ export default function useAlbum(id: string | undefined) {
     }
 
     async function readAlbum(id: string) {
-        console.log(id)
         setFetching(true)
         return spotifyService.getAlbum(id)
             .then((response: any) => {

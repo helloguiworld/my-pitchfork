@@ -11,10 +11,10 @@ import trackScoresImg from '../../assets/track scores.png'
 import albumReviewImg from '../../assets/album review.png'
 
 import './styles.scss'
-export type HomePageProps = {
-}
+// export type HomePageProps = {
+// }
 
-export default function HomePage(props: HomePageProps) {
+export default function HomePage() {
     const navigate = useNavigate()
 
     return (
@@ -22,7 +22,7 @@ export default function HomePage(props: HomePageProps) {
             <div className='main'>
                 <h2>Welcome to</h2>
                 <h1 className='my-pitchfork'>myPitchfork</h1>
-                <p>Explore, rate and share music with the world</p>
+                <p>explore, rate and share music with the world</p>
                 <Button color={"#ff3530"} onClick={() => navigate('/search')}>START NOW!</Button>
             </div>
 

@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent, ChangeEvent, useEffect } from 'react'
+import { useState, useRef, FormEvent, ChangeEvent } from 'react'
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
@@ -10,14 +10,14 @@ import useAlbums from '../../hooks/useAlbums'
 import { Album } from '../../services/spotifyService'
 
 import './styles.scss'
-export type SearchPageProps = {
-}
+// export type SearchPageProps = {
+// }
 
-export default function SearchPage(props: SearchPageProps) {
+export default function SearchPage() {
     const [searchQ, setSearchQ] = useState<string>('')
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    const { albums, fetching, error, searchAlbums } = useAlbums()
+    const { albums, fetching, searchAlbums } = useAlbums()
 
     function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate,
 } from "react-router-dom"
 
 import HomePage from './pages/HomePage/index.tsx'
@@ -15,7 +16,7 @@ import "react-activity/dist/Squares.css"
 
 const router = createBrowserRouter([
   {
-    path: "*",
+    path: "/",
     element: <HomePage />,
   },
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/review/:id",
     element: <ReviewPage />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
   },
 ])
 

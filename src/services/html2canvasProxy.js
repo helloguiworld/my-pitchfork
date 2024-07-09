@@ -7,6 +7,6 @@ export const port = (process.env.PORT || 3000)
 app.use('/proxy', html2canvasProxy())
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
+    console.log(`Proxy server running on port ${port}`)
 })
 

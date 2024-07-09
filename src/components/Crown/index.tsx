@@ -1,10 +1,10 @@
 // import { } from 'react'
 
 import './styles.scss'
-export type CrownProps = {
-}
+// export type CrownProps = {
+// }
 
-export default function Crown(props: CrownProps) {
+export default function Crown() {
     return (
         <svg x="0px" y="0px" viewBox="0 0 80 40" className="crown">
             <g>

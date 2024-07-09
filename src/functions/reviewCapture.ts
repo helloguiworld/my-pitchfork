@@ -10,8 +10,8 @@ export default function reviewCapture(selector: string, fileName?: string) {
     function shareImage(file: File) {
         if (navigator.share) {
             navigator.share({
-                title: `myPytchfork - Album Review`,
-                text: 'Check out my album review!',
+                // title: `myPytchfork - Album Review`,
+                // text: 'Check out my album review!',
                 files: [file],
             }).then(() => {
                 console.log('Share successful')

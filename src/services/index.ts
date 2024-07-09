@@ -23,7 +23,6 @@ async function getSpotifyAccessToken() {
         },
         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
         .then(response => {
-            console.log(response)
             setTimeout(getSpotifyAccessToken, response.data.expires_in * 0.9 * 1000)
             return response.data.access_token
         })
@@ -33,15 +32,19 @@ async function getSpotifyAccessToken() {
             return null
         })
 }
-const spotifyAccessToken = await getSpotifyAccessToken()
-if (spotifyAccessToken) spotifyAPI.defaults.headers['Authorization'] = `Bearer ${spotifyAccessToken}`
+
+async function initializeSpotifyAccessToken() {
+    const spotifyAccessToken = await getSpotifyAccessToken()
+    if (spotifyAccessToken) spotifyAPI.defaults.headers['Authorization'] = `Bearer ${spotifyAccessToken}`
+}
+initializeSpotifyAccessToken()
 
 // spotifyAPI.interceptors.request.use(async function (config) {
 //     return config
 // })
 
 spotifyAPI.interceptors.response.use(function (response) {
-    console.log(response)
+    // console.log(response)
     return response
 }, async function (error) {
     const originalRequest = error.config

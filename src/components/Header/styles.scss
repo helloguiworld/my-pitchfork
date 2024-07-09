@@ -8,9 +8,22 @@ header {
     display: flex;
     justify-content: center;
 
-    >p.title {
+    >div.link-logo {
         cursor: pointer;
-        font-size: 2em;
+        display: flex;
+        align-items: end;
+
+        >p.title {
+            font-size: 2em;
+        }
+
+        >p.link-complement {
+            font-size: 1.5em;
+            letter-spacing: 2px;
+            margin-left: 4px;
+            margin-bottom: .05em;
+            // opacity: .5;
+        }
     }
 }
 
