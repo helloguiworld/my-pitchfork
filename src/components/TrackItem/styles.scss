@@ -5,26 +5,33 @@
     align-items: center;
     gap: 10px;
 
-    >p.number {
-        width: 32px;
-        text-align: center;
-    }
-
-    >div.data {
+    >label {
         flex: 1;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        align-items: center;
+        gap: 10px;
 
-        >p.name {
-            font-size: 1.2em;
-            line-height: 1.3;
-            padding-top: 2px;
+        >p.number {
+            width: 32px;
+            text-align: center;
         }
-        
-        >p.artists {
-            font-size: .85em;
-            color: #757575;
+
+        >div.data {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            >p.name {
+                font-size: 1.2em;
+                line-height: 1.3;
+                padding-top: 2px;
+            }
+
+            >p.artists {
+                font-size: .85em;
+                color: #757575;
+            }
         }
     }
 
@@ -34,8 +41,10 @@
         color: #757575;
         font-weight: bold;
         text-align: center;
-        padding: 0;
+        padding: auto;
         border: 2px solid #757575;
         border-radius: 50%;
+
+        // padding-top: 7px;
     }
 }

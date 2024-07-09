@@ -23,7 +23,7 @@ export default function Header(props: HeaderProps) {
 
     return (
         <header ref={headerRef}>
-            <p className='title my-pitchfork' onClick={() => navigate('/search')}>
+            <p className='title my-pitchfork' onClick={() => navigate('/')}>
                 myPitchfork
             </p>
         </header>

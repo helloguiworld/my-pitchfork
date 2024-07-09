@@ -11,15 +11,16 @@
         >p.name {
             font-family: TiemposHeadline, helvetica, sans-serif;
             font-style: italic;
-            font-size: 1.2rem;
+            font-size: 1.2em;
         }
     }
 
     >div.tracks-data {
+        font-size: .8em;
+        text-align: end;
         display: flex;
         flex-direction: column;
         align-items: end;
-        font-size: .8rem;
 
         >p.album-type {
             font-weight: bold;
@@ -27,3 +28,13 @@
         }
     }
 }
+
+// @media screen and (max-width: 1023px) {
+//     .album-card {
+//         font-size: .9rem;
+
+//         >img.cover {
+//             height: 10vh;
+//         }
+//     }
+// }

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 
 import { Track } from '../../services/spotifyService'
 
@@ -19,13 +19,16 @@ export default function TrackItem(props: TrackItemProps) {
 
     return (
         <div className='track-item'>
-            <p className='number'>{props.track.number.toString().padStart(2, '0')}</p>
-            <div className="data">
-                <p className='name'>{props.track.name}</p>
-                <p className='artists'>{props.track.artists.join(' / ')}</p>
-            </div>
+            <label htmlFor={`track-${props.track.id}`}>
+                <p className='number'>{props.track.number.toString().padStart(2, '0')}</p>
+                <div className="data">
+                    <p className='name'>{props.track.name}</p>
+                    <p className='artists'>{props.track.artists.join(' / ')}</p>
+                </div>
+            </label>
             <input
                 className='track-score'
+                id={`track-${props.track.id}`}
                 value={props.trackScore.toFixed(1)}
                 onChange={onChange}
                 inputMode="numeric"

@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, ChangeEvent } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { MdFileDownload } from "react-icons/md";
+import { MdImage } from "react-icons/md"
+import { FaSpotify } from "react-icons/fa6"
 
 import Page from '../../components/Page'
 import Crown from '../../components/Crown'
@@ -12,6 +13,7 @@ import Squares from "react-activity/dist/Squares"
 
 import useAlbum from '../../hooks/useAlbum'
 import { getAlbumTitleByType, Track } from '../../services/spotifyService'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 import reviewCapture from '../../functions/reviewCapture'
 
@@ -28,18 +30,19 @@ export default function ReviewPage(props: ReviewPageProps) {
     const [albumTypeTitle, setAlbumTypeTitle] = useState('')
     const [needTextResizing, setNeedTextResizing] = useState(false)
     const [isBestNew, setIsBestNew] = useState(false)
+    const [author, setAuthor] = useLocalStorage('author', '')
 
     const { id } = useParams<ReviewPageParams>()
 
     const { album, fetching, error, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
 
-    function testSizes(a: number, b: number) {
-        console.log(
-            a,
-            b,
-            a + b
-        )
-    }
+    // function testSizes(a: number, b: number) {
+    //     console.log(
+    //         a,
+    //         b,
+    //         a + b
+    //     )
+    // }
 
     function calcTextSizeFactor(text: string) {
         return [...text].reduce((acc, curr) => acc + ('A' <= curr && curr <= 'Z' ? 1.3 : 1), 0)
@@ -55,7 +58,7 @@ export default function ReviewPage(props: ReviewPageProps) {
                 albumNameTextSizeFactor > 55 ||
                 albumNameTextSizeFactor + albumArtistsTextSizeFactor > 80
             )
-            testSizes(albumNameTextSizeFactor, albumArtistsTextSizeFactor)
+            // testSizes(albumNameTextSizeFactor, albumArtistsTextSizeFactor)
         }
     }
 
@@ -89,11 +92,13 @@ export default function ReviewPage(props: ReviewPageProps) {
                                         <p className="year">{album.date.split('-')[0]}</p>
                                     </div>
                                     <div className="others">
-                                        <img
-                                            className="cover"
-                                            src={album.cover}
-                                            alt={`${album.name} album cover`}
-                                        />
+                                        <div className="cover-box">
+                                            <img
+                                                className="cover"
+                                                src={album.cover}
+                                                alt={`${album.name} album cover`}
+                                            />
+                                        </div>
 
                                         <div className="score-box">
                                             {isBestNew &&
@@ -110,7 +115,31 @@ export default function ReviewPage(props: ReviewPageProps) {
                                         </div>
                                     </div>
                                 </div>
-                                <p className="author">By @guilhermeffeitosa</p>
+                                {author && <p className="author">By {author}</p>}
+                            </div>
+
+                            <Button
+                                onClick={() => window.open(`https://open.spotify.com/album/${album.id}`, '_blank')}
+                                color='#1DB954'
+                            >
+                                OPEN IN SPOTIFY
+                                <FaSpotify />
+                            </Button>
+                            <Button
+                                onClick={() => reviewCapture("#root", album.name)}
+                            >
+                                SHARE REVIEW
+                                <MdImage />
+                            </Button>
+                            <div className="author">
+                                Author
+                                <input
+                                    className='author'
+                                    type='text'
+                                    placeholder='Regina George'
+                                    value={author}
+                                    onChange={(event: ChangeEvent<HTMLInputElement>) => setAuthor(event.target.value)}
+                                />
                             </div>
 
                             <div className="scores">
@@ -123,11 +152,6 @@ export default function ReviewPage(props: ReviewPageProps) {
                                         color={"#ff3530"}
                                     >
                                         <Crown />
-                                    </Button>
-                                    <Button
-                                        onClick={() => reviewCapture("#root", album.name)}
-                                    >
-                                        <MdFileDownload />
                                     </Button>
                                 </div>
                                 <div className="tracks">

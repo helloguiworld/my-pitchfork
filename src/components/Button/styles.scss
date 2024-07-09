@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 
     fill: var(--color);
     color: var(--color);
@@ -20,4 +21,8 @@
         color: var(--color);
         background-color: #ffffff;
     }
+
+    // svg {
+    //     font-size: 1.2rem;
+    // }
 }

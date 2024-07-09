@@ -4,6 +4,32 @@
     align-items: center;
     gap: 20px;
 
+
+    >button {
+        align-self: center;
+        width: calc(100% - 2 * 20px);
+        max-width: 800px;
+
+        svg {
+            height: 100%;
+            margin-bottom: 2px;
+        }
+    }
+
+    >div.author {
+        align-self: center;
+        width: calc(100% - 2 * 20px);
+        max-width: 800px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        >input.author {
+            flex: 1;
+            padding: 8px;
+        }
+    }
+
     >div.album-review {
         align-self: stretch;
         text-align: center;
@@ -19,20 +45,6 @@
             padding: 32px;
             display: flex;
             gap: 20px;
-
-            &.track-review {
-                background-color: #000000;
-                color: #ffffff;
-
-                >div.text>p.type {
-                    color: #ff3530;
-                }
-
-                >div.others>div.score-box>p.score {
-                    color: #ffffff;
-                    border-color: #ffffff;
-                }
-            }
 
             >div.text {
                 flex: 1;
@@ -65,15 +77,19 @@
             }
 
             >div.others {
-                flex: 1;
+                width: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
 
-                >img.cover {
-                    flex: 1;
+                >div.cover-box {
                     max-width: 312px;
-                    aspect-ratio: 1/1;
+                    margin: 8px;
+                    display: flex;
+
+                    >img.cover {
+                        width: 100%;
+                    }
                 }
 
                 >div.score-box {
@@ -111,6 +127,20 @@
                         margin-top: 16px;
                         color: #ff3530;
                     }
+                }
+            }
+
+            &.track-review {
+                background-color: #000000;
+                color: #ffffff;
+
+                >div.text>p.type {
+                    color: #ff3530;
+                }
+
+                >div.others>div.score-box>p.score:not(.best-new) {
+                    color: #ffffff;
+                    border-color: #ffffff;
                 }
             }
         }
@@ -161,10 +191,13 @@
 
 
 @media screen and (max-width: 1023px) {
+    #review-page>div.album-review>div.album {
+        // background-color: blue;
 
-    #review-page>div.album-review>div.album.resized-text {
-        font-size: .75rem;
-        background-color: blue;
+        &.resized-text {
+            font-size: .75rem;
+            // background-color: greenyellow;
+        }
     }
 }
 
@@ -185,10 +218,10 @@
                 }
 
                 >div.others {
-                    >img.cover {
-                        flex: 1;
+                    width: unset;
+                    
+                    >div.cover-box {
                         max-width: 204px;
-                        margin: 8px;
                     }
 
                     >p.score {
@@ -199,3 +232,41 @@
         }
     }
 }
+
+// SQUARE
+// @media screen and (max-width: 767px) and (max-height: 432px) {
+//     #review-page {
+//         background-color: red;
+
+//         >div.album-review {
+//             min-height: unset;
+//             max-height: calc(432px - var(--header-height));
+//             border: 2px solid blue;
+//             font-size: .6rem;
+
+//             >div.album {
+//                 padding: 32px 16px;
+//                 flex-direction: column;
+
+//                 >div.text {
+//                     p.name {
+//                         font-size: 2em;
+//                     }
+//                 }
+
+//                 >div.others {
+//                     // scale: 0.8;
+//                     // size: 0.8;
+//                     // max-height: 50px;
+
+//                     // >div.cover-box {
+//                     //     max-width: 204px;
+//                     // }
+
+//                     // >div.score-box {
+//                     // }
+//                 }
+//             }
+//         }
+//     }
+// }

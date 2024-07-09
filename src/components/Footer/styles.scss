@@ -1,18 +1,74 @@
 footer {
     color: #ffffff;
     background-color: #1a1a1a;
-    padding: 3rem 0.8rem;
-    // margin-bottom: 2rem;
+    padding: 32px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 32px;
 
-    >p.dev {
-        // font-family: TiemposHeadline, helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 1.2rem;
+    p,
+    a {
+        &.large {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        &.small {
+            font-size: 0.85rem;
+        }
+
+        &.name {
+            font-family: TiemposHeadline, helvetica, sans-serif;
+            margin-bottom: 16px;
+        }
     }
-    >p.instagram {
-        font-size: 0.85rem;
+
+    a {
+        color: #ffffff;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: .3s;
+
+        &:hover {
+            color: #ff3530;
+        }
+    }
+
+    img {
+        fill: #ffffff;
+
+        &.pitchfork-logo {
+            height: 38px;
+        }
+
+        &.spotify-logo {
+            height: 30px;
+        }
+    }
+
+    >div.credits {
+        text-align: end;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    >div.main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    footer {
+        flex-direction: column-reverse;
+
+        >div.credits {
+            align-items: center;
+        }
     }
 }

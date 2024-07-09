@@ -1,0 +1,51 @@
+div.use-example {
+    align-self: stretch;
+    padding: 32px 10% 32px 15%;
+    display: flex;
+    gap: 32px;
+
+
+    >div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+
+        &.text {
+            flex-direction: column;
+
+            >p.title {
+                font-family: TiemposHeadline, helvetica, sans-serif;
+                font-size: 2.5em;
+            }
+
+            >p:not(.title) {
+                font-size: 1.5em;
+            }
+        }
+
+        &.example-image-box {
+
+            >img.example {
+                border: 1px solid #cccccc;
+                // max-width: 500px;
+                max-height: 70vh;
+                max-width: 100%;
+
+                -webkit-box-shadow: 0px 4px 12px 0px rgba(204, 204, 204, 0.6);
+                -moz-box-shadow: 0px 4px 12px 0px rgba(204, 204, 204, 0.6);
+                box-shadow: 0px 4px 12px 0px rgba(204, 204, 204, 0.6);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    div.use-example {
+        flex-direction: column;
+        padding: 32px;
+
+        >div {
+            align-items: center;
+        }
+    }
+}

@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
+import HomePage from './pages/HomePage/index.tsx'
 import SearchPage from './pages/SearchPage/index.tsx'
 import ReviewPage from './pages/ReviewPage/index.tsx'
 
@@ -14,7 +15,11 @@ import "react-activity/dist/Squares.css"
 
 const router = createBrowserRouter([
   {
-    path: "/search",
+    path: "*",
+    element: <HomePage />,
+  },
+  {
+    path: "/search/*",
     element: <SearchPage />,
   },
   {

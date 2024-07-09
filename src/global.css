@@ -81,6 +81,7 @@ input {
   background-color: #ffffff;
   padding: 5px;
   border: 1px solid #757575;
+  border-radius: unset;
   transition: .3s;
 }
 
