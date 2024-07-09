@@ -11,6 +11,8 @@ export default defineConfig({
     svgr(),
   ],
   server: {
+    host: true,
+    port: 80,
     // https: {
     //   key: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost-key.pem')),
     //   cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost.pem')),
