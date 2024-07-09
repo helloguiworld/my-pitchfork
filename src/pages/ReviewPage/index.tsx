@@ -24,6 +24,8 @@ export type ReviewPageParams = {
     id: string,
 }
 
+
+
 export default function ReviewPage() {
     const albumBoxRef = useRef<HTMLDivElement>(null)
 

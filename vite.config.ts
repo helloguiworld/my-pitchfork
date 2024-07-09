@@ -11,10 +11,10 @@ export default defineConfig({
     svgr(),
   ],
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost.pem')),
-    },
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost-key.pem')),
+    //   cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost.pem')),
+    // },
     proxy: {
       '/proxy': {
         target: 'http://localhost:3000/proxy',
