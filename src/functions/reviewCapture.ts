@@ -35,7 +35,7 @@ export default function reviewCapture(selector: string, fileName?: string) {
     ).then(canvas => {
         const userAgent = navigator.userAgent;
         const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent)
-        if (isMobile) {
+        if (isMobile && navigator.canShare()) {
             canvas.toBlob(blob => {
                 if (blob) {
                     const file = new File([blob], `myPytchfork - ${fileName || "Album Review"}.png`, { type: 'image/png' })
