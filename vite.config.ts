@@ -17,11 +17,10 @@ export default defineConfig({
     // },
     proxy: {
       '/proxy': {
-        target: 'http://localhost:3000/proxy',
+        target: 'https://localhost:3000/proxy',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/proxy/, ''),
       },
     },
   },
-
 })
