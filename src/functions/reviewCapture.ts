@@ -19,7 +19,8 @@ export default function reviewCapture(selector: string, fileName?: string) {
                 console.error('Share failed:', err)
             })
         } else {
-            alert('Web Share API is not supported in this browser.')
+            // alert('Web Share API is not supported in this browser.')
+            alert('Unable to save using this browser, please try another one.')
         }
     }
 
@@ -35,7 +36,7 @@ export default function reviewCapture(selector: string, fileName?: string) {
     ).then(canvas => {
         const userAgent = navigator.userAgent;
         const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent)
-        if (isMobile && navigator.canShare()) {
+        if (isMobile) {
             canvas.toBlob(blob => {
                 if (blob) {
                     const file = new File([blob], `myPytchfork - ${fileName || "Album Review"}.png`, { type: 'image/png' })
