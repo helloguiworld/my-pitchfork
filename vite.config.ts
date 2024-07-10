@@ -10,17 +10,17 @@ export default defineConfig({
     react(),
     svgr(),
   ],
-  server: {
-    // https: {
-    //   key: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost-key.pem')),
-    //   cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost.pem')),
-    // },
-    proxy: {
-      '/proxy': {
-        target: 'https://localhost:3000/proxy',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/proxy/, ''),
-      },
-    },
-  },
+  // server: {
+  //   https: {
+  //     key: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost-key.pem')),
+  //     cert: fs.readFileSync(path.resolve(__dirname, 'certs', 'localhost.pem')),
+  //   },
+  //   proxy: {
+  //     '/proxy': {
+  //       target: 'http://localhost:3000/proxy',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/proxy/, ''),
+  //     },
+  //   },
+  // },
 })
