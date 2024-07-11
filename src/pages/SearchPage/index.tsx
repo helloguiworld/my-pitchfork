@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent, ChangeEvent } from 'react'
+import { useRef, useEffect, FormEvent, ChangeEvent } from 'react'
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
@@ -8,22 +8,28 @@ import Squares from "react-activity/dist/Squares"
 
 import useAlbums from '../../hooks/useAlbums'
 import { Album } from '../../services/spotifyService'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 import './styles.scss'
 // export type SearchPageProps = {
 // }
 
 export default function SearchPage() {
-    const [searchQ, setSearchQ] = useState<string>('')
     const searchInputRef = useRef<HTMLInputElement>(null);
 
     const { albums, fetching, searchAlbums } = useAlbums()
+
+    const [searchQ, setSearchQ] = useLocalStorage('search-q', "")
 
     function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         searchInputRef.current?.blur()
         searchAlbums(searchQ)
     }
+
+    useEffect(() => {
+        if (searchQ) searchAlbums(searchQ)
+    }, [])
 
     return (
         <Page id='search-page'>
