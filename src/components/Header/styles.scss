@@ -8,22 +8,8 @@ header {
     display: flex;
     justify-content: center;
 
-    >div.link-logo {
-        cursor: pointer;
-        display: flex;
-        align-items: end;
-
-        >p.title {
-            font-size: 2em;
-        }
-
-        >p.link-complement {
-            font-size: 1.5em;
-            letter-spacing: 2px;
-            margin-left: 4px;
-            margin-bottom: .05em;
-            // opacity: .5;
-        }
+    >img.mypitchfork-link-logo {
+        height: 2rem;
     }
 }
 
