@@ -1,6 +1,6 @@
-import html2canvas from 'html2canvas'
+import html2canvas, { Options } from 'html2canvas'
 
-export default function reviewCapture(selector: string, fileName?: string) {
+export default function elementCapture(selector: string, fileName?: string, options?: Partial<Options>) {
     const elementToCapture = document.querySelector<HTMLElement>(selector)
     if (!elementToCapture) {
         console.error('Element not found.')
@@ -10,8 +10,6 @@ export default function reviewCapture(selector: string, fileName?: string) {
     function shareImage(file: File) {
         if (navigator.share) {
             navigator.share({
-                // title: `myPytchfork - Album Review`,
-                // text: 'Check out my album review!',
                 files: [file],
             }).then(() => {
                 console.log('Share successful')
@@ -19,7 +17,6 @@ export default function reviewCapture(selector: string, fileName?: string) {
                 console.error('Share failed:', err)
             })
         } else {
-            // alert('Web Share API is not supported in this browser.')
             alert('Unable to save using this browser, please try another one.')
         }
     }
@@ -28,14 +25,12 @@ export default function reviewCapture(selector: string, fileName?: string) {
         elementToCapture,
         {
             proxy: `/proxy`,
-            scrollY: 0,
-            windowWidth: 432,
-            height: 768,
-            scale: 1080 / 432,
+            // scrollY: 0,
+            ...options
         }
+        
     ).then(canvas => {
-        const userAgent = navigator.userAgent;
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent)
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
         if (isMobile) {
             canvas.toBlob(blob => {
                 if (blob) {

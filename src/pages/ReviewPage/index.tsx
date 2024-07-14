@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, ChangeEvent } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { MdImage } from "react-icons/md"
-import { FaSpotify } from "react-icons/fa6"
+import { FaSpotify, FaInstagram } from "react-icons/fa6"
 
 import Page from '../../components/Page'
 import Crown from '../../components/Crown'
@@ -15,7 +15,8 @@ import useAlbum from '../../hooks/useAlbum'
 import { getAlbumTitleByType, Track } from '../../services/spotifyService'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
-import reviewCapture from '../../functions/reviewCapture'
+import squareReviewCapture from '../../functions/squareReviewCapture'
+import storiesReviewCapture from '../../functions/storiesReviewCapture'
 
 import './styles.scss'
 // export type ReviewPageProps = {
@@ -84,7 +85,7 @@ export default function ReviewPage() {
                                         <p className="artists">{album.artists.join(' / ')}</p>
                                         <p className="year">{album.date.split('-')[0]}</p>
                                     </div>
-                                    <div className="others">
+                                    <div className={"others" + (isBestNew ? " best-new" : "")}>
                                         <div className="cover-box">
                                             <img
                                                 className="cover"
@@ -98,7 +99,7 @@ export default function ReviewPage() {
                                                 <Crown />
                                             }
 
-                                            <p className={"score" + (isBestNew ? " best-new" : "")}>{albumScore.toFixed(1)}</p>
+                                            <p className="score">{albumScore.toFixed(1)}</p>
 
                                             {isBestNew &&
                                                 <p className="target">
@@ -119,10 +120,17 @@ export default function ReviewPage() {
                                 <FaSpotify />
                             </Button>
                             <Button
-                                onClick={() => reviewCapture("#root", album.name)}
+                                onClick={() => squareReviewCapture(album.name)}
                             >
                                 SHARE REVIEW
                                 <MdImage />
+                            </Button>
+                            <Button
+                                onClick={() => storiesReviewCapture(album.name)}
+                                color='#E1306C'
+                            >
+                                SHARE STORIES
+                                <FaInstagram />
                             </Button>
                             <div className="author">
                                 Author

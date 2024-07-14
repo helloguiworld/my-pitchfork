@@ -11,7 +11,6 @@
         max-width: 800px;
 
         svg {
-            height: 100%;
             margin-bottom: 2px;
         }
     }
@@ -96,10 +95,10 @@
                     margin-left: 32px;
                     display: flex;
                     flex-direction: column;
+                    align-items: center;
 
                     >.crown {
                         fill: #ff3530;
-                        margin-bottom: 16px;
                     }
 
                     >p.score {
@@ -113,19 +112,23 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-
-                        &.best-new {
-                            color: #ff3530;
-                            border-color: #ff3530;
-                        }
                     }
 
                     >p.target {
                         font-weight: bold;
                         font-size: .75rem;
                         letter-spacing: 0.06875em;
-                        margin-top: 16px;
                         color: #ff3530;
+                    }
+                }
+
+                &.best-new {
+                    >div.score-box {
+                        >p.score {
+                            color: #ff3530;
+                            border-color: #ff3530;
+                            margin: 16px 0;
+                        }
                     }
                 }
             }
@@ -138,7 +141,7 @@
                     color: #ff3530;
                 }
 
-                >div.others>div.score-box>p.score:not(.best-new) {
+                >div.others:not(.best-new)>div.score-box>p.score {
                     color: #ffffff;
                     border-color: #ffffff;
                 }
@@ -219,13 +222,9 @@
 
                 >div.others {
                     width: unset;
-                    
-                    >div.cover-box {
-                        max-width: 204px;
-                    }
 
-                    >p.score {
-                        margin-left: 16px;
+                    >div.cover-box {
+                        max-width: 208px;
                     }
                 }
             }
@@ -234,39 +233,69 @@
 }
 
 // SQUARE
-// @media screen and (max-width: 767px) and (max-height: 432px) {
-//     #review-page {
-//         background-color: red;
+@media screen and (max-width: 432px) and (max-height: 432px) {
+    #review-page {
+        // background-color: red;
 
-//         >div.album-review {
-//             min-height: unset;
-//             max-height: calc(432px - var(--header-height));
-//             border: 2px solid blue;
-//             font-size: .6rem;
+        >div.album-review {
+            // border: 2px solid blue;
+            min-height: calc(440px - var(--header-height));
+            font-size: .6rem;
 
-//             >div.album {
-//                 padding: 32px 16px;
-//                 flex-direction: column;
+            >div.album {
+                padding: 16px;
+                flex-direction: column;
+                gap: 0;
 
-//                 >div.text {
-//                     p.name {
-//                         font-size: 2em;
-//                     }
-//                 }
+                font-size: .75rem;
 
-//                 >div.others {
-//                     // scale: 0.8;
-//                     // size: 0.8;
-//                     // max-height: 50px;
+                &.resized-text {
+                    font-size: .65rem;
+                }
 
-//                     // >div.cover-box {
-//                     //     max-width: 204px;
-//                     // }
+                >div.text {
+                    gap: .5rem;
 
-//                     // >div.score-box {
-//                     // }
-//                 }
-//             }
-//         }
-//     }
-// }
+                    p.name {
+                        font-size: 2em;
+                    }
+                }
+
+                >div.others {
+                    margin-top: 16px;
+
+                    >div.cover-box {
+                        max-width: 120px;
+                    }
+
+                    >div.score-box {
+                        >.crown {
+                            max-height: 18px;
+                        }
+
+                        >p.score {
+                            width: 104px;
+                            height: 104px;
+                            font-size: 2.2rem;
+                            border-width: 5px;
+                        }
+
+                        >p.target {
+                            font-size: .65rem;
+                        }
+                    }
+
+                    &.best-new {
+                        margin-top: unset;
+
+                        >div.score-box {
+                            >p.score {
+                                margin: 12px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
