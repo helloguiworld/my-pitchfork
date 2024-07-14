@@ -38,7 +38,7 @@
         justify-content: center;
         align-items: stretch;
 
-        >div.album {
+        >div.review {
             font-size: 1rem;
 
             padding: 32px;
@@ -194,7 +194,7 @@
 
 
 @media screen and (max-width: 1023px) {
-    #review-page>div.album-review>div.album {
+    #review-page>div.album-review>div.review {
         // background-color: blue;
 
         &.resized-text {
@@ -210,7 +210,7 @@
             min-height: calc(768px - var(--header-height));
             padding: 0;
 
-            >div.album {
+            >div.review {
                 padding: 32px 16px;
                 flex-direction: column;
 
@@ -242,7 +242,7 @@
             min-height: calc(440px - var(--header-height));
             font-size: .6rem;
 
-            >div.album {
+            >div.review {
                 padding: 16px;
                 flex-direction: column;
                 gap: 0;
@@ -251,6 +251,16 @@
 
                 &.resized-text {
                     font-size: .65rem;
+
+                    >div.others {
+                        &.best-new {
+                            margin-top: unset;
+                        }
+
+                        >div.cover-box {
+                            max-width: 120px;
+                        }
+                    }
                 }
 
                 >div.text {
@@ -265,7 +275,7 @@
                     margin-top: 16px;
 
                     >div.cover-box {
-                        max-width: 120px;
+                        max-width: 140px;
                     }
 
                     >div.score-box {
@@ -286,8 +296,6 @@
                     }
 
                     &.best-new {
-                        margin-top: unset;
-
                         >div.score-box {
                             >p.score {
                                 margin: 12px 0;

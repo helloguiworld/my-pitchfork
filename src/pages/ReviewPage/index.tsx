@@ -73,7 +73,7 @@ export default function ReviewPage() {
                             <div className="album-review">
                                 <div
                                     className={
-                                        "album" +
+                                        "review" +
                                         (albumTypeTitle == "TRACK" ? " track-review" : "") +
                                         (needTextResizing ? " resized-text" : "")
                                     }
