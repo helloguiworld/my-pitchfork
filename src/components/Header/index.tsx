@@ -3,7 +3,8 @@ import { useRef } from 'react'
 import useResizeObserver from '../../hooks/useResizeObserver'
 import { useNavigate } from 'react-router-dom'
 
-import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.svg'
+import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.png'
+// import { ReactComponent as MyPitchforkLinkLogoImg } from '../../assets/mypitchfork link logo.svg'
 
 import './styles.scss'
 // export type HeaderProps = {
@@ -24,12 +25,13 @@ export default function Header() {
 
     return (
         <header ref={headerRef}>
-                <img
+            <img
                     src={myPitchforkLinkLogoImg}
                     alt="myPitchfork link logo"
                     className="mypitchfork-link-logo"
                     onClick={() => navigate('/')}
                 />
+            {/* <MyPitchforkLinkLogoImg /> */}
         </header>
     )
 }

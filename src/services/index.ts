@@ -1,8 +1,8 @@
 import axios from "axios"
 
 export const SpotifyAPIBaseURL = "https://api.spotify.com/v1/"
-const client_id = "c91e7e392e8c47f9b7cf853da50c421b"
-const client_secret = "4edf8be1661749c8982767a59d7f416d"
+const client_id = "d3baadfa2d04467ebe145abfa37efab6"
+const client_secret = "62ea33cc61874772b576ff62ea7f7795"
 
 const spotifyAPI = axios.create({
     baseURL: SpotifyAPIBaseURL,
