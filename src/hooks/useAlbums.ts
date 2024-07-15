@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import spotifyService, { Album } from '../services/spotifyService'
 
+import { AxiosError } from 'axios'
+
 export default function useAlbums() {
     const [albums, setAlbums] = useState<Album[]>([])
     const [fetching, setFetching] = useState<boolean>(false)
-    const [error, setError] = useState({})
+    const [error, setError] = useState<AxiosError>()
 
     async function searchAlbums(q: string) {
         setFetching(true)

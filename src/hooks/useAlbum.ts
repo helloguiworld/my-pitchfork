@@ -3,6 +3,8 @@ import spotifyService, { Album } from '../services/spotifyService'
 
 import useStoredTrackScores from './useStoredTrackScores'
 
+import { AxiosError } from 'axios'
+
 export type TrackScores = {
     [key: string]: number,
 }
@@ -10,7 +12,7 @@ export type TrackScores = {
 export default function useAlbum(id: string | undefined) {
     const [album, setAlbum] = useState<Album | null>(null)
     const [fetching, setFetching] = useState<boolean>(false)
-    const [error, setError] = useState({})
+    const [error, setError] = useState<AxiosError>()
     const [trackScores, setTrackScores] = useState<TrackScores>({})
     const [albumScore, setAlbumScore] = useState<Number>(0)
 

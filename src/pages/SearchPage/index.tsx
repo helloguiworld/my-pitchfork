@@ -3,6 +3,8 @@ import { useRef, useEffect, FormEvent, ChangeEvent } from 'react'
 import Page from '../../components/Page'
 import Button from '../../components/Button'
 import AlbumCard from '../../components/AlbumCard'
+import Error429 from '../../components/Error429'
+import Notice from '../../components/Notice'
 
 import Squares from "react-activity/dist/Squares"
 
@@ -17,7 +19,7 @@ import './styles.scss'
 export default function SearchPage() {
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    const { albums, fetching, searchAlbums } = useAlbums()
+    const { albums, fetching, error, searchAlbums } = useAlbums()
 
     const [searchQ, setSearchQ] = useLocalStorage('search-q', "")
 
@@ -33,26 +35,37 @@ export default function SearchPage() {
 
     return (
         <Page id='search-page'>
-            <form className="album-search" onSubmit={handleAlbumSearch}>
-                <input
-                    type='text'
-                    placeholder='Search'
-                    value={searchQ}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value)}
-                    ref={searchInputRef}
-                />
-                <Button type='submit'>SEARCH</Button>
-            </form >
+            {
+                error?.response?.status == 429 ?
+                    <Error429 /> :
+                    <>
+                        <form className="album-search" onSubmit={handleAlbumSearch}>
+                            <input
+                                type='text'
+                                placeholder='Search'
+                                value={searchQ}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value)}
+                                ref={searchInputRef}
+                            />
+                            <Button type='submit'>SEARCH</Button>
+                        </form >
 
-            <div className="albums">
-                {
-                    fetching ?
-                        <Squares />
-                        : albums?.length > 0 ?
-                            albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)
-                            : <span>NO ALBUM LISTED</span>
-                }
-            </div>
+                        <div className="albums">
+                            {
+                                fetching ?
+                                    <Squares />
+                                    : albums?.length > 0 ?
+                                        albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)
+                                        :
+                                        <Notice
+                                            items={[
+                                                "NO ALBUM LISTED",
+                                            ]}
+                                        />
+                            }
+                        </div>
+                    </>
+            }
         </Page>
     )
 }

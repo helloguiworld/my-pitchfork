@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 
 import useResizeObserver from '../../hooks/useResizeObserver'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.png'
 // import { ReactComponent as MyPitchforkLinkLogoImg } from '../../assets/mypitchfork link logo.svg'
@@ -14,6 +14,7 @@ export default function Header() {
     const headerRef = useRef<HTMLElement>(null)
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     function setCSSHeaderHeightVariable() {
         if (headerRef.current) {
@@ -26,12 +27,16 @@ export default function Header() {
     return (
         <header ref={headerRef}>
             <img
-                    src={myPitchforkLinkLogoImg}
-                    alt="myPitchfork link logo"
-                    className="mypitchfork-link-logo"
-                    onClick={() => navigate('/')}
-                />
-            {/* <MyPitchforkLinkLogoImg /> */}
+                src={myPitchforkLinkLogoImg}
+                alt="myPitchfork link logo"
+                className="mypitchfork-link-logo"
+                onClick={() => {
+                    if (location.pathname == '/search')
+                        navigate('/')
+                    else
+                        navigate('/search')
+                }}
+            />
         </header>
     )
 }
