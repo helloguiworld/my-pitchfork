@@ -15,6 +15,7 @@ import Squares from "react-activity/dist/Squares"
 
 import useAlbum from '../../hooks/useAlbum'
 import { getAlbumTitleByType, Track } from '../../services/spotifyService'
+import shareServices from '../../services/shareServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
@@ -128,13 +129,25 @@ export default function ReviewPage() {
                                     <FaSpotify />
                                 </Button>
                                 <Button
-                                    onClick={() => squareReviewCapture(album.name)}
+                                    onClick={() => {
+                                        shareServices.postShare({
+                                            album_id: album.id,
+                                            type: 'square',
+                                        })
+                                        squareReviewCapture(album.name)
+                                    }}
                                 >
                                     SHARE REVIEW
                                     <MdImage />
                                 </Button>
                                 <Button
-                                    onClick={() => storiesReviewCapture(album.name)}
+                                    onClick={() => {
+                                        shareServices.postShare({
+                                            album_id: album.id,
+                                            type: 'stories',
+                                        })
+                                        storiesReviewCapture(album.name)
+                                    }}
                                     color='#E1306C'
                                 >
                                     SHARE STORIES

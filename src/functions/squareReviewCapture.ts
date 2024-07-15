@@ -1,6 +1,6 @@
 import elementCapture from './elementCapture'
 
-export default function squareReviewCapture(albumName?: string) {
+export default async function squareReviewCapture(albumName?: string) {
     const authorElement = document.querySelector("p.author")
 
     elementCapture(
