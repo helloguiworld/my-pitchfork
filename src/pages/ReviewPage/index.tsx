@@ -132,6 +132,7 @@ export default function ReviewPage() {
                                     onClick={() => {
                                         shareServices.postShare({
                                             album_id: album.id,
+                                            album_name: album.name,
                                             type: 'square',
                                         })
                                         squareReviewCapture(album.name)
@@ -144,6 +145,7 @@ export default function ReviewPage() {
                                     onClick={() => {
                                         shareServices.postShare({
                                             album_id: album.id,
+                                            album_name: album.name,
                                             type: 'stories',
                                         })
                                         storiesReviewCapture(album.name)

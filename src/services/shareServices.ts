@@ -5,6 +5,7 @@ export type Sharetype = 'square' | 'stories'
 export type Share = {
     id?: number,
     album_id: string,
+    album_name: string,
     type: Sharetype,
     creation_date?: string,
 }
