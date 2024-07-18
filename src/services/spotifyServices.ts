@@ -1,4 +1,4 @@
-import api from "."
+import api from './myPitchforkAPI'
 
 export function getAlbumTitleByType(type: string, tracks: number) {
     if (type != 'single')
@@ -34,8 +34,8 @@ export type Album = {
 
 
 // READ
-export const getAlbums = async (q: string) => await api.get(`search?type=album&q=${q}`)
-export const getAlbum = async (id: string) => await api.get(`albums/${id}`)
+export const getAlbums = async (q: string) => await api.get(`spotify/search?q=${q}`)
+export const getAlbum = async (id: string) => await api.get(`spotify/albums/${id}`)
 
 // UPDATE
 

@@ -9,7 +9,7 @@ import Notice from '../../components/Notice'
 import Squares from "react-activity/dist/Squares"
 
 import useAlbums from '../../hooks/useAlbums'
-import { Album } from '../../services/spotifyService'
+import { Album } from '../../services/spotifyServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import './styles.scss'

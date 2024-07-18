@@ -14,7 +14,7 @@ import Notice from '../../components/Notice'
 import Squares from "react-activity/dist/Squares"
 
 import useAlbum from '../../hooks/useAlbum'
-import { getAlbumTitleByType, Track } from '../../services/spotifyService'
+import { getAlbumTitleByType, Track } from '../../services/spotifyServices'
 import shareServices from '../../services/shareServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
 

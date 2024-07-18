@@ -1,7 +1,7 @@
 // import { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Album, getAlbumTitleByType } from '../../services/spotifyService'
+import { Album, getAlbumTitleByType } from '../../services/spotifyServices'
 
 import Card from '../Card'
 

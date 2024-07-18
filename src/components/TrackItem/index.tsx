@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 
-import { Track } from '../../services/spotifyService'
+import { Track } from '../../services/spotifyServices'
 
 import './styles.scss'
 export type TrackItemProps = {
