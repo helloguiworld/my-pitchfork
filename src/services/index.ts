@@ -1,8 +1,6 @@
 import axios from "axios"
 
 export const SpotifyAPIBaseURL = "https://api.spotify.com/v1/"
-const client_id = "d3baadfa2d04467ebe145abfa37efab6"
-const client_secret = "62ea33cc61874772b576ff62ea7f7795"
 
 const spotifyAPI = axios.create({
     baseURL: SpotifyAPIBaseURL,
@@ -18,8 +16,8 @@ async function getSpotifyAccessToken() {
         'https://accounts.spotify.com/api/token',
         {
             "grant_type": "client_credentials",
-            "client_id": client_id,
-            "client_secret": client_secret,
+            "client_id": import.meta.env.VITE_SPOTIFY_CLIENT_ID,
+            "client_secret": import.meta.env.VITE_SPOTIFY_CLIENT_SECRET,
         },
         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
         .then(response => {
