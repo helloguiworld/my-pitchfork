@@ -10,7 +10,7 @@ export default function useAlbums() {
 
     async function searchAlbums(q: string) {
         setFetching(true)
-        return spotifyService.getAlbums(q)
+        return spotifyService.getSearch(q)
             .then(response => {
                 setAlbums(
                     response.data.albums.items.map(

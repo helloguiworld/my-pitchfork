@@ -34,8 +34,8 @@ export type Album = {
 
 
 // READ
-export const getAlbums = async (q: string) => await api.get(`spotify/search?q=${q}`)
-export const getAlbum = async (id: string) => await api.get(`spotify/albums/${id}`)
+export const getSearch = async (q: string) => await api.get(`spotify/search?q=${q}`)
+export const getAlbum = async (id: string) => await api.get(`spotify/albums/${id}/`)
 
 // UPDATE
 
@@ -45,7 +45,7 @@ export const getAlbum = async (id: string) => await api.get(`spotify/albums/${id
 
 
 const spotifyService = {
-    getAlbums,
+    getSearch,
     getAlbum,
 }
 export default spotifyService;
