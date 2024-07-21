@@ -6,6 +6,7 @@ export type Share = {
     id?: number,
     album_id: string,
     album_name: string,
+    review_score: number,
     type: Sharetype,
     creation_date?: string,
 }

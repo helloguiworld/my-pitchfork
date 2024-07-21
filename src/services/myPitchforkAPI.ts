@@ -7,7 +7,7 @@ const myPitchforkAPI = axios.create({
 })
 
 myPitchforkAPI.interceptors.response.use(function (response) {
-    // console.log(response)
+    if (import.meta.env.VITE_DEBUG) console.log(response)
     return response
 }, async function (error) {
     console.log(error?.request)

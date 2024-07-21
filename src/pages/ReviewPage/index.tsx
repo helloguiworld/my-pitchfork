@@ -59,6 +59,16 @@ export default function ReviewPage() {
         }
     }
 
+    function createShare(type: 'square' | 'stories') {
+        if (album)
+            shareServices.postShare({
+                album_id: album.id,
+                album_name: album.name,
+                review_score: Number(albumScore.toFixed(1)),
+                type: type,
+            })
+    }
+
     useEffect(() => {
         if (album) {
             setAlbumTypeTitle(getAlbumTitleByType(album.type, album.totalTracks))
@@ -130,11 +140,7 @@ export default function ReviewPage() {
                                 </Button>
                                 <Button
                                     onClick={() => {
-                                        shareServices.postShare({
-                                            album_id: album.id,
-                                            album_name: album.name,
-                                            type: 'square',
-                                        })
+                                        createShare('square')
                                         squareReviewCapture(album.name)
                                     }}
                                 >
@@ -143,11 +149,7 @@ export default function ReviewPage() {
                                 </Button>
                                 <Button
                                     onClick={() => {
-                                        shareServices.postShare({
-                                            album_id: album.id,
-                                            album_name: album.name,
-                                            type: 'stories',
-                                        })
+                                        createShare('stories')
                                         storiesReviewCapture(album.name)
                                     }}
                                     color='#E1306C'
