@@ -14,7 +14,7 @@ export default function useAlbum(id: string | undefined) {
     const [fetching, setFetching] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
     const [trackScores, setTrackScores] = useState<TrackScores>({})
-    const [albumScore, setAlbumScore] = useState<Number>(0)
+    const [albumScore, setAlbumScore] = useState<number>(0)
 
     const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()
 

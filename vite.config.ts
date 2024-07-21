@@ -1,10 +1,12 @@
+/// <reference types="vite/client" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import svgr from 'vite-plugin-svgr'
 import fs from 'fs'
 import path from 'path'
 
-// https://vitejs.dev/config/
+// const DEV_MODE = import.meta.env.VITE_DEV
+
 export default defineConfig({
   plugins: [
     react(),
