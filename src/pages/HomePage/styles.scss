@@ -1,10 +1,10 @@
 #home-page {
-    padding: 32px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 32px;
+    gap: 16px;
 
     .button {
         margin: 32px 0;
@@ -27,8 +27,8 @@
     }
 }
 
-@media screen and (max-width: 767px) {
-    #home-page {
-        padding: 16px;
-    }
-}
+// @media screen and (max-width: 767px) {
+//     #home-page {
+//         padding: 16px;
+//     }
+// }

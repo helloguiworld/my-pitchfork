@@ -9,11 +9,16 @@ type NoticeItem = {
 }
 export type NoticeProps = {
     items: (string | NoticeItem)[],
+    className?: string,
+    html2canvasIgnore?: boolean,
 }
 
 export default function Notice(props: NoticeProps) {
     return (
-        <div className='notice'>
+        <div
+            className={'notice' + (props.className ? ` ${props.className}` : '')}
+            data-html2canvas-ignore={props.html2canvasIgnore}
+        >
             {
                 props.items.map((item: string | NoticeItem) =>
                     typeof item == 'string' ?

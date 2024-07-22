@@ -14,8 +14,8 @@ export default function Error429() {
                     text: "THE SITE HAS EXCEEDED ITS RATE LIMITS FOR SPOTIFY API",
                     type: 'strong'
                 },
-                "WE ARE WORKING TO ENSURE IT DOESN'T HAPPEN IN THE FUTURE!",
-                "PLEASE TRY AGAIN LATER",
+                "We're working to prevent this from happening in the future!",
+                "Please try again later ⏳",
             ]}
         />
     )

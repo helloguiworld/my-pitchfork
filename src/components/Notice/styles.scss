@@ -1,9 +1,9 @@
 div.notice {
+    text-align: center;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
 
     span.strong {
         font-weight: bold;
