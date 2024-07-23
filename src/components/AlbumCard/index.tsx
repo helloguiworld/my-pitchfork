@@ -2,6 +2,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { Album, getAlbumTitleByType } from '../../services/spotifyServices'
+import clickServices from '../../services/clickServices'
 
 import Card from '../Card'
 
@@ -14,8 +15,13 @@ export type AlbumCardProps = {
 export default function AlbumCard(props: AlbumCardProps) {
     const navigate = useNavigate();
 
+    function handleClick() {
+        navigate(`/review/${props.album.id}`)
+        clickServices.postAlbumClick(props.album.id, props.album.name)
+    }
+
     return (
-        <Card className='album-card' onClick={() => navigate(`/review/${props.album.id}`)}>
+        <Card className='album-card' onClick={handleClick}>
             <img
                 className="cover"
                 src={props.album.cover}
