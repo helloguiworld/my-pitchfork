@@ -31,17 +31,12 @@ export default function useAlbum(id: string | undefined) {
                 setAlbum({
                     id: album.id,
                     name: album.name,
-                    type: album.album_type,
-                    cover: album.images[0].url,
-                    artists: album.artists.map((artist: any) => artist.name),
-                    date: album.release_date,
-                    tracks: album.tracks.items.map((track: any, index: number) => ({
-                        id: track.id,
-                        name: track.name,
-                        artists: track.artists.map((artist: any) => artist.name),
-                        number: index + 1,
-                    })),
-                    totalTracks: album.total_tracks,
+                    type: album.type,
+                    cover: album.cover,
+                    artists: album.artists,
+                    date: album.date,
+                    tracks: album.tracks,
+                    totalTracks: album.tracks.length,
                 })
                 return response
             })

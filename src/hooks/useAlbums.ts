@@ -13,15 +13,15 @@ export default function useAlbums() {
         return spotifyService.getSearch(q)
             .then(response => {
                 setAlbums(
-                    response.data.albums.items.map(
+                    response.data.map(
                         (album: any) => ({
                             id: album.id,
                             name: album.name,
-                            type: album.album_type,
-                            cover: album.images[0].url,
-                            artists: album.artists.map((artist: any) => artist.name),
-                            date: album.release_date,
-                            totalTracks: album.total_tracks,
+                            type: album.type,
+                            cover: album.cover,
+                            artists: album.artists,
+                            date: album.date,
+                            totalTracks: album.tracks.length,
                         })
                     )
                 )
