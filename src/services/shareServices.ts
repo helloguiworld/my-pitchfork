@@ -30,4 +30,4 @@ const shareServices = {
     postShare,
     getShares,
 }
-export default shareServices;
+export default shareServices

@@ -48,4 +48,4 @@ const spotifyService = {
     getSearch,
     getAlbum,
 }
-export default spotifyService;
+export default spotifyService

@@ -32,6 +32,8 @@ export type ReviewPageParams = {
 export default function ReviewPage() {
     const [isBestNew, setIsBestNew] = useState(false)
     const [author, setAuthor] = useLocalStorage('author', '')
+    const [fetchingSquareCapture, setFetchingSquareCapture] = useState(false)
+    const [fetchingStoriesCapture, setFetchingStoriesCapture] = useState(false)
 
     const { id } = useParams<ReviewPageParams>()
 
@@ -71,26 +73,32 @@ export default function ReviewPage() {
                                     onClick={() => window.open(`https://open.spotify.com/album/${album.id}`, '_blank')}
                                     color='#1DB954'
                                 >
-                                    OPEN IN SPOTIFY
+                                    <span>OPEN IN SPOTIFY</span>
                                     <FaSpotify />
                                 </Button>
                                 <Button
-                                    onClick={() => {
+                                    onClick={fetchingSquareCapture ? undefined : () => {
+                                        setFetchingSquareCapture(true)
                                         createShare('square')
                                         squareReviewCapture(album.name)
+                                        setTimeout(() => { setFetchingSquareCapture(false) }, 3000)
                                     }}
+                                    fetching={fetchingSquareCapture}
                                 >
-                                    SHARE REVIEW
+                                    <span>SHARE REVIEW</span>
                                     <MdImage />
                                 </Button>
                                 <Button
-                                    onClick={() => {
+                                    color='#E1306C'
+                                    onClick={fetchingStoriesCapture ? undefined : () => {
+                                        setFetchingStoriesCapture(true)
                                         createShare('stories')
                                         storiesReviewCapture(album.name)
+                                        setTimeout(() => { setFetchingStoriesCapture(false) }, 3000)
                                     }}
-                                    color='#E1306C'
+                                    fetching={fetchingStoriesCapture}
                                 >
-                                    SHARE STORIES
+                                    <span>SHARE STORIES</span>
                                     <FaInstagram />
                                 </Button>
                                 <div className="author-input">

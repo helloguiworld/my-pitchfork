@@ -1,5 +1,7 @@
 import { MouseEventHandler, ReactNode } from 'react'
 
+import Squares from "react-activity/dist/Squares"
+
 import './styles.scss'
 export type ButtonProps = {
     onClick?: MouseEventHandler<HTMLButtonElement>,
@@ -8,6 +10,7 @@ export type ButtonProps = {
     type?: "button" | "submit" | "reset",
     color?: string,
     isOn?: boolean,
+    fetching?: boolean,
 }
 
 export default function Button(props: ButtonProps) {
@@ -15,8 +18,9 @@ export default function Button(props: ButtonProps) {
         <button
             className={
                 'button' +
-                (props.className ? ` ${props.className}` : "") +
-                (props.isOn ? ` on` : "")
+                (props.className ? ` ${props.className}` : '') +
+                (props.isOn ? ' on' : '') +
+                (props.fetching ? ' fetching' : '')
             }
             type={props.type || 'button'}
             onClick={props.onClick}
@@ -27,6 +31,7 @@ export default function Button(props: ButtonProps) {
                     <span>{props.children}</span>
                     : props.children
             }
+            {props.fetching != undefined && <Squares />}
         </button>
     )
 }

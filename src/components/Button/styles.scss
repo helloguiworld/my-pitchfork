@@ -22,7 +22,18 @@
         background-color: #ffffff;
     }
 
-    // svg {
-    //     font-size: 1.2rem;
-    // }
+    >.rai-container {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    &.fetching {
+        >*:not(.rai-container) {
+            visibility: hidden;
+        }
+
+        >.rai-container {
+            visibility: visible;
+        }
+    }
 }

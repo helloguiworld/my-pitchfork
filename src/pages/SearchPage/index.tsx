@@ -10,6 +10,7 @@ import Squares from "react-activity/dist/Squares"
 
 import useAlbums from '../../hooks/useAlbums'
 import { Album } from '../../services/spotifyServices'
+import clickServices from '../../services/clickServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import './styles.scss'
@@ -26,6 +27,7 @@ export default function SearchPage() {
     function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         searchInputRef.current?.blur()
+        clickServices.postSearchClick(searchQ)
         searchAlbums(searchQ)
     }
 
@@ -39,15 +41,21 @@ export default function SearchPage() {
                 error?.response?.status == 429 ?
                     <Error429 /> :
                     <>
-                        <form className="album-search" onSubmit={handleAlbumSearch}>
+                        <form className="album-search" onSubmit={fetching ? undefined : handleAlbumSearch}>
                             <input
                                 type='text'
                                 placeholder='Search'
+                                maxLength={50}
                                 value={searchQ}
                                 onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value)}
                                 ref={searchInputRef}
                             />
-                            <Button type='submit'>SEARCH</Button>
+                            <Button
+                                type='submit'
+                                fetching={fetching}
+                            >
+                                SEARCH
+                            </Button>
                         </form >
 
                         <div className="albums">
