@@ -47,7 +47,7 @@ export default function SearchPage() {
                                 placeholder='Search'
                                 maxLength={50}
                                 value={searchQ}
-                                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value)}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value.toLowerCase())}
                                 ref={searchInputRef}
                             />
                             <Button
