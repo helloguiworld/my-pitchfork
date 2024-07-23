@@ -24,11 +24,11 @@ export default function SearchPage() {
 
     const [searchQ, setSearchQ] = useLocalStorage('search-q', "")
 
-    function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
+    async function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         searchInputRef.current?.blur()
-        clickServices.postSearchClick(searchQ)
-        searchAlbums(searchQ)
+        const response = await searchAlbums(searchQ)
+        if (response?.status == 200) await clickServices.postSearchClick(searchQ)
     }
 
     useEffect(() => {
