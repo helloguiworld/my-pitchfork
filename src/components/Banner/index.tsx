@@ -3,10 +3,10 @@
 // import 
 
 import './styles.scss'
-export type BannerProps = {
-}
+// export type BannerProps = {
+// }
 
-export default function Banner(props: BannerProps) {
+export default function Banner() {
     return (
         <div className='banner'>
             <span className='strong'>We've just launched our social media profiles! 📱✨</span>
