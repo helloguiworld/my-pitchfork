@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
 import UpdatesNotice from '../UpdatesNotice'
+import Banner from '../Banner'
 
 import './styles.scss'
 export type PageProps = {
@@ -14,7 +15,10 @@ export default function Page(props: PageProps) {
     return (
         <>
             <Header />
-            <UpdatesNotice ownSpace/>
+            <div className="banner-group" data-html2canvas-ignore={true}>
+                <UpdatesNotice ownSpace />
+                <Banner />
+            </div>
             <main className='page' id={props.id}>
                 {props.children}
             </main>

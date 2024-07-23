@@ -1,0 +1,31 @@
+.banner {
+    align-self: stretch;
+    color: #8c1f74;
+    background-color: #fff4ff;
+    text-align: center;
+    padding: 15px;
+    border: 2px solid #fa9fee;
+    border-radius: 5px;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    >.line {
+        display: flex;
+        gap: 20px;
+    }
+
+    .strong {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin: 6px 0;
+    }
+
+    a {
+        color: #b90492;
+        font-weight: bold;
+        transition: .3s;
+    }
+}
