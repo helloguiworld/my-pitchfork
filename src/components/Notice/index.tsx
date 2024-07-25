@@ -11,12 +11,17 @@ export type NoticeProps = {
     items: (string | NoticeItem)[],
     className?: string,
     html2canvasIgnore?: boolean,
+    ownSpace?: boolean,
 }
 
 export default function Notice(props: NoticeProps) {
     return (
         <div
-            className={'notice' + (props.className ? ` ${props.className}` : '')}
+            className={
+                'notice' +
+                (props.className ? ` ${props.className}` : '') +
+                (props.ownSpace ? ' spaced' : '')
+            }
             data-html2canvas-ignore={props.html2canvasIgnore}
         >
             {

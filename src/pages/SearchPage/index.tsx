@@ -5,6 +5,7 @@ import Button from '../../components/Button'
 import AlbumCard from '../../components/AlbumCard'
 import Error429 from '../../components/Error429'
 import Notice from '../../components/Notice'
+import SearchNotice from '../../components/Notice/SearchNotice'
 
 import Squares from "react-activity/dist/Squares"
 
@@ -63,7 +64,10 @@ export default function SearchPage() {
                                 fetching ?
                                     <Squares />
                                     : albums?.length > 0 ?
-                                        albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)
+                                        <>
+                                            {albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)}
+                                            <SearchNotice/>
+                                        </>
                                         :
                                         <Notice
                                             items={[

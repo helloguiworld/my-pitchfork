@@ -1,4 +1,5 @@
 div.notice {
+    font-size: 1rem;
     text-align: center;
     margin: auto;
     display: flex;
@@ -8,6 +9,10 @@ div.notice {
     span.strong {
         font-weight: bold;
         font-size: 1.1em;
-        margin: 6px 0;
+        margin: 4px 0;
+    }
+    
+    &.spaced {
+        margin: 16px;
     }
 }

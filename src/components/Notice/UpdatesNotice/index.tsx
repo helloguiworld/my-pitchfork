@@ -1,6 +1,6 @@
 // import { } from 'react'
 
-import Notice from '../Notice'
+import Notice from '..'
 
 import './styles.scss'
 export type WarningProps = {
@@ -11,7 +11,8 @@ export default function UpdatesNotice(props: WarningProps) {
     return (
         <Notice
             html2canvasIgnore
-            className={'updates-notice' + (props.ownSpace ? ' spaced' : '')}
+            ownSpace={props.ownSpace}
+            className={'updates-notice'}
             items={[
                 {
                     // text: "🎉 Exciting news: We’re upgrading your experience on myPitchfork! 🚀",

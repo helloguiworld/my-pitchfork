@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import Header from '../Header'
 import Footer from '../Footer'
-import UpdatesNotice from '../UpdatesNotice'
+import UpdatesNotice from '../Notice/UpdatesNotice'
 import Banner from '../Banner'
 
 import './styles.scss'
