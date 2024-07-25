@@ -72,7 +72,7 @@ export default function AlbumReview(props: AlbumReviewProps) {
                             <Crown />
                         }
 
-                        <p className="score">{props.score.toFixed(1)}</p>
+                        <p className="score">{props.score != 10 ? props.score.toFixed(1) : props.score}</p>
 
                         {props.isBestNew &&
                             <p className="target">
