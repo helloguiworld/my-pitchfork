@@ -29,7 +29,7 @@ export default function TrackItem(props: TrackItemProps) {
             <input
                 className='track-score'
                 id={`track-${props.track.id}`}
-                value={props.trackScore.toFixed(1)}
+                value={props.trackScore != 10 ? props.trackScore.toFixed(1) : props.trackScore}
                 onChange={onChange}
                 inputMode="numeric"
             />

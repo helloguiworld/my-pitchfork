@@ -45,7 +45,7 @@ export default function SearchPage() {
                         <form className="album-search" onSubmit={fetching ? undefined : handleAlbumSearch}>
                             <input
                                 type='text'
-                                placeholder='Search'
+                                placeholder='album or artist'
                                 maxLength={50}
                                 value={searchQ}
                                 onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value.toLowerCase())}

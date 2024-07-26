@@ -1,5 +1,6 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { AuthContext } from '../../contexts/AuthContext'
 
 import { MdImage } from "react-icons/md"
 import { FaSpotify, FaInstagram } from "react-icons/fa6"
@@ -15,9 +16,12 @@ import Notice from '../../components/Notice'
 import Squares from "react-activity/dist/Squares"
 
 import useAlbum from '../../hooks/useAlbum'
+import useReview from '../../hooks/useReview'
+
+import useLocalStorage from '../../hooks/useLocalStorage'
 import { Track } from '../../services/spotifyServices'
 import clickServices from '../../services/clickServices'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import myServices from '../../services/myServices'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
 import storiesReviewCapture from '../../functions/storiesReviewCapture'
@@ -37,28 +41,53 @@ export default function ReviewPage() {
 
     const { id } = useParams<ReviewPageParams>()
 
-    const { album, fetching, error, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
+    // const { album, fetching, error, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
+    const {
+        review,
+        fetching,
+        error,
+        // readReview,
+        saveReview,
+        album,
+        albumError,
+        albumFetching,
+        trackScores,
+        setNewTrackScore,
+        albumScore,
+    } = useReview(id)
+
+    const authContext = useContext(AuthContext)
 
     function createShare(type: 'square' | 'stories') {
         if (album)
             clickServices.postShareClick({
                 album_id: album.id,
                 album_name: album.name,
-                review_score: Number(albumScore.toFixed(1)),
+                review_score: Number(albumScore),
                 type: type,
             })
     }
 
-    useEffect(() => {
-        console.log('error', error)
-    }, [error])
+    function saveMyReview() {
+        if (authContext?.isAuth && album) {
+            const review = {
+                'album': album.id,
+                'score': albumScore,
+                'track_scores': Object.entries(trackScores).map(ts => ({
+                    'track': ts[0],
+                    'score': ts[1],
+                })),
+            }
+            saveReview(review)
+        }
+    }
 
     return (
         <Page id='review-page'>
             {
-                fetching ?
+                fetching && albumFetching ?
                     <Squares />
-                    : error?.response?.status == 429 ?
+                    : albumError?.response?.status == 429 ?
                         <Error429 /> :
                         album ?
                             <>
@@ -76,6 +105,7 @@ export default function ReviewPage() {
                                     <span>OPEN IN SPOTIFY</span>
                                     <FaSpotify />
                                 </Button>
+
                                 <Button
                                     onClick={fetchingSquareCapture ? undefined : () => {
                                         setFetchingSquareCapture(true)
@@ -101,6 +131,7 @@ export default function ReviewPage() {
                                     <span>SHARE STORIES</span>
                                     <FaInstagram />
                                 </Button>
+
                                 <div className="author-input">
                                     Author
                                     <input
@@ -115,15 +146,28 @@ export default function ReviewPage() {
                                 <div className="track-scores">
                                     <div className="track-scores-header">
                                         <p className='title'>Track Scores</p>
+
+                                        {
+                                            authContext?.isAuth &&
+                                            <Button
+                                                className={'save-review'}
+                                                onClick={saveMyReview}
+                                                color='#455678'
+                                            >
+                                                <span>SALVAR</span>
+                                            </Button>
+                                        }
+
                                         <Button
                                             className={'best-new'}
                                             isOn={isBestNew}
                                             onClick={() => setIsBestNew(!isBestNew)}
-                                            color={"#ff3530"}
+                                            color="#ff3530"
                                         >
                                             <Crown />
                                         </Button>
                                     </div>
+
                                     <div className="tracks">
                                         {
                                             album.tracks?.map(

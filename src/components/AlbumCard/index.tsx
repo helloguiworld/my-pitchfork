@@ -35,11 +35,11 @@ export default function AlbumCard(props: AlbumCardProps) {
             </div>
 
             <div className="tracks-data">
-                <p className='album-type'>{getAlbumTitleByType(props.album.type, props.album.totalTracks)}</p>
+                <p className='album-type'>{getAlbumTitleByType(props.album.type, props.album.tracks?.length)}</p>
                 {
-                    props.album.totalTracks > 1 &&
+                    props.album.tracks?.length > 1 &&
                     <p className="total-tracks">
-                        {`${props.album.totalTracks} tracks`}
+                        {`${props.album.tracks?.length} tracks`}
                     </p>
                 }
             </div>

@@ -1,0 +1,78 @@
+.access-page {
+    flex: 1;
+    display: flex;
+    
+    h2 {
+        font-weight: unset;
+    }
+
+    >div {
+        flex: 1;
+        padding: 32px;
+    }
+
+    >.form-box {
+        flex: 1;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+
+        >div.title {
+            text-align: center;
+        }
+
+        >form.login {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            div.form-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                // font-size: 1.1em;
+            }
+
+            input {
+                padding: 8px;
+            }
+
+            button {
+                // height: 2.5rem;
+                margin-top: 8px;
+            }
+        }
+    }
+
+    >.access-banner {
+        flex: 1;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        >img.mypitchfork-link-logo {
+            width: 60%;
+            max-width: 300px;
+            height: auto;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .access-page {
+        flex-direction: column-reverse;
+        >.access-banner {
+            display: none;
+        }
+    }
+}

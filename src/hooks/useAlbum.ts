@@ -27,7 +27,7 @@ export default function useAlbum(id: string | undefined) {
         setFetching(true)
         return spotifyService.getAlbum(id)
             .then((response: any) => {
-                const album = response.data
+                const album: Album = response.data
                 setAlbum({
                     id: album.id,
                     name: album.name,
@@ -36,13 +36,11 @@ export default function useAlbum(id: string | undefined) {
                     artists: album.artists,
                     date: album.date,
                     tracks: album.tracks,
-                    totalTracks: album.tracks.length,
                 })
                 return response
             })
             .catch((error) => setError(error))
             .finally(() => setFetching(false))
-            // .finally(() => setTimeout(() => setFetching(false), 500))
     }
 
     useEffect(() => {
@@ -54,7 +52,11 @@ export default function useAlbum(id: string | undefined) {
         if (album?.tracks) {
             const albumTrackIds = album.tracks.map(track => track.id)
             const retrievedTrackScores = getStoredTrackScoresByIds(albumTrackIds)
-            setTrackScores(retrievedTrackScores)
+            const newTrackScores = albumTrackIds.reduce((ts: TrackScores, ts_id: string) => {
+                ts[ts_id] = retrievedTrackScores[ts_id] || 0
+                return ts
+            }, {})
+            setTrackScores(newTrackScores)
         }
     }, [album])
 
@@ -62,7 +64,7 @@ export default function useAlbum(id: string | undefined) {
         if (album && trackScores) {
             const scores = Object.values(trackScores)
             const scoresSum = scores.reduce((acc, curr) => acc + curr, 0)
-            const newAlbumScore = scoresSum / album.totalTracks
+            const newAlbumScore = scoresSum / scores.length
             setAlbumScore(newAlbumScore)
         }
     }, [trackScores])

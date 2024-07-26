@@ -36,8 +36,8 @@ export default function AlbumReview(props: AlbumReviewProps) {
     }
 
     useEffect(() => {
-        if (props.album) {
-            setAlbumTypeTitle(getAlbumTitleByType(props.album.type, props.album.totalTracks))
+        if (props.album && props.album.tracks) {
+            setAlbumTypeTitle(getAlbumTitleByType(props.album.type, props.album.tracks.length))
             checkTextAmount()
         }
     }, [props.album])
