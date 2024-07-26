@@ -16,7 +16,7 @@ import Squares from "react-activity/dist/Squares"
 
 import useAlbum from '../../hooks/useAlbum'
 import { Track } from '../../services/spotifyServices'
-import shareServices from '../../services/shareServices'
+import clickServices from '../../services/clickServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
@@ -41,7 +41,7 @@ export default function ReviewPage() {
 
     function createShare(type: 'square' | 'stories') {
         if (album)
-            shareServices.postShare({
+            clickServices.postShareClick({
                 album_id: album.id,
                 album_name: album.name,
                 review_score: Number(albumScore.toFixed(1)),
