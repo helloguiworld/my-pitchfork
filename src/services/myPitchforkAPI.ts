@@ -13,6 +13,9 @@ myPitchforkAPI.interceptors.response.use(function (response) {
     if (import.meta.env.VITE_DEBUG) console.log(response)
     return response
 }, async function (error) {
+    if (error.response && error.response.status === 404) {
+        window.location.reload();
+    }
     console.log(error?.request)
     return Promise.reject(error)
 })
