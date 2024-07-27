@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, useContext } from 'react'
+import { useState, ChangeEvent, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 
@@ -15,13 +15,11 @@ import Notice from '../../components/Notice'
 
 import Squares from "react-activity/dist/Squares"
 
-import useAlbum from '../../hooks/useAlbum'
 import useReview from '../../hooks/useReview'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { Track } from '../../services/spotifyServices'
 import clickServices from '../../services/clickServices'
-import myServices from '../../services/myServices'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
 import storiesReviewCapture from '../../functions/storiesReviewCapture'
@@ -34,29 +32,31 @@ export type ReviewPageParams = {
 }
 
 export default function ReviewPage() {
-    const [isBestNew, setIsBestNew] = useState(false)
+    const authContext = useContext(AuthContext)
+
     const [author, setAuthor] = useLocalStorage('author', '')
     const [fetchingSquareCapture, setFetchingSquareCapture] = useState(false)
     const [fetchingStoriesCapture, setFetchingStoriesCapture] = useState(false)
 
     const { id } = useParams<ReviewPageParams>()
 
-    // const { album, fetching, error, setNewTrackScore, trackScores, albumScore } = useAlbum(id)
     const {
-        review,
+        // review,
         fetching,
-        error,
+        // error,
         // readReview,
+        needToSave,
         saveReview,
         album,
         albumError,
         albumFetching,
+        isBestNew,
+        setIsBestNew,
         trackScores,
         setNewTrackScore,
+        unhashTrackScores,
         albumScore,
     } = useReview(id)
-
-    const authContext = useContext(AuthContext)
 
     function createShare(type: 'square' | 'stories') {
         if (album)
@@ -73,10 +73,8 @@ export default function ReviewPage() {
             const review = {
                 'album': album.id,
                 'score': albumScore,
-                'track_scores': Object.entries(trackScores).map(ts => ({
-                    'track': ts[0],
-                    'score': ts[1],
-                })),
+                'is_best_new': isBestNew,
+                'track_scores': unhashTrackScores(trackScores),
             }
             saveReview(review)
         }
@@ -147,17 +145,6 @@ export default function ReviewPage() {
                                     <div className="track-scores-header">
                                         <p className='title'>Track Scores</p>
 
-                                        {
-                                            authContext?.isAuth &&
-                                            <Button
-                                                className={'save-review'}
-                                                onClick={saveMyReview}
-                                                color='#455678'
-                                            >
-                                                <span>SALVAR</span>
-                                            </Button>
-                                        }
-
                                         <Button
                                             className={'best-new'}
                                             isOn={isBestNew}
@@ -181,6 +168,17 @@ export default function ReviewPage() {
                                             )
                                         }
                                     </div>
+
+                                    {
+                                        (authContext?.isAuth) &&
+                                        <Button
+                                            className={'save-review'}
+                                            lowVisibility={!needToSave}
+                                            onClick={saveMyReview}
+                                        >
+                                            <span>{needToSave ? "SAVE REVIEW" : "REVIEW IS UPDATED"}</span>
+                                        </Button>
+                                    }
                                 </div>
                             </>
                             :

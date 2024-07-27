@@ -15,11 +15,15 @@
         color: #ffffff;
         background-color: var(--color);
     }
-
     &.on:hover {
         fill: var(--color);
         color: var(--color);
         background-color: #ffffff;
+    }
+
+    &.low-visibility {
+        opacity: .2;
+        pointer-events: none;
     }
 
     >.rai-container {

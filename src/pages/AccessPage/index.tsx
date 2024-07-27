@@ -1,6 +1,7 @@
 // import {  } from 'react'
 
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 
 import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.png'
 
@@ -16,6 +17,7 @@ export default function AccessPage(props: AccessPageProps) {
                 <div className="form-box">
                     {/* Get mode form */}
                     {props.mode == 'login' && <LoginForm />}
+                    {props.mode == 'register' && <RegisterForm />}
 
                 </div>
 

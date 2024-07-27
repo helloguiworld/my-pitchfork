@@ -3,94 +3,111 @@ import { useState, FormEvent, useContext } from 'react'
 import { AuthContext } from '../../../../contexts/AuthContext'
 
 import Button from "../../../../components/Button"
+import FormInput from '../../../../components/FormInput'
 
-import accessServices from '../../../../services/accessServices'
 import { useNavigate } from 'react-router-dom'
+import useAccess from '../../../../hooks/useAccess'
 
 // import './styles.scss'
 // export type LoginFormProps = {
 // }
+export type LoginError = {
+    [key: string] : string[],
+}
 
 export default function LoginForm() {
+    const authContext = useContext(AuthContext)
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [fetching, setFetching] = useState(false)
-
-    const authContext = useContext(AuthContext)
 
     const navigate = useNavigate()
 
+    const {
+        fetching,
+        errors,
+        generalErrors,
+        login,
+    } = useAccess()
+
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        setFetching(true)
-        await accessServices.login(username, password)
-            .then((response) => {
-                const token = response.data.token
-                if (token) {
-                    authContext?.login(token)
-                    navigate('/')
-                }
-            }).finally(() => setFetching(false))
+        
+        const response = await login(username, password)
+        if (response?.status == 200) {
+            console.log('LOGIN')
+            navigate('/')
+        }
     }
 
     return (
         <>
-            <div className="title">
-                <h1>OMG hiiii!</h1>
-                <h2>welcome back 😁</h2>
-            </div>
-
             {
                 authContext?.isAuth ?
-                    < Button
-                        type='submit'
-                        color={"#ff9876"}
-                        onClick={() => {
-                            authContext.logout()
-                        }}
-                    >
-                        LOGOUT
-                    </Button>
+                    <>
+                        <div className="title">
+                            <h1>Hello!</h1>
+                            <h2>You are logged in 🔑</h2>
+                        </div>
+
+                        < Button
+                            type='submit'
+                            color={"#ff9876"}
+                            onClick={() => {
+                                authContext.logout()
+                            }}
+                        >
+                            LOGOUT
+                        </Button>
+                    </>
                     :
-                    <form className='login' onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="username">Username</label>
-                            <input
+                    <>
+
+                        <div className="title">
+                            <h1>OMG hiiii!</h1>
+                            <h2>We've missed you 😊</h2>
+                        </div>
+
+                        <form className='login' onSubmit={handleSubmit}>
+                            <FormInput
                                 type="text"
                                 id="username"
                                 placeholder='enter your username'
+                                label='Username'
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 required
+                                errors={errors.username}
+                                generalErrors={generalErrors}
                             />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input
+                            <FormInput
                                 type="password"
                                 id="password"
                                 placeholder='enter your ********'
+                                label='Password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
+                                errors={errors.password}
+                                generalErrors={generalErrors}
+                                showGeneralErrors
                             />
-                        </div>
 
-
-                        <Button
-                            type='submit'
-                            fetching={fetching}
-                        >
-                            LOGIN
-                        </Button>
-                        <Button
-                            type='submit'
-                            color={"#ff3530"}
-                        >
-                            CREATE ACCOUNT
-                        </Button>
-                    </form >
+                            <Button
+                                type='submit'
+                                fetching={fetching}
+                            >
+                                LOGIN
+                            </Button>
+                            <Button
+                                type='button'
+                                color={"#193caf"}
+                                onClick={() => navigate('/register')}
+                            >
+                                CREATE ACCOUNT
+                            </Button>
+                        </form >
+                    </>
             }
         </>
     )

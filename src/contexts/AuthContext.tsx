@@ -1,10 +1,14 @@
 import { createContext, ReactNode, useState, useEffect } from 'react'
+
 import { setAPIAuthToken, removeAPIAuthToken } from '../services/myPitchforkAPI'
 
+import { Account } from '../services/accessServices'
 import useLocalStorage from '../hooks/useLocalStorage'
+import myServices from '../services/myServices'
 
 type AuthContextType = {
     authToken: string | null,
+    authAccount: Account,
     isAuth: boolean,
     login: (token: string) => void,
     logout: () => void,
@@ -18,33 +22,52 @@ type AuthProviderType = {
 
 const AuthProvider = (props: AuthProviderType) => {
     const [authToken, setAuthToken, removeAuthToken] = useLocalStorage('auth-token', null)
+    const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage('auth-account', null)
     const [isAuth, setIsAuth] = useState(false)
-
-    useEffect(() => {
-        if (authToken) {
-            setAPIAuthToken(authToken)
-            setAuthToken(authToken)
-            setIsAuth(true)
-        }
-    }, [authToken])
-
-    const login = (token: string) => {
-        setAPIAuthToken(token)
-        setAuthToken(token)
-    }
 
     const logout = () => {
         removeAPIAuthToken()
         removeAuthToken()
+        removeAuthAccount()
         setIsAuth(false)
+    }
+
+    const login = async (token: string) => {
+        setAPIAuthToken(token)
+        // const response = await myServices.getAccount()
+        return myServices.getAccount()
+            .then((response) => {
+                const myAccount = response.data
+                setAuthToken(token)
+                setAuthAccount(myAccount)
+                setIsAuth(true)
+                return myAccount
+            })
+            .catch((error) => {
+                logout()
+                return false
+            })
     }
 
     const authConsole = (...args: any[]) => {
         if (isAuth) console.log(args)
     }
 
+    useEffect(() => {
+        if (authToken) login(authToken)
+    }, [authToken])
+
     return (
-        <AuthContext.Provider value={{ authToken, isAuth, login, logout, authConsole }}>
+        <AuthContext.Provider
+            value={{
+                authToken,
+                authAccount,
+                isAuth,
+                login,
+                logout,
+                authConsole
+            }}
+        >
             {props.children}
         </AuthContext.Provider>
     )

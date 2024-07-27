@@ -1,0 +1,28 @@
+div.form-input {
+    display: flex;
+    flex-direction: column;
+
+    // label {
+    //     font-size: 1.1em;
+    // }
+
+    input {
+        padding: 8px;
+
+        &.error {
+            border-color: var(--error-color);
+        }
+    }
+
+    div.errors {
+        margin: 2px;
+        display: flex;
+        flex-direction: column;
+
+        span.error {
+            font-size: .8rem;
+            color: var(--error-color);
+            line-height: 1.2;
+        }
+    }
+}

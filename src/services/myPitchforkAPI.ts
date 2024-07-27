@@ -1,8 +1,10 @@
 import axios from "axios"
 
+const NETWORK_IP = "192.168.0.11"
+
 export const myPitchforkAPIBaseURL =
     import.meta.env.VITE_LOCAL_API ?
-        "http://192.168.0.11:8000/" :
+        `http://${NETWORK_IP}:8000/` :
         "https://api.mypitchfork.fun/"
 
 const myPitchforkAPI = axios.create({

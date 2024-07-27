@@ -8,6 +8,7 @@ export type TrackScore = {
 export type Review = {
     album: string
     score: number
+    is_best_new: boolean
     track_scores: TrackScore[]
 }
 

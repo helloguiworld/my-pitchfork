@@ -21,7 +21,7 @@ export default function useAlbums() {
                             cover: album.cover,
                             artists: album.artists,
                             date: album.date,
-                            totalTracks: album.tracks.length,
+                            tracks: album.tracks,
                         })
                     )
                 )

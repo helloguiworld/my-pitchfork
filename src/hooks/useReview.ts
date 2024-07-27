@@ -13,29 +13,39 @@ export type HashTrackScores = {
 }
 
 export default function useReview(id: string | undefined) {
+    const authContext = useContext(AuthContext)
+
     const [review, setReview] = useState<Review | null>(null)
     // const [isUpdated, setIsUpdated] = useState(true)
     const [fetching, setFetching] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
+    const [isBestNew, setIsBestNew] = useState(false)
     const [trackScores, setTrackScores] = useState<HashTrackScores>({})
     const [albumScore, setAlbumScore] = useState<number>(0)
+    const [needToSave, setNeedToSave] = useState(false)
 
     const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()
 
     const { album, fetching: albumFetching, error: albumError } = useAlbum(id)
 
-    const authContext = useContext(AuthContext)
-
     function setNewTrackScore(id: string, score: number) {
         setTrackScores(prevTrackScores => ({ ...prevTrackScores, [id]: score }))
         setStoredTrackScore(id, score)
+        setNeedToSave(true)
     }
-    
+
     function hashTrackScores(trackScores: TrackScore[]) {
         return trackScores.reduce((tss: HashTrackScores, ts: TrackScore) => {
             tss[ts.track] = ts.score
             return tss
         }, {})
+    }
+
+    function unhashTrackScores(trackScores: HashTrackScores) {
+        return Object.entries(trackScores).map(ts => ({
+            'track': ts[0],
+            'score': ts[1],
+        }))
     }
 
     function defineCleanTrackScoresLocalBased() {
@@ -71,6 +81,7 @@ export default function useReview(id: string | undefined) {
                 .then((response: any) => {
                     const review = response.data
                     setReview(review)
+                    setNeedToSave(false)
                     return response
                 })
                 .catch((error) => setError(error))
@@ -85,6 +96,7 @@ export default function useReview(id: string | undefined) {
                 .then((response: any) => {
                     const review = response.data
                     setReview(review)
+                    setNeedToSave(false)
                     return response
                 })
                 .catch((error) => setError(error))
@@ -118,12 +130,13 @@ export default function useReview(id: string | undefined) {
             } else if (!fetching) {
                 if (review) {
                     authContext.authConsole('REVIEW', review)
+                    setIsBestNew(review.is_best_new)
                     const newTrackScores = hashTrackScores(review.track_scores)
-                    console.log('TRACK SCORES', newTrackScores)
                     setTrackScores(newTrackScores)
                 } else {
                     authContext.authConsole('NOT REVIEW')
                     defineCleanTrackScoresLocalBased()
+                    setNeedToSave(true)
                 }
             }
         }
@@ -138,17 +151,35 @@ export default function useReview(id: string | undefined) {
         }
     }, [trackScores])
 
+    // useEffect(() => {
+    //     if (authContext?.isAuth && !fetching && review &&) {
+    //         const hts = hashTrackScores(review.track_scores)
+    //         const isSame = JSON.stringify(hts) === JSON.stringify(trackScores)
+    //         console.log('CHECK IF EQUAL', hts, trackScores, isSame)
+    //         if (!isSame) setNeedToSave(true)
+    //     }
+    // }, [authContext?.isAuth, review, trackScores])
+
     return {
         review,
         fetching,
         error,
         readReview,
+        needToSave,
         saveReview,
+
         album,
         albumError,
         albumFetching,
+
+        isBestNew,
+        setIsBestNew,
+
         trackScores,
         setNewTrackScore,
+        hashTrackScores,
+        unhashTrackScores,
+
         albumScore,
     }
 }

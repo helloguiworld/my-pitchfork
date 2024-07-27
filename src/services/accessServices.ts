@@ -1,7 +1,18 @@
 import api from "./myPitchforkAPI"
 
 // TYPE
-
+export type User = {
+    password: string,
+    username: string,
+    email: string,
+    name: string,
+}
+export type Account = {
+    id?: number,
+    user: User,
+    bio?: string,
+    updated_at?: string,
+}
 
 // CRUD
 
@@ -10,6 +21,7 @@ export const login = async (username: string, password: string) => await api.pos
     username,
     password,
 })
+export const register = async (newAccount: Account) => await api.post('accounts/', newAccount)
 
 // READ
 
@@ -23,5 +35,6 @@ export const login = async (username: string, password: string) => await api.pos
 
 const accessServices = {
     login,
+    register,
 }
 export default accessServices

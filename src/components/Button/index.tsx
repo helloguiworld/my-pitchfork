@@ -10,6 +10,7 @@ export type ButtonProps = {
     type?: "button" | "submit" | "reset",
     color?: string,
     isOn?: boolean,
+    lowVisibility?: boolean,
     fetching?: boolean,
 }
 
@@ -20,6 +21,7 @@ export default function Button(props: ButtonProps) {
                 'button' +
                 (props.className ? ` ${props.className}` : '') +
                 (props.isOn ? ' on' : '') +
+                (props.lowVisibility ? ' low-visibility' : '') +
                 (props.fetching ? ' fetching' : '')
             }
             type={props.type || 'button'}
