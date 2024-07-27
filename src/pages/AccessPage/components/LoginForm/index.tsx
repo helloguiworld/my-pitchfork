@@ -12,7 +12,7 @@ import useAccess from '../../../../hooks/useAccess'
 // export type LoginFormProps = {
 // }
 export type LoginError = {
-    [key: string] : string[],
+    [key: string]: string[],
 }
 
 export default function LoginForm() {
@@ -32,7 +32,7 @@ export default function LoginForm() {
 
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        
+
         const response = await login(username, password)
         if (response?.status == 200) {
             console.log('LOGIN')
@@ -95,18 +95,20 @@ export default function LoginForm() {
 
                             <Button
                                 type='submit'
+                                colorFilled
                                 fetching={fetching}
                             >
                                 LOGIN
                             </Button>
-                            <Button
-                                type='button'
-                                color={"#193caf"}
-                                onClick={() => navigate('/register')}
-                            >
-                                CREATE ACCOUNT
-                            </Button>
                         </form >
+
+                        <Button
+                            type='button'
+                            color={"#193caf"}
+                            onClick={() => navigate('/register')}
+                        >
+                            SIGN UP
+                        </Button>
                     </>
             }
         </>

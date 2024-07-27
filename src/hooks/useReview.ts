@@ -16,7 +16,6 @@ export default function useReview(id: string | undefined) {
     const authContext = useContext(AuthContext)
 
     const [review, setReview] = useState<Review | null>(null)
-    // const [isUpdated, setIsUpdated] = useState(true)
     const [fetching, setFetching] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
     const [isBestNew, setIsBestNew] = useState(false)

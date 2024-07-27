@@ -11,7 +11,9 @@ import { AuthProvider } from './contexts/AuthContext.tsx'
 import HomePage from './pages/HomePage/index.tsx'
 import SearchPage from './pages/SearchPage/index.tsx'
 import ReviewPage from './pages/ReviewPage/index.tsx'
+
 import LoginPage from './pages/AccessPage/index.tsx'
+import MyPage from './pages/MyPage/index.tsx'
 
 import './fonts.css'
 import './global.css'
@@ -22,6 +24,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
   },
+
+  {
+    path: "/search/*",
+    element: <SearchPage />,
+  },
+  {
+    path: "/review/:id",
+    element: <ReviewPage />,
+  },
+
   {
     path: "/login",
     element: <LoginPage mode='login' />,
@@ -38,14 +50,12 @@ const router = createBrowserRouter([
     path: "/password-reset",
     element: <LoginPage mode='password-reset' />,
   },
+
   {
-    path: "/search/*",
-    element: <SearchPage />,
+    path: "/my",
+    element: <MyPage />,
   },
-  {
-    path: "/review/:id",
-    element: <ReviewPage />,
-  },
+
   {
     path: "*",
     element: <Navigate to="/" replace />,

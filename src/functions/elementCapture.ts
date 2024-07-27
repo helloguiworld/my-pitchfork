@@ -34,7 +34,7 @@ export default function elementCapture(selector: string, fileName?: string, opti
         if (isMobile) {
             canvas.toBlob(blob => {
                 if (blob) {
-                    const file = new File([blob], `myPytchfork - ${fileName || "Album Review"}.png`, { type: 'image/png' })
+                    const file = new File([blob], `myPytchfork - ${fileName || "CAPTURE"}.png`, { type: 'image/png' })
                     shareImage(file)
                 }
             })

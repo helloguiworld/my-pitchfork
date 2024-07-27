@@ -1,0 +1,21 @@
+div.my-header {
+    text-align: center;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    >p.title {
+        font-weight: bold;
+        font-size: .75rem;
+        letter-spacing: 0.06875em;
+    }
+
+    >p.name {
+        font-family: TiemposHeadline, helvetica, sans-serif;
+        font-style: italic;
+        font-size: 2em;
+    }
+
+    >p.username {}
+}

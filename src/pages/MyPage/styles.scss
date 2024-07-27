@@ -1,0 +1,35 @@
+#my-page {
+    text-align: center;
+    padding: 10vh 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    div.message {
+        // align-self: stretch;
+        font-size: 16px;
+        // color: #525252;
+        // background-color: #fefefe;
+        padding: 16px;
+        // border: 2px solid #e9e9e9;
+        // border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        >p {
+            font-size: 1em;
+
+            &.title {
+                font-size: 1.4em;
+                font-weight: bold;
+            }
+            &.special {
+                // font-weight: bold;
+                font-style: italic;
+            }
+        }
+    }
+}

@@ -25,10 +25,12 @@ export default function Notice(props: NoticeProps) {
             data-html2canvas-ignore={props.html2canvasIgnore}
         >
             {
-                props.items.map((item: string | NoticeItem) =>
+                props.items.map((item: string | NoticeItem, index: number) =>
                     typeof item == 'string' ?
-                        <span>{item}</span> :
-                        <span className={item.type ? item.type : ''}>{item.text}</span>
+                        <span key={index}>{item}</span> :
+                        <span key={index} className={item.type ? item.type : ''}>
+                            {item.text}
+                        </span>
                 )
             }
         </div>

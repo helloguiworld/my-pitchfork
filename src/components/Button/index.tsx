@@ -9,6 +9,7 @@ export type ButtonProps = {
     className?: string,
     type?: "button" | "submit" | "reset",
     color?: string,
+    colorFilled?: boolean,
     isOn?: boolean,
     lowVisibility?: boolean,
     fetching?: boolean,
@@ -21,6 +22,7 @@ export default function Button(props: ButtonProps) {
                 'button' +
                 (props.className ? ` ${props.className}` : '') +
                 (props.isOn ? ' on' : '') +
+                (props.colorFilled ? ' color-filled' : '') +
                 (props.lowVisibility ? ' low-visibility' : '') +
                 (props.fetching ? ' fetching' : '')
             }

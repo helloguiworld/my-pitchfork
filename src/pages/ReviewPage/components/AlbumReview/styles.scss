@@ -167,7 +167,7 @@ div.album-review {
 @media screen and (max-width: 432px) and (max-height: 432px) {
     div.album-review {
         // border: 2px solid blue;
-        min-height: calc(440px - var(--header-height));
+        min-height: calc(438px - var(--header-height));
         font-size: .6rem;
 
         >div.review {

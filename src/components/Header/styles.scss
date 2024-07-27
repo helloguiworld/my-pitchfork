@@ -1,25 +1,88 @@
-header {
+header.page-header {
     position: sticky;
     top: 0;
     color: #ffffff;
     background-color: #1a1a1a;
-    padding: 0.8em;
+    padding: 0.4em;
     border-bottom: 1px solid #ffffff;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 0.8em;
 
-    >img.mypitchfork-link-logo {
+    img.mypitchfork-link-logo {
         cursor: pointer;
-        height: 2rem;
+        height: 1.4rem;
+        margin: .6em 0 .4em;
+    }
+
+    div.space {
+        // border: 2px solid blue;
+        flex: 1;
+    }
+
+    div {
         display: flex;
-        justify-content: center;
         align-items: center;
+
+        &.logo {
+            // border: 2px solid purple;
+            flex: 2;
+            align-self: stretch;
+            display: flex;
+            justify-content: center;
+        }
+
+        &.navigation,
+        &.auth {
+            cursor: pointer;
+            // border: 2px solid red;
+            padding: .6em;
+
+            svg {
+                height: 1.4em;
+                min-width: 1.4em;
+            }
+        }
+
+        &.auth {
+            justify-content: end;
+            margin-left: auto;
+            gap: 0.5rem;
+
+            span {
+                line-height: 1;
+                margin-top: .1rem;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    header {
+        div {
+            &.logo {
+                flex: 6;
+            }
+
+            &.navigation,
+            &.auth {
+                flex: unset;
+            }
+
+            &.auth {
+                >*:not(svg) {
+                    display: none;
+                }
+            }
+        }
     }
 }
 
 // SQUARE
 @media screen and (max-width: 432px) and (max-height: 432px) {
-    header>img.mypitchfork-link-logo {
-        height: 1.5rem;
+    header.page-header img.mypitchfork-link-logo {
+        max-height: 1.2rem
     }
 }

@@ -1,13 +1,12 @@
 import elementCapture from './elementCapture'
 
-export default function storiesReviewCapture(albumName: string) {
+export default async function trackScoresCapture(albumName: string) {
     elementCapture(
-        '#root',
-        `${albumName} [Stories]`,
+        'div.track-scores',
+        `${albumName} [Track Scores]`,
         {
             scrollY: 0,
             windowWidth: 432,
-            height: 768,
             scale: 1080 / 432,
         }
     )

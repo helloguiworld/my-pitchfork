@@ -1,8 +1,8 @@
-import { useState, ChangeEvent, useContext } from 'react'
+import { useState, ChangeEvent, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 
-import { MdImage } from "react-icons/md"
+import { MdImage, MdQueueMusic } from "react-icons/md"
 import { FaSpotify, FaInstagram } from "react-icons/fa6"
 
 import Page from '../../components/Page'
@@ -23,6 +23,7 @@ import clickServices from '../../services/clickServices'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
 import storiesReviewCapture from '../../functions/storiesReviewCapture'
+import trackScoresCapture from '../../functions/trackScoresCapture'
 
 import './styles.scss'
 // export type ReviewPageProps = {
@@ -36,6 +37,7 @@ export default function ReviewPage() {
 
     const [author, setAuthor] = useLocalStorage('author', '')
     const [fetchingSquareCapture, setFetchingSquareCapture] = useState(false)
+    const [fetchingTrackScoresCapture, setFetchingTrackScoresCapture] = useState(false)
     const [fetchingStoriesCapture, setFetchingStoriesCapture] = useState(false)
 
     const { id } = useParams<ReviewPageParams>()
@@ -80,6 +82,10 @@ export default function ReviewPage() {
         }
     }
 
+    useEffect(() => {
+        if (authContext?.authAccount) setAuthor(authContext?.authAccount.user.username)
+    }, [])
+
     return (
         <Page id='review-page'>
             {
@@ -93,60 +99,29 @@ export default function ReviewPage() {
                                     album={album}
                                     isBestNew={isBestNew}
                                     score={albumScore}
-                                    author={author}
+                                    author={authContext?.authAccount ? `@${author}` : author}
                                 />
 
-                                <Button
-                                    onClick={() => window.open(`https://open.spotify.com/album/${album.id}`, '_blank')}
-                                    color='#1DB954'
-                                >
-                                    <span>OPEN IN SPOTIFY</span>
-                                    <FaSpotify />
-                                </Button>
-
-                                <Button
-                                    onClick={fetchingSquareCapture ? undefined : () => {
-                                        setFetchingSquareCapture(true)
-                                        createShare('square')
-                                        squareReviewCapture(album.name)
-                                        setTimeout(() => { setFetchingSquareCapture(false) }, 3000)
-                                    }}
-                                    fetching={fetchingSquareCapture}
-                                >
-                                    <span>SHARE REVIEW</span>
-                                    <MdImage />
-                                </Button>
-                                <Button
-                                    color='#E1306C'
-                                    onClick={fetchingStoriesCapture ? undefined : () => {
-                                        setFetchingStoriesCapture(true)
-                                        createShare('stories')
-                                        storiesReviewCapture(album.name)
-                                        setTimeout(() => { setFetchingStoriesCapture(false) }, 3000)
-                                    }}
-                                    fetching={fetchingStoriesCapture}
-                                >
-                                    <span>SHARE STORIES</span>
-                                    <FaInstagram />
-                                </Button>
-
-                                <div className="author-input">
-                                    Author
-                                    <input
-                                        className='author'
-                                        type='text'
-                                        placeholder='Regina George'
-                                        value={author}
-                                        onChange={(event: ChangeEvent<HTMLInputElement>) => setAuthor(event.target.value)}
-                                    />
-                                </div>
+                                {
+                                    !authContext?.authAccount &&
+                                    <div className="author-input">
+                                        Author
+                                        <input
+                                            className='author'
+                                            type='text'
+                                            placeholder='Regina George'
+                                            value={author}
+                                            onChange={(event: ChangeEvent<HTMLInputElement>) => setAuthor(event.target.value)}
+                                        />
+                                    </div>
+                                }
 
                                 <div className="track-scores">
                                     <div className="track-scores-header">
                                         <p className='title'>Track Scores</p>
 
                                         <Button
-                                            className={'best-new'}
+                                            className={'small best-new'}
                                             isOn={isBestNew}
                                             onClick={() => setIsBestNew(!isBestNew)}
                                             color="#ff3530"
@@ -169,17 +144,68 @@ export default function ReviewPage() {
                                         }
                                     </div>
 
-                                    {
-                                        (authContext?.isAuth) &&
-                                        <Button
-                                            className={'save-review'}
-                                            lowVisibility={!needToSave}
-                                            onClick={saveMyReview}
-                                        >
-                                            <span>{needToSave ? "SAVE REVIEW" : "REVIEW IS UPDATED"}</span>
-                                        </Button>
-                                    }
                                 </div>
+
+                                {
+                                    authContext?.isAuth &&
+                                    <Button
+                                        className={'save-review'}
+                                        lowVisibility={!needToSave}
+                                        colorFilled
+                                        onClick={saveMyReview}
+                                        color="var(--color-blue)"
+                                    >
+                                        <span>{needToSave ? "SAVE REVIEW" : "REVIEW IS UPDATED"}</span>
+                                    </Button>
+                                }
+
+                                <Button
+                                    onClick={fetchingSquareCapture ? undefined : () => {
+                                        setFetchingSquareCapture(true)
+                                        createShare('square')
+                                        squareReviewCapture(album.name)
+                                        setTimeout(() => { setFetchingSquareCapture(false) }, 3000)
+                                    }}
+                                    fetching={fetchingSquareCapture}
+                                >
+                                    <span>SHARE REVIEW</span>
+                                    <MdImage />
+                                </Button>
+
+                                <Button
+                                    onClick={fetchingTrackScoresCapture ? undefined : () => {
+                                        setFetchingTrackScoresCapture(true)
+                                        // createShare('track-scores')
+                                        trackScoresCapture(album.name)
+                                        setTimeout(() => { setFetchingTrackScoresCapture(false) }, 3000)
+                                    }}
+                                    fetching={fetchingTrackScoresCapture}
+                                >
+                                    <span>SHARE TRACK SCORES</span>
+                                    <MdQueueMusic />
+                                </Button>
+
+                                <Button
+                                    color='#E1306C'
+                                    onClick={fetchingStoriesCapture ? undefined : () => {
+                                        setFetchingStoriesCapture(true)
+                                        createShare('stories')
+                                        storiesReviewCapture(album.name)
+                                        setTimeout(() => { setFetchingStoriesCapture(false) }, 3000)
+                                    }}
+                                    fetching={fetchingStoriesCapture}
+                                >
+                                    <span>SHARE STORIES</span>
+                                    <FaInstagram />
+                                </Button>
+
+                                <Button
+                                    onClick={() => window.open(`https://open.spotify.com/album/${album.id}`, '_blank')}
+                                    color='#1DB954'
+                                >
+                                    <span>OPEN IN SPOTIFY</span>
+                                    <FaSpotify />
+                                </Button>
                             </>
                             :
                             <Notice

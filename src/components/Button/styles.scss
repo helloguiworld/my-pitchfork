@@ -5,20 +5,34 @@
     align-items: center;
     gap: 8px;
 
-    fill: var(--color);
-    color: var(--color);
-    border-color: var(--color);
-
-    &:hover,
-    &.on {
+    &.color-filled {
         fill: #ffffff;
         color: #ffffff;
         background-color: var(--color);
+        border-color: var(--color);
+
+        &:hover {
+            opacity: .8;
+        }
     }
-    &.on:hover {
+
+    &:not(.color-filled) {
         fill: var(--color);
         color: var(--color);
-        background-color: #ffffff;
+        border-color: var(--color);
+
+        &:hover,
+        &.on {
+            fill: #ffffff;
+            color: #ffffff;
+            background-color: var(--color);
+        }
+
+        &.on:hover {
+            fill: var(--color);
+            color: var(--color);
+            background-color: #ffffff;
+        }
     }
 
     &.low-visibility {

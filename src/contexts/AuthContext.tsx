@@ -10,6 +10,7 @@ type AuthContextType = {
     authToken: string | null,
     authAccount: Account,
     isAuth: boolean,
+    fetching: boolean,
     login: (token: string) => void,
     logout: () => void,
     authConsole: (...args: any[]) => void,
@@ -24,6 +25,7 @@ const AuthProvider = (props: AuthProviderType) => {
     const [authToken, setAuthToken, removeAuthToken] = useLocalStorage('auth-token', null)
     const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage('auth-account', null)
     const [isAuth, setIsAuth] = useState(false)
+    const [fetching, setFetching] = useState(false)
 
     const logout = () => {
         removeAPIAuthToken()
@@ -34,7 +36,7 @@ const AuthProvider = (props: AuthProviderType) => {
 
     const login = async (token: string) => {
         setAPIAuthToken(token)
-        // const response = await myServices.getAccount()
+        setFetching(true)
         return myServices.getAccount()
             .then((response) => {
                 const myAccount = response.data
@@ -47,6 +49,7 @@ const AuthProvider = (props: AuthProviderType) => {
                 logout()
                 return false
             })
+            .finally(() => setFetching(false))
     }
 
     const authConsole = (...args: any[]) => {
@@ -63,6 +66,7 @@ const AuthProvider = (props: AuthProviderType) => {
                 authToken,
                 authAccount,
                 isAuth,
+                fetching,
                 login,
                 logout,
                 authConsole

@@ -1,8 +1,7 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext } from "react"
 
 import { AuthContext } from "../contexts/AuthContext"
 
-// import { useNavigate } from "react-router-dom"
 import accessServices, { Account } from "../services/accessServices"
 
 export type Errors = {
@@ -18,8 +17,6 @@ export default function useAccess() {
     const [userErrors, setUserErrors] = useState<Errors>({})
     const [generalErrors, setGeneralErrors] = useState<string[]>()
 
-    // const navigate = useNavigate()
-
     function cleanErrors() {
         setErrors({})
         setUserErrors({})
@@ -28,6 +25,7 @@ export default function useAccess() {
 
     async function login(username: string, password: string) {
         setFetching(true)
+        cleanErrors()
         return accessServices.login(username, password)
             .then((response) => {
                 const token = response.data.token
@@ -45,9 +43,9 @@ export default function useAccess() {
 
     async function register(newAccount: Account) {
         setFetching(true)
+        cleanErrors()
         return accessServices.register(newAccount)
             .then((response: any) => {
-                cleanErrors()
                 return response
             })
             .catch((error) => {

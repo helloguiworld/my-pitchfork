@@ -1,48 +1,96 @@
 .access-page {
     flex: 1;
     display: flex;
-    
+
     h2 {
         font-weight: unset;
     }
 
-    >div {
-        flex: 1;
-        padding: 32px;
+    img.mypitchfork-link-logo {
+        cursor: pointer;
+        height: 1.2rem;
     }
 
-    >.form-box {
+    >main.content,
+    >div.access-banner {
         flex: 1;
+    }
+
+    >main.content {
         font-size: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 32px;
 
-        >div.title {
-            text-align: center;
-        }
-
-        >form.login {
-            width: 100%;
-            max-width: 400px;
+        >div.header {
+            align-self: stretch;
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            padding: 8px;
+            // border-bottom: 1px solid #1A1A1A;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
 
-            div.form-group {
+            >button.back {
+                width: 40px;
+                height: 40px;
+                color: #000000;
+                background-color: unset;
+                border: none;
+                padding: 4px;
                 display: flex;
-                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    font-size: 1.2rem;
+                }
             }
 
-            button {
-                margin-top: 8px;
+            >img.mypitchfork-link-logo {
+                padding-right: 16px;
+            }
+        }
+
+        >div.form-box {
+            flex: 1;
+            width: 100%;
+            max-width: 400px;
+            padding: 32px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            gap: 32px;
+
+            >div.title {
+                text-align: center;
+            }
+
+            >form.login {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                div.form-group {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                button {
+                    margin-top: 8px;
+                }
             }
         }
     }
 
-    >.access-banner {
+    >div.access-banner {
+        position: static;
+        top: 0;
+        bottom: 0;
         flex: 1;
         background-color: #1a1a1a;
         color: #ffffff;
@@ -62,7 +110,8 @@
 @media screen and (max-width: 767px) {
     .access-page {
         flex-direction: column-reverse;
-        >.access-banner {
+
+        >div.access-banner {
             display: none;
         }
     }
