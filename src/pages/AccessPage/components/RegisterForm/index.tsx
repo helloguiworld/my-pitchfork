@@ -70,7 +70,7 @@ export default function RegisterForm() {
         <>
             <div className="title">
                 <h1>New here?</h1>
-                <h2>let's get you started 😃</h2>
+                <h2>Let's get you started 😃</h2>
             </div>
 
             <form className='login' onSubmit={handleSubmit}>

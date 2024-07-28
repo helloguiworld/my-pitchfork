@@ -46,7 +46,7 @@ export default function LoginForm() {
                     <>
                         <div className="title">
                             <h1>Hello!</h1>
-                            <h2>you are logged in 🔑</h2>
+                            <h2>You are logged in 🔑</h2>
                         </div>
 
                         < Button
@@ -63,7 +63,7 @@ export default function LoginForm() {
                     <>
                         <div className="title">
                             <h1>OMG hiiii!</h1>
-                            <h2>we've missed you 😊</h2>
+                            <h2>We've missed you 😊</h2>
                         </div>
 
                         <form className='login' onSubmit={handleSubmit}>
