@@ -168,45 +168,50 @@ export default function ReviewPage() {
                                     </Button>
                                 }
 
-                                <Button
-                                    onClick={fetchingSquareCapture ? undefined : () => {
-                                        setFetchingSquareCapture(true)
-                                        createShare('square')
-                                        squareReviewCapture(album.name)
-                                        setTimeout(() => { setFetchingSquareCapture(false) }, 3000)
-                                    }}
-                                    fetching={fetchingSquareCapture}
-                                >
-                                    <span>SHARE REVIEW</span>
-                                    <MdImage />
-                                </Button>
+                                {
+                                    (!import.meta.env.VITE_SHARES_DISABLE) &&
+                                    <>
+                                        <Button
+                                            onClick={fetchingSquareCapture ? undefined : () => {
+                                                setFetchingSquareCapture(true)
+                                                createShare('square')
+                                                squareReviewCapture(album.name)
+                                                setTimeout(() => { setFetchingSquareCapture(false) }, 3000)
+                                            }}
+                                            fetching={fetchingSquareCapture}
+                                        >
+                                            <span>SHARE REVIEW</span>
+                                            <MdImage />
+                                        </Button>
 
-                                {/* <Button
-                                    onClick={fetchingTrackScoresCapture ? undefined : () => {
-                                        setFetchingTrackScoresCapture(true)
-                                        // createShare('track-scores')
-                                        trackScoresCapture(album.name)
-                                        setTimeout(() => { setFetchingTrackScoresCapture(false) }, 3000)
-                                    }}
-                                    fetching={fetchingTrackScoresCapture}
-                                >
-                                    <span>SHARE TRACK SCORES</span>
-                                    <MdQueueMusic />
-                                </Button> */}
+                                        {/* <Button
+                                        onClick={fetchingTrackScoresCapture ? undefined : () => {
+                                            setFetchingTrackScoresCapture(true)
+                                            // createShare('track-scores')
+                                            trackScoresCapture(album.name)
+                                            setTimeout(() => { setFetchingTrackScoresCapture(false) }, 3000)
+                                        }}
+                                        fetching={fetchingTrackScoresCapture}
+                                        >
+                                        <span>SHARE TRACK SCORES</span>
+                                        <MdQueueMusic />
+                                        </Button> */}
 
-                                <Button
-                                    color='#E1306C'
-                                    onClick={fetchingStoriesCapture ? undefined : () => {
-                                        setFetchingStoriesCapture(true)
-                                        createShare('stories')
-                                        storiesReviewCapture(album.name)
-                                        setTimeout(() => { setFetchingStoriesCapture(false) }, 3000)
-                                    }}
-                                    fetching={fetchingStoriesCapture}
-                                >
-                                    <span>SHARE STORIES</span>
-                                    <FaInstagram />
-                                </Button>
+                                        <Button
+                                            color='#E1306C'
+                                            onClick={fetchingStoriesCapture ? undefined : () => {
+                                                setFetchingStoriesCapture(true)
+                                                createShare('stories')
+                                                storiesReviewCapture(album.name)
+                                                setTimeout(() => { setFetchingStoriesCapture(false) }, 3000)
+                                            }}
+                                            fetching={fetchingStoriesCapture}
+                                        >
+                                            <span>SHARE STORIES</span>
+                                            <FaInstagram />
+                                        </Button>
+                                    </>
+                                }
 
                                 <Button
                                     onClick={() => window.open(`https://open.spotify.com/album/${album.id}`, '_blank')}
