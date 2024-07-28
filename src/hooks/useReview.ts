@@ -68,7 +68,7 @@ export default function useReview(id: string | undefined) {
                 if (response.status == 200) {
                     const review = response.data
                     setReview(review)
-                } 
+                }
                 return response
             })
             .catch((error) => {
@@ -119,11 +119,13 @@ export default function useReview(id: string | undefined) {
     //     return trackScoresArray.every(s => s == 0)
     // }
 
-    function trackScoresAreSame(trackScoresA: HashTrackScores, trackScoresB: HashTrackScores) {
-        const trackScoresArray = Object.entries(trackScoresA)
-        if (trackScoresArray.length != Object.keys(trackScoresB).length)
-            return false
-        return trackScoresArray.every(([t, s]) => trackScoresB[t] == s)
+    function trackScoresAreSame(trackScoresA: HashTrackScores | null, trackScoresB: HashTrackScores | null) {
+        if (trackScoresA && trackScoresB) {
+            const trackScoresArray = Object.entries(trackScoresA)
+            if (trackScoresArray.length != Object.keys(trackScoresB).length)
+                return false
+            return trackScoresArray.every(([t, s]) => trackScoresB[t] == s)
+        } else return false
     }
 
     useEffect(() => {
@@ -160,12 +162,17 @@ export default function useReview(id: string | undefined) {
         }
     }, [trackScores])
 
+    function checkIfNeedToSave() {
+        console.log('check')
+        if (review && review.is_best_new != isBestNew)
+            return true
+        return !trackScoresAreSame(trackScores, reviewTrackScores)
+    }
+
     useEffect(() => {
-        if (reviewTrackScores && trackScores) {
-            if (trackScoresAreSame(trackScores, reviewTrackScores)) setNeedToSave(false)
-            else setNeedToSave(true)
-        }
-    }, [reviewTrackScores, trackScores])
+        if (review || reviewTrackScores && trackScores)
+            setNeedToSave(checkIfNeedToSave())
+    }, [review, isBestNew, reviewTrackScores, trackScores])
 
     return {
         review,
