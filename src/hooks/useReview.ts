@@ -22,7 +22,7 @@ export default function useReview(id: string | undefined) {
 
     const [isBestNew, setIsBestNew] = useState(false)
     const [trackScores, setTrackScores] = useState<HashTrackScores | null>(null)
-    const [albumScore, setAlbumScore] = useState<number>(0)
+    const [albumScore, setAlbumScore] = useState<number | null>(null)
     const [needToSave, setNeedToSave] = useState(false)
 
     const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()

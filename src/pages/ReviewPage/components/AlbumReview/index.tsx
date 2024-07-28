@@ -2,13 +2,15 @@ import { useRef, useState, useEffect } from 'react'
 
 import Crown from '../../../../components/Crown'
 
+import Squares from "react-activity/dist/Squares"
+
 import { Album, getAlbumTitleByType } from '../../../../services/spotifyServices'
 
 import './styles.scss'
 export type AlbumReviewProps = {
     album: Album,
     isBestNew: boolean,
-    score: number,
+    score: number | null,
     author: string,
 }
 
@@ -17,7 +19,7 @@ export default function AlbumReview(props: AlbumReviewProps) {
 
     const [albumTypeTitle, setAlbumTypeTitle] = useState('')
     const [needTextResizing, setNeedTextResizing] = useState(false)
-    
+
     function calcTextSizeFactor(text: string) {
         return [...text].reduce((acc, curr) => acc + ('A' <= curr && curr <= 'Z' ? 1.3 : 1), 0)
     }
@@ -72,7 +74,17 @@ export default function AlbumReview(props: AlbumReviewProps) {
                             <Crown />
                         }
 
-                        <p className="score">{props.score != 10 ? props.score.toFixed(1) : props.score}</p>
+                        <span className="score">
+                            {
+                                props.score == null ?
+                                    <Squares />
+                                    :
+                                    props.score != 10 ?
+                                        props.score?.toFixed(1)
+                                        :
+                                        props.score
+                            }
+                        </span>
 
                         {props.isBestNew &&
                             <p className="target">

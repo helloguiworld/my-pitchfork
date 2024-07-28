@@ -71,7 +71,7 @@ export default function ReviewPage() {
     }
 
     function saveMyReview() {
-        if (authContext?.isAuth && album && trackScores) {
+        if (authContext?.isAuth && album && albumScore && trackScores) {
             const review = {
                 'album': album.id,
                 'score': albumScore,
@@ -89,7 +89,7 @@ export default function ReviewPage() {
     return (
         <Page id='review-page'>
             {
-                (fetching || albumFetching) ?
+                !authContext?.hasCheckedLocalAuthData || albumFetching ?
                     <Squares />
                     : albumError?.response?.status == 429 ?
                         <Error429 /> :
@@ -155,10 +155,11 @@ export default function ReviewPage() {
                                     authContext?.isAuth &&
                                     <Button
                                         className={'save-review'}
-                                        lowVisibility={!needToSave}
-                                        colorFilled
-                                        onClick={saveMyReview}
                                         color="var(--color-blue)"
+                                        colorFilled
+                                        lowVisibility={!needToSave}
+                                        onClick={saveMyReview}
+                                        fetching={fetching}
                                     >
                                         <span>{needToSave ? "SAVE REVIEW" : "REVIEW IS UPDATED"}</span>
                                     </Button>

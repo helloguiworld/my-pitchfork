@@ -71,7 +71,7 @@ div.album-review {
                     fill: #ff3530;
                 }
 
-                >p.score {
+                >span.score {
                     width: 134px;
                     height: 134px;
                     color: #2b2b2b;
@@ -94,7 +94,7 @@ div.album-review {
 
             &.best-new {
                 >div.score-box {
-                    >p.score {
+                    >span.score {
                         color: #ff3530;
                         border-color: #ff3530;
                         margin: 16px 0;
@@ -111,7 +111,7 @@ div.album-review {
                 color: #ff3530;
             }
 
-            >div.others:not(.best-new)>div.score-box>p.score {
+            >div.others:not(.best-new)>div.score-box>span.score {
                 color: #ffffff;
                 border-color: #ffffff;
             }
@@ -207,7 +207,7 @@ div.album-review {
                         max-height: 18px;
                     }
 
-                    >p.score {
+                    >span.score {
                         width: 104px;
                         height: 104px;
                         font-size: 2.2rem;
@@ -221,7 +221,7 @@ div.album-review {
 
                 &.best-new {
                     >div.score-box {
-                        >p.score {
+                        >span.score {
                             margin: 12px 0;
                         }
                     }
