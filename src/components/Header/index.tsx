@@ -1,13 +1,12 @@
-import { useRef, useContext } from 'react'
+import { useRef } from 'react'
 
-import { AuthContext } from '../../contexts/AuthContext'
+// import { AuthContext } from '../../contexts/AuthContext'
 
 import useResizeObserver from '../../hooks/useResizeObserver'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.png'
 import { MdOutlineArrowBackIosNew, MdOutlineSearch } from "react-icons/md"
-import { FaCircleUser } from "react-icons/fa6"
 
 import './styles.scss'
 // export type HeaderProps = {
@@ -16,11 +15,10 @@ import './styles.scss'
 export default function Header() {
     const headerRef = useRef<HTMLElement>(null)
 
-
     const navigate = useNavigate()
     const location = useLocation()
 
-    const authContext = useContext(AuthContext)
+    // const authContext = useContext(AuthContext)
 
     function setCSSHeaderHeightVariable() {
         if (headerRef.current) {
@@ -68,20 +66,23 @@ export default function Header() {
             </div>
 
             <div className="space" data-html2canvas-ignore={true}>
-                <div
-                    className='auth'
-                    onClick={() => {
-                        if (authContext?.isAuth)
-                            navigate('/my')
-                        else
-                            navigate('/login')
-                    }}
-                >
-                    <span>
-                        {authContext?.isAuth ? authContext.authAccount.user.username : "login"}
-                    </span>
-                    <FaCircleUser />
-                </div>
+                {/* {
+                    authContext?.hasCheckedLocalAuthData &&
+                    <div
+                        className='auth'
+                        onClick={() => {
+                            if (authContext?.isAuth)
+                                navigate('/my')
+                            else
+                                navigate('/login')
+                        }}
+                    >
+                        <span>
+                            {authContext?.isAuth ? authContext.authAccount.user.username : "login"}
+                        </span>
+                        <FaCircleUser />
+                    </div>
+                } */}
             </div>
         </header >
     )

@@ -1,4 +1,4 @@
-import html2canvas, { Options } from 'html2canvas'
+import html2canvas, { Options } from 'html2canvas-pro'
 
 export default function elementCapture(selector: string, fileName?: string, options?: Partial<Options>) {
     const elementToCapture = document.querySelector<HTMLElement>(selector)

@@ -2,8 +2,9 @@ import { useContext } from 'react'
 
 import { AuthContext } from '../../contexts/AuthContext'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 
+import { Squares } from 'react-activity'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 
@@ -22,8 +23,6 @@ export default function AccessPage(props: AccessPageProps) {
     const navigate = useNavigate()
 
     function getForm(mode: string) {
-        // if (authContext?.isAuth) return <Navigate to="/my" replace />
-        if (authContext?.isAuth) return <LoginForm />
         switch (mode) {
             case 'register':
                 return <RegisterForm />
@@ -34,33 +33,42 @@ export default function AccessPage(props: AccessPageProps) {
 
     return (
         <div className='access-page'>
-            <main className="content">
+            {
+                !authContext?.hasCheckedLocalAuthData ?
+                    <Squares />
+                    : authContext?.isAuth ?
+                        <Navigate to="/my" replace />
+                        :
+                        <>
+                            <main className="content">
 
-                <div className="header">
-                    <button className='clean back' onClick={() => navigate(-1)}>
-                        <MdOutlineArrowBackIosNew />
-                    </button>
+                                <div className="header">
+                                    <button className='clean back' onClick={() => navigate(-1)}>
+                                        <MdOutlineArrowBackIosNew />
+                                    </button>
 
-                    <img
-                        src={myPitchforkLinkLogoImgBlack}
-                        alt="myPitchfork link logo"
-                        className="mypitchfork-link-logo"
-                        onClick={() => { navigate('/') }}
-                    />
-                </div>
+                                    <img
+                                        src={myPitchforkLinkLogoImgBlack}
+                                        alt="myPitchfork link logo"
+                                        className="mypitchfork-link-logo"
+                                        onClick={() => { navigate('/') }}
+                                    />
+                                </div>
 
-                <div className="form-box">
-                    {getForm(props.mode)}
-                </div>
-            </main>
+                                <div className="form-box">
+                                    {getForm(props.mode)}
+                                </div>
+                            </main>
 
-            <div className="access-banner">
-                <img
-                    src={myPitchforkLinkLogoImgWhite}
-                    alt="myPitchfork link logo"
-                    className="mypitchfork-link-logo"
-                />
-            </div>
+                            <div className="access-banner">
+                                <img
+                                    src={myPitchforkLinkLogoImgWhite}
+                                    alt="myPitchfork link logo"
+                                    className="mypitchfork-link-logo"
+                                />
+                            </div>
+                        </>
+            }
         </div>
     )
 }

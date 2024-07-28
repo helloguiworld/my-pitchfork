@@ -5,7 +5,7 @@ import { AxiosError } from 'axios'
 
 export default function useAlbumX(id: string | undefined) {
     const [album, setAlbum] = useState<Album | null>(null)
-    const [fetching, setFetching] = useState<boolean>(false)
+    const [fetching, setFetching] = useState<boolean>(true)
     const [error, setError] = useState<AxiosError>()
 
     async function readAlbum(id: string) {

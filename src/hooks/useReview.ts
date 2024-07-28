@@ -16,10 +16,12 @@ export default function useReview(id: string | undefined) {
     const authContext = useContext(AuthContext)
 
     const [review, setReview] = useState<Review | null>(null)
-    const [fetching, setFetching] = useState<boolean>(false)
+    const [reviewTrackScores, setReviewTrackScores] = useState<HashTrackScores | null>(null)
+    const [fetching, setFetching] = useState<boolean>(true)
     const [error, setError] = useState<AxiosError>()
+
     const [isBestNew, setIsBestNew] = useState(false)
-    const [trackScores, setTrackScores] = useState<HashTrackScores>({})
+    const [trackScores, setTrackScores] = useState<HashTrackScores | null>(null)
     const [albumScore, setAlbumScore] = useState<number>(0)
     const [needToSave, setNeedToSave] = useState(false)
 
@@ -30,7 +32,6 @@ export default function useReview(id: string | undefined) {
     function setNewTrackScore(id: string, score: number) {
         setTrackScores(prevTrackScores => ({ ...prevTrackScores, [id]: score }))
         setStoredTrackScore(id, score)
-        setNeedToSave(true)
     }
 
     function hashTrackScores(trackScores: TrackScore[]) {
@@ -48,11 +49,9 @@ export default function useReview(id: string | undefined) {
     }
 
     function defineCleanTrackScoresLocalBased() {
-        authContext?.authConsole('defineCleanTrackScoresLocalBased')
         if (album?.tracks) {
             const albumTrackIds = album.tracks.map(track => track.id)
             const retrievedTrackScores = getStoredTrackScoresByIds(albumTrackIds)
-            console.log('ts local:', retrievedTrackScores)
             const newTrackScores = albumTrackIds.reduce((ts: HashTrackScores, ts_id: string) => {
                 ts[ts_id] = retrievedTrackScores[ts_id] || 0
                 return ts
@@ -65,11 +64,15 @@ export default function useReview(id: string | undefined) {
         setFetching(true)
         return myServices.getReview(id)
             .then((response: any) => {
-                const review = response.data
-                setReview(review)
+                if (response.status == 200) {
+                    const review = response.data
+                    setReview(review)
+                } 
                 return response
             })
-            .catch((error) => setError(error))
+            .catch((error) => {
+                setError(error)
+            })
             .finally(() => setFetching(false))
     }
 
@@ -106,34 +109,42 @@ export default function useReview(id: string | undefined) {
     async function saveReview(newReview: Review) {
         if (authContext?.isAuth) {
             if (!fetching) {
-                if (review) {
-                    authContext.authConsole("UPDATE REVIEW", newReview)
-                    updateReview(newReview)
-                } else {
-                    authContext.authConsole("CREATE REVIEW", newReview)
-                    createReview(newReview)
-                }
+                if (review) updateReview(newReview)
+                else createReview(newReview)
             } else console.log('Wait review fetching before save.')
         } else console.log('Cant save review without auth.')
     }
 
-    useEffect(() => {
-        if (authContext?.isAuth && id) readReview(id)
-    }, [authContext?.isAuth, id])
+    // function trackScoresIsClean(trackScores: HashTrackScores) {
+    //     const trackScoresArray = Object.values(trackScores)
+    //     return trackScoresArray.every(s => s == 0)
+    // }
+
+    function trackScoresAreSame(trackScoresA: HashTrackScores, trackScoresB: HashTrackScores) {
+        const trackScoresArray = Object.entries(trackScoresA)
+        if (trackScoresArray.length != Object.keys(trackScoresB).length)
+            return false
+        return trackScoresArray.every(([t, s]) => trackScoresB[t] == s)
+    }
 
     useEffect(() => {
-        if (album?.tracks) {
+        if (authContext?.hasCheckedLocalAuthData) {
+            if (authContext?.isAuth && id) readReview(id)
+            else setFetching(false)
+        }
+    }, [authContext?.hasCheckedLocalAuthData, authContext?.isAuth, id])
+
+    useEffect(() => {
+        if (authContext?.hasCheckedLocalAuthData && album) {
             if (!authContext?.isAuth) {
-                console.log('NOT AUTH')
                 defineCleanTrackScoresLocalBased()
             } else if (!fetching) {
                 if (review) {
-                    authContext.authConsole('REVIEW', review)
                     setIsBestNew(review.is_best_new)
                     const newTrackScores = hashTrackScores(review.track_scores)
+                    setReviewTrackScores(newTrackScores)
                     setTrackScores(newTrackScores)
                 } else {
-                    authContext.authConsole('NOT REVIEW')
                     defineCleanTrackScoresLocalBased()
                     setNeedToSave(true)
                 }
@@ -142,7 +153,7 @@ export default function useReview(id: string | undefined) {
     }, [album, authContext?.isAuth, fetching, review])
 
     useEffect(() => {
-        if (album && trackScores) {
+        if (trackScores) {
             const scores = Object.values(trackScores)
             const scoresSum = scores.reduce((acc, curr) => acc + curr, 0)
             const newAlbumScore = scoresSum / scores.length
@@ -150,14 +161,12 @@ export default function useReview(id: string | undefined) {
         }
     }, [trackScores])
 
-    // useEffect(() => {
-    //     if (authContext?.isAuth && !fetching && review &&) {
-    //         const hts = hashTrackScores(review.track_scores)
-    //         const isSame = JSON.stringify(hts) === JSON.stringify(trackScores)
-    //         console.log('CHECK IF EQUAL', hts, trackScores, isSame)
-    //         if (!isSame) setNeedToSave(true)
-    //     }
-    // }, [authContext?.isAuth, review, trackScores])
+    useEffect(() => {
+        if (reviewTrackScores && trackScores) {
+            if (trackScoresAreSame(trackScores, reviewTrackScores)) setNeedToSave(false)
+            else setNeedToSave(true)
+        }
+    }, [reviewTrackScores, trackScores])
 
     return {
         review,

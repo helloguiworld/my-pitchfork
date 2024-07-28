@@ -8,6 +8,7 @@ export type FormInputProps = {
     id: string,
     placeholder: string,
     label: string,
+    message?: string,
     value: any,
     onChange: ChangeEventHandler<HTMLInputElement>,
     required?: boolean,
@@ -39,7 +40,10 @@ export default function FormInput(props: FormInputProps) {
             className='form-input'
             style={{ '--error-color': props.errorColor || '#ff3530' } as React.CSSProperties}
         >
-            <label htmlFor={props.id}>{props.label}</label>
+            <label htmlFor={props.id}>
+                <span className='label'>{props.label}</span>
+                {props.message && <span className='message'>{props.message}</span>}
+            </label>
             <input
                 type={props.type || 'text'}
                 id={props.id}

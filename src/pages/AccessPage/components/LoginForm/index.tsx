@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../contexts/AuthContext'
 import Button from "../../../../components/Button"
 import FormInput from '../../../../components/FormInput'
 
+import normalizeUsername from '../../../../functions/normalizeUsername'
 import { useNavigate } from 'react-router-dom'
 import useAccess from '../../../../hooks/useAccess'
 
@@ -34,10 +35,8 @@ export default function LoginForm() {
         event.preventDefault()
 
         const response = await login(username, password)
-        if (response?.status == 200) {
-            console.log('LOGIN')
+        if (response?.status == 200)
             navigate('/')
-        }
     }
 
     return (
@@ -47,7 +46,7 @@ export default function LoginForm() {
                     <>
                         <div className="title">
                             <h1>Hello!</h1>
-                            <h2>You are logged in 🔑</h2>
+                            <h2>you are logged in 🔑</h2>
                         </div>
 
                         < Button
@@ -62,10 +61,9 @@ export default function LoginForm() {
                     </>
                     :
                     <>
-
                         <div className="title">
                             <h1>OMG hiiii!</h1>
-                            <h2>We've missed you 😊</h2>
+                            <h2>we've missed you 😊</h2>
                         </div>
 
                         <form className='login' onSubmit={handleSubmit}>
@@ -75,7 +73,7 @@ export default function LoginForm() {
                                 placeholder='enter your username'
                                 label='Username'
                                 value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={(e) => setUsername(normalizeUsername(e.target.value))}
                                 required
                                 errors={errors.username}
                                 generalErrors={generalErrors}

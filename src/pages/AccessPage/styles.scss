@@ -1,5 +1,8 @@
 .access-page {
+    // border: 2px solid blue;
     flex: 1;
+    max-height: 100vh;
+    overflow-x: auto;
     display: flex;
 
     h2 {
@@ -88,9 +91,10 @@
     }
 
     >div.access-banner {
-        position: static;
+        position: sticky;
         top: 0;
         bottom: 0;
+        
         flex: 1;
         background-color: #1a1a1a;
         color: #ffffff;

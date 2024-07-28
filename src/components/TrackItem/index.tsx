@@ -12,6 +12,12 @@ export type TrackItemProps = {
 export default function TrackItem(props: TrackItemProps) {
     function onChange(event: ChangeEvent<HTMLInputElement>) {
         const value = event.target.value
+
+        if (props.trackScore == 10 && value == '1') {
+            props.setNewTrackScore(props.track.id, 1)
+            return
+        }
+
         const newScore = Number(value.replace(/[^0-9]/g, '')) / 10
         if (0 <= newScore && newScore <= 10)
             props.setNewTrackScore(props.track.id, newScore)

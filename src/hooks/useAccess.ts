@@ -34,7 +34,6 @@ export default function useAccess() {
             })
             .catch((error) => {
                 const errors = error.response.data
-                console.log('LOGIN ERRORS', errors)
                 setErrors(errors)
                 setGeneralErrors(errors.non_field_errors)
             })
@@ -50,7 +49,6 @@ export default function useAccess() {
             })
             .catch((error) => {
                 const errors = error.response.data
-                console.log('REGISTER ERRORS', errors)
                 setErrors(errors)
                 setUserErrors(errors.user)
                 setGeneralErrors(errors.non_field_errors)
@@ -63,6 +61,7 @@ export default function useAccess() {
         errors,
         userErrors,
         generalErrors,
+        cleanErrors,
         login,
         register,
     }

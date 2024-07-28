@@ -1,6 +1,7 @@
 import axios from "axios"
 
 const NETWORK_IP = "192.168.0.11"
+// const LOCALHOST = "localhost"
 
 export const myPitchforkAPIBaseURL =
     import.meta.env.VITE_LOCAL_API ?

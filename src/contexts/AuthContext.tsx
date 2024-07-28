@@ -11,6 +11,7 @@ type AuthContextType = {
     authAccount: Account,
     isAuth: boolean,
     fetching: boolean,
+    hasCheckedLocalAuthData: boolean,
     login: (token: string) => void,
     logout: () => void,
     authConsole: (...args: any[]) => void,
@@ -25,6 +26,7 @@ const AuthProvider = (props: AuthProviderType) => {
     const [authToken, setAuthToken, removeAuthToken] = useLocalStorage('auth-token', null)
     const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage('auth-account', null)
     const [isAuth, setIsAuth] = useState(false)
+    const [hasCheckedLocalAuthData, setHasCheckedLocalAuthData] = useState(false)
     const [fetching, setFetching] = useState(false)
 
     const logout = () => {
@@ -35,19 +37,20 @@ const AuthProvider = (props: AuthProviderType) => {
     }
 
     const login = async (token: string) => {
-        setAPIAuthToken(token)
         setFetching(true)
+        setAPIAuthToken(token)
         return myServices.getAccount()
             .then((response) => {
                 const myAccount = response.data
+                setIsAuth(true)
                 setAuthToken(token)
                 setAuthAccount(myAccount)
-                setIsAuth(true)
-                return myAccount
+                return response
             })
             .catch((error) => {
-                logout()
-                return false
+                if (error.response.status == 401)
+                    logout()
+                return error
             })
             .finally(() => setFetching(false))
     }
@@ -56,9 +59,17 @@ const AuthProvider = (props: AuthProviderType) => {
         if (isAuth) console.log(args)
     }
 
+    const checkLocalAuthData = async () => {
+        const response = await login(authToken)
+        if (response.status == 200)
+            console.log('LOCAL AUTH LOGIN')
+        setHasCheckedLocalAuthData(true)
+    }
+
     useEffect(() => {
-        if (authToken) login(authToken)
-    }, [authToken])
+        if (authToken) checkLocalAuthData()
+        else setHasCheckedLocalAuthData(true)
+    }, [])
 
     return (
         <AuthContext.Provider
@@ -67,6 +78,7 @@ const AuthProvider = (props: AuthProviderType) => {
                 authAccount,
                 isAuth,
                 fetching,
+                hasCheckedLocalAuthData,
                 login,
                 logout,
                 authConsole

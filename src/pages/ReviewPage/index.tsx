@@ -2,7 +2,7 @@ import { useState, ChangeEvent, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 
-import { MdImage, MdQueueMusic } from "react-icons/md"
+import { MdImage } from "react-icons/md"
 import { FaSpotify, FaInstagram } from "react-icons/fa6"
 
 import Page from '../../components/Page'
@@ -23,7 +23,7 @@ import clickServices from '../../services/clickServices'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
 import storiesReviewCapture from '../../functions/storiesReviewCapture'
-import trackScoresCapture from '../../functions/trackScoresCapture'
+// import trackScoresCapture from '../../functions/trackScoresCapture'
 
 import './styles.scss'
 // export type ReviewPageProps = {
@@ -37,7 +37,7 @@ export default function ReviewPage() {
 
     const [author, setAuthor] = useLocalStorage('author', '')
     const [fetchingSquareCapture, setFetchingSquareCapture] = useState(false)
-    const [fetchingTrackScoresCapture, setFetchingTrackScoresCapture] = useState(false)
+    // const [fetchingTrackScoresCapture, setFetchingTrackScoresCapture] = useState(false)
     const [fetchingStoriesCapture, setFetchingStoriesCapture] = useState(false)
 
     const { id } = useParams<ReviewPageParams>()
@@ -71,7 +71,7 @@ export default function ReviewPage() {
     }
 
     function saveMyReview() {
-        if (authContext?.isAuth && album) {
+        if (authContext?.isAuth && album && trackScores) {
             const review = {
                 'album': album.id,
                 'score': albumScore,
@@ -130,19 +130,24 @@ export default function ReviewPage() {
                                         </Button>
                                     </div>
 
-                                    <div className="tracks">
-                                        {
-                                            album.tracks?.map(
-                                                (track: Track) =>
-                                                    <TrackItem
-                                                        key={track.id}
-                                                        track={track}
-                                                        trackScore={trackScores[track.id] || 0}
-                                                        setNewTrackScore={setNewTrackScore}
-                                                    />
-                                            )
-                                        }
-                                    </div>
+                                    {
+                                        (album.tracks && trackScores) ?
+                                            <div className="tracks">
+                                                {
+                                                    album.tracks.map(
+                                                        (track: Track) =>
+                                                            <TrackItem
+                                                                key={track.id}
+                                                                track={track}
+                                                                trackScore={trackScores[track.id] || 0}
+                                                                setNewTrackScore={setNewTrackScore}
+                                                            />
+                                                    )
+                                                }
+                                            </div>
+                                            :
+                                            <Squares />
+                                    }
 
                                 </div>
 
@@ -172,7 +177,7 @@ export default function ReviewPage() {
                                     <MdImage />
                                 </Button>
 
-                                <Button
+                                {/* <Button
                                     onClick={fetchingTrackScoresCapture ? undefined : () => {
                                         setFetchingTrackScoresCapture(true)
                                         // createShare('track-scores')
@@ -183,7 +188,7 @@ export default function ReviewPage() {
                                 >
                                     <span>SHARE TRACK SCORES</span>
                                     <MdQueueMusic />
-                                </Button>
+                                </Button> */}
 
                                 <Button
                                     color='#E1306C'

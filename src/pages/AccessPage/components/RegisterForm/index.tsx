@@ -1,12 +1,11 @@
-import { useState, FormEvent, useContext, useEffect } from 'react'
-
-import { AuthContext } from '../../../../contexts/AuthContext'
+import { useState, FormEvent } from 'react'
 
 import Button from "../../../../components/Button"
 import FormInput from '../../../../components/FormInput'
 
 import { useNavigate } from 'react-router-dom'
 import useAccess from '../../../../hooks/useAccess'
+import normalizeUsername from '../../../../functions/normalizeUsername'
 
 // import './styles.scss'
 // export type RegisterFormProps = {
@@ -16,8 +15,6 @@ export type RegisterError = {
 }
 
 export default function RegisterForm() {
-    const authContext = useContext(AuthContext)
-
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -30,14 +27,13 @@ export default function RegisterForm() {
 
     const {
         fetching,
-        errors,
         userErrors,
         generalErrors,
+        cleanErrors,
         register,
     } = useAccess()
 
     function checkPasswords(password: string, passwordConfirmation: string) {
-        console.log(password, passwordConfirmation)
         if (password == passwordConfirmation) {
             setPasswordConfirmationErrors(undefined)
             return true
@@ -49,6 +45,7 @@ export default function RegisterForm() {
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
+        cleanErrors()
         if (!checkPasswords(password, passwordConfirmation))
             return
 
@@ -60,10 +57,8 @@ export default function RegisterForm() {
                 name,
             }
         }
-        console.log(newAccount)
         const response = await register(newAccount)
         if (response?.status == 201) {
-            console.log('NEW USER', response.data)
             navigate('/login')
         }
     }
@@ -72,7 +67,7 @@ export default function RegisterForm() {
         <>
             <div className="title">
                 <h1>New here?</h1>
-                <h2>Let's get you started 😃</h2>
+                <h2>let's get you started 😃</h2>
             </div>
 
             <form className='login' onSubmit={handleSubmit}>
@@ -81,7 +76,7 @@ export default function RegisterForm() {
                     placeholder='enter your @username'
                     label='Username'
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setUsername(normalizeUsername(e.target.value))}
                     required
                     errors={userErrors.username}
                     generalErrors={generalErrors}
@@ -113,6 +108,7 @@ export default function RegisterForm() {
                     id="email"
                     placeholder='enter your email'
                     label='Email'
+                    message='important for future password reset'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -139,6 +135,13 @@ export default function RegisterForm() {
                     CREATE MY ACCOUNT
                 </Button>
             </form >
+
+            <Button
+                type='button'
+                onClick={() => navigate('/login')}
+            >
+                I ALREADY HAVE ONE!
+            </Button>
         </>
     )
 }

@@ -2,9 +2,22 @@ div.form-input {
     display: flex;
     flex-direction: column;
 
-    // label {
-    //     font-size: 1.1em;
-    // }
+    label {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+
+        >span.label {
+            white-space: nowrap
+        }
+
+        >span.message {
+            font-size: .8em;
+            text-align: right;
+            opacity: .5;
+            margin-bottom: 2px;
+        }
+    }
 
     input {
         padding: 8px;
