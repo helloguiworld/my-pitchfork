@@ -18,6 +18,7 @@ export default function useReview(id: string | undefined) {
     const [review, setReview] = useState<Review | null>(null)
     const [reviewTrackScores, setReviewTrackScores] = useState<HashTrackScores | null>(null)
     const [fetching, setFetching] = useState<boolean>(true)
+    const [saving, setSaving] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
 
     const [isBestNew, setIsBestNew] = useState(false)
@@ -78,7 +79,6 @@ export default function useReview(id: string | undefined) {
 
     async function createReview(newReview: Review) {
         if (album) {
-            setFetching(true)
             return myServices.postReview(newReview)
                 .then((response: any) => {
                     const review = response.data
@@ -87,13 +87,11 @@ export default function useReview(id: string | undefined) {
                     return response
                 })
                 .catch((error) => setError(error))
-                .finally(() => setFetching(false))
         }
     }
 
     async function updateReview(newReview: Review) {
         if (album) {
-            setFetching(true)
             return myServices.putReview(newReview)
                 .then((response: any) => {
                     const review = response.data
@@ -102,15 +100,16 @@ export default function useReview(id: string | undefined) {
                     return response
                 })
                 .catch((error) => setError(error))
-                .finally(() => setFetching(false))
         }
     }
 
     async function saveReview(newReview: Review) {
         if (authContext?.isAuth) {
             if (!fetching) {
-                if (review) updateReview(newReview)
-                else createReview(newReview)
+                setSaving(true)
+                if (review) await updateReview(newReview)
+                else await createReview(newReview)
+                setSaving(false)
             } else console.log('Wait review fetching before save.')
         } else console.log('Cant save review without auth.')
     }
@@ -171,6 +170,7 @@ export default function useReview(id: string | undefined) {
     return {
         review,
         fetching,
+        saving,
         error,
         readReview,
         needToSave,

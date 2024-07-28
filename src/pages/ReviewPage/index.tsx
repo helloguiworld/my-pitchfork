@@ -44,7 +44,8 @@ export default function ReviewPage() {
 
     const {
         // review,
-        fetching,
+        // fetching,
+        saving,
         // error,
         // readReview,
         needToSave,
@@ -71,7 +72,9 @@ export default function ReviewPage() {
     }
 
     function saveMyReview() {
-        if (authContext?.isAuth && album && albumScore && trackScores) {
+        if (authContext?.isAuth && album && albumScore != null && trackScores) {
+            // CHECK IF USER WANNA SAVE 0 SCORE
+
             const review = {
                 'album': album.id,
                 'score': albumScore,
@@ -159,7 +162,7 @@ export default function ReviewPage() {
                                         colorFilled
                                         lowVisibility={!needToSave}
                                         onClick={saveMyReview}
-                                        fetching={fetching}
+                                        fetching={saving}
                                     >
                                         <span>{needToSave ? "SAVE REVIEW" : "REVIEW IS UPDATED"}</span>
                                     </Button>
