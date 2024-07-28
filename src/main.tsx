@@ -12,7 +12,8 @@ import HomePage from './pages/HomePage/index.tsx'
 import SearchPage from './pages/SearchPage/index.tsx'
 import ReviewPage from './pages/ReviewPage/index.tsx'
 
-import LoginPage from './pages/AccessPage/index.tsx'
+import AccessPage from './pages/AccessPage/index.tsx'
+import TutorialsPage from './pages/TutorialsPage/index.tsx'
 import MyPage from './pages/MyPage/index.tsx'
 
 import './fonts.css'
@@ -36,19 +37,24 @@ const router = createBrowserRouter([
 
   {
     path: "/login",
-    element: <LoginPage mode='login' />,
+    element: <AccessPage mode='login' />,
   },
   {
     path: "/register",
-    element: <LoginPage mode='register' />,
+    element: <AccessPage mode='register' />,
   },
+  // {
+  //   path: "/forgot-password",
+  //   element: <AccessPage mode='forgot-password' />,
+  // },
+  // {
+  //   path: "/password-reset",
+  //   element: <AccessPage mode='password-reset' />,
+  // },
+
   {
-    path: "/forgot-password",
-    element: <LoginPage mode='forgot-password' />,
-  },
-  {
-    path: "/password-reset",
-    element: <LoginPage mode='password-reset' />,
+    path: "/tutorials/account",
+    element: <TutorialsPage />,
   },
 
   {
@@ -64,8 +70,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
   // </React.StrictMode>
 )

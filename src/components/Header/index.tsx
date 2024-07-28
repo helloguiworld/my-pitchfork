@@ -1,16 +1,19 @@
-import { useRef } from 'react'
+import { useRef, useContext } from 'react'
 
-// import { AuthContext } from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext'
 
 import useResizeObserver from '../../hooks/useResizeObserver'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.png'
 import { MdOutlineArrowBackIosNew, MdOutlineSearch } from "react-icons/md"
+import { FaCircleUser } from "react-icons/fa6"
 
 import './styles.scss'
 // export type HeaderProps = {
 // }
+
+const DISPLAY_AUTH = import.meta.env.VITE_DISPLAY_AUTH
 
 export default function Header() {
     const headerRef = useRef<HTMLElement>(null)
@@ -18,7 +21,7 @@ export default function Header() {
     const navigate = useNavigate()
     const location = useLocation()
 
-    // const authContext = useContext(AuthContext)
+    const authContext = useContext(AuthContext)
 
     function setCSSHeaderHeightVariable() {
         if (headerRef.current) {
@@ -66,8 +69,8 @@ export default function Header() {
             </div>
 
             <div className="space" data-html2canvas-ignore={true}>
-                {/* {
-                    authContext?.hasCheckedLocalAuthData &&
+                {
+                    (DISPLAY_AUTH || authContext?.isAuth) &&
                     <div
                         className='auth'
                         onClick={() => {
@@ -77,12 +80,15 @@ export default function Header() {
                                 navigate('/login')
                         }}
                     >
-                        <span>
-                            {authContext?.isAuth ? authContext.authAccount.user.username : "login"}
-                        </span>
+                        {
+                            authContext?.hasCheckedLocalAuthData &&
+                            <span>
+                                {authContext?.isAuth ? authContext.authAccount.user.username : "login"}
+                            </span>
+                        }
                         <FaCircleUser />
                     </div>
-                } */}
+                }
             </div>
         </header >
     )

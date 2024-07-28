@@ -1,0 +1,269 @@
+[33mcommit 5dc21270619d2905d7d711d8298eb6f534b89f1e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sun Jul 28 02:58:25 2024 -0300
+
+    track item 10 fix, username normalize inputs
+
+[33mcommit 92d870c1547f769988e7656842f1c545aef7c81a[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 27 20:28:20 2024 -0300
+
+    track scores capture, logi header, adjustment in page header
+
+[33mcommit d0528ac802a7a72a3c99f5aab4be8bb8ae3b551e[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 27 02:28:34 2024 -0300
+
+    login, register, auth context, reviews
+
+[33mcommit 86735874a84659a2ca75d5b0e3be69464022ea96[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Fri Jul 26 06:56:32 2024 -0300
+
+    login, access, my reviews
+
+[33mcommit cf15a1797a1072c7d96cf81087ef350f3a7b5da6[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 25 23:53:39 2024 -0300
+
+    refresh when not found
+
+[33mcommit 4b046e53466ddfb056201490782468b0a13fe364[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 25 23:45:22 2024 -0300
+
+    share click
+
+[33mcommit 21f2ead753b774e6feb6434d9bb6bff1c935cf31[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 25 14:26:24 2024 -0300
+
+    perfect 10 format
+
+[33mcommit b6bf60fd6ae044c99f08941c98104fce89838529[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 25 05:22:20 2024 -0300
+
+    search notice
+
+[33mcommit a5cd780d81e3a1a005027e1bc3ac2d0a3a7baebe[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Wed Jul 24 00:05:31 2024 -0300
+
+    adjust cover box style
+
+[33mcommit 2c20a4b27001335b6c5c97a4caaac35a0d3332f7[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 18:18:03 2024 -0300
+
+    album click
+
+[33mcommit 2f16d5b3957c4d6f9b83f02aa2b0435105c8de88[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 16:57:20 2024 -0300
+
+    resumed banners
+
+[33mcommit 477c267c3eeb8db174bce10b7552377412e3c1d8[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 15:07:34 2024 -0300
+
+    click save only if search works
+
+[33mcommit 3c403471c9fba4ddfffc0f5deb4e32d0aa4b4ed5[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 05:56:13 2024 -0300
+
+    reduced social media banner
+
+[33mcommit 283c4e5216da1c1367dd8da39d160197f1bc0931[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 05:47:01 2024 -0300
+
+    search q input tolowercase
+
+[33mcommit 1748485c6b808db65f436ab9bbbccddcb549ed6e[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 05:29:50 2024 -0300
+
+    remove banner props error
+
+[33mcommit b295a4e2986044481ae0b9c7d6ae23cf1db37fee[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 05:28:48 2024 -0300
+
+    social media banner
+
+[33mcommit cf467faacf2a9156c63cc2339791c5e03dfb985e[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 04:34:16 2024 -0300
+
+    add search click and button fetching indicator
+
+[33mcommit 454943371f7d6e55581d72019d97c876562e1d9a[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 23 03:13:17 2024 -0300
+
+    mP api adjustments with search and album storage
+
+[33mcommit 4e54fe88250c6f8321bcf3c2875acd96d914be62[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 22 05:44:10 2024 -0300
+
+    updates notice and styles adjustments
+
+[33mcommit be96404ec22e7f03ea72bf257d8d0cfbd5fc076d[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 20 23:48:30 2024 -0300
+
+    services urls adjustments
+
+[33mcommit f17a6b332c61b85c800bb84a18ccb702252260f6[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 20 22:13:04 2024 -0300
+
+    album review as component
+
+[33mcommit a7098209ab4f2414f80cb378ac9eb288f4682d53[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 20 21:00:44 2024 -0300
+
+    review score in share
+
+[33mcommit ba1c84c2b1e3124c479b92d359f860227d9eeb55[m[33m ([m[1;31morigin/feature/mpapi-spotify[m[33m, [m[1;32mfeature/mpapi-spotify[m[33m)[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 18 18:32:29 2024 -0300
+
+    spotify data from mypitchfork api
+
+[33mcommit e0c385cf782365f72da977eefa8373f6f5aef013[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 18 16:24:11 2024 -0300
+
+    use of .env
+
+[33mcommit 414ed554a27f75dac3bfc490cef31ac490cc0e7c[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 15 19:52:41 2024 -0300
+
+    post share with album name
+
+[33mcommit 3f1e82faecba3611e83d8d2cf4a6ec8eca6a6319[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 15 18:31:29 2024 -0300
+
+    share counting in mypitchfork api
+
+[33mcommit 3e591f030b0de35568cc7f043891d655d80e471a[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 15 02:53:19 2024 -0300
+
+    error 429 treatment and header search navigation adjustment
+
+[33mcommit d0e2e3ebdd0c1e60bba52c52910920c5dcbb67c1[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 13 23:46:36 2024 -0300
+
+    cover size responsive in square share
+
+[33mcommit 2ce1247af0f3f066adcf379c6602cb458754d21d[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 13 23:03:45 2024 -0300
+
+    temp png header logo and temp new spotify api app
+
+[33mcommit 780786771c7983fbf0a8e82eb4b8eb78bcf23008[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 13 22:06:37 2024 -0300
+
+    share options square and stories
+
+[33mcommit 1da05633ca02bdcf85879551ecc5b02f8b4d346a[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 13 20:13:46 2024 -0300
+
+    fix local storage hook useeffect
+
+[33mcommit 758b1aeebe282499fa8e87e702beb729ef2a818a[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 13 20:10:13 2024 -0300
+
+    header logo as svg
+
+[33mcommit 011f9db39b72c2da71314ff275886577d0222404[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Thu Jul 11 17:38:11 2024 -0300
+
+    dinamic and local stored search q
+
+[33mcommit 8bc878eddabe6e3c557e81594f753208a0dc0895[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Wed Jul 10 04:59:45 2024 -0300
+
+    unable web share api alert in mobile browse
+
+[33mcommit 84ed9661d0319e49b5d2776abe3867578bc2bad7[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Wed Jul 10 00:23:20 2024 -0300
+
+    check if can share with web share api
+
+[33mcommit 3fa87ab6fdb329aaccd49d8c6ecad338dd9e2273[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 9 21:51:59 2024 -0300
+
+    all vite server deactivated
+
+[33mcommit 4dfef3fc6c0ce400b667f43cbb39e03c01a43233[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 9 21:18:58 2024 -0300
+
+    back with https
+
+[33mcommit 0bc5a084a6c4d1a34a397c512642643ba6634a48[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 9 06:54:51 2024 -0300
+
+    test without https
+
+[33mcommit 18bef287e6e0e71b0879dadf65127adb7dc837d2[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Tue Jul 9 05:18:22 2024 -0300
+
+    header and pre build adjustments
+
+[33mcommit 43b84caacfd9c5a51abc4cede9a570c0ed9dd952[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 8 23:30:17 2024 -0300
+
+    refresh token adjustment, home screen and general styles adjustment
+
+[33mcommit fb522e4e555ec6375679d8f84a143325e746d0f7[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 8 17:27:03 2024 -0300
+
+    token auto refresh and styles adjustment
+
+[33mcommit dac026040ce2e846ad2dd67b12d6ce770f282882[m[33m ([m[1;31morigin/feature/local-storage[m[33m, [m[1;32mfeature/local-storage[m[33m)[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Mon Jul 8 01:02:32 2024 -0300
+
+    track scores saved in local storage and styles adjustment
+
+[33mcommit 9ac64e3b37034cecb87f28e0c1d0e019cddfe242[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 6 19:34:54 2024 -0300
+
+    styles adjustment
+
+[33mcommit 4aebccabc5d6e2331e0dac370823b289b9182f98[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Sat Jul 6 17:56:07 2024 -0300
+
+    best new and download final review
+
+[33mcommit 1ce022f470f35700ae8c86c66049a124bbd05cd7[m
+Author: Guilherme Feitosa <feitosa.guilhermef@gmail.com>
+Date:   Fri Jul 5 02:01:09 2024 -0300
+
+    first commit

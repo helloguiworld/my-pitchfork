@@ -2,13 +2,13 @@
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
-import UseExample from './components/UseExample'
+import UseExample from '../../components/UseExample'
 
 import { useNavigate } from 'react-router-dom'
 
-import searchImg from '../../assets/search.png'
-import trackScoresImg from '../../assets/track scores.png'
-import albumReviewImg from '../../assets/album review.png'
+import searchImg from '../../assets/images/home/search.png'
+import trackScoresImg from '../../assets/images/home/track scores.png'
+import albumReviewImg from '../../assets/images/home/album review.png'
 
 import './styles.scss'
 // export type HomePageProps = {

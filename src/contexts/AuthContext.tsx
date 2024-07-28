@@ -12,7 +12,7 @@ type AuthContextType = {
     isAuth: boolean,
     fetching: boolean,
     hasCheckedLocalAuthData: boolean,
-    login: (token: string) => void,
+    login: (token: string) => any,
     logout: () => void,
     authConsole: (...args: any[]) => void,
 }

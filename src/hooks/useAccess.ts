@@ -24,20 +24,28 @@ export default function useAccess() {
     }
 
     async function login(username: string, password: string) {
-        setFetching(true)
-        cleanErrors()
-        return accessServices.login(username, password)
+        if (authContext) {
+            setFetching(true)
+            cleanErrors()
+            const response = await accessServices.login(username, password)
             .then((response) => {
-                const token = response.data.token
-                authContext?.login(token)
                 return response
             })
-            .catch((error) => {
-                const errors = error.response.data
-                setErrors(errors)
-                setGeneralErrors(errors.non_field_errors)
-            })
-            .finally(() => setFetching(false))
+                .catch((error) => {
+                    const errors = error.response.data
+                    setErrors(errors)
+                    setGeneralErrors(errors.non_field_errors)
+                    return error.response
+                })
+                .finally(() => setFetching(false))
+                
+            if (response?.status == 200) {
+                const token = response.data.token
+                return authContext.login(token)
+            }
+
+            return response
+        }
     }
 
     async function register(newAccount: Account) {

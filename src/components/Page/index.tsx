@@ -9,13 +9,14 @@ import './styles.scss'
 export type PageProps = {
     children: ReactNode | ReactNode[],
     id: string,
+    hideHeader?: boolean,
     hideBanners?: boolean,
 }
 
 export default function Page(props: PageProps) {
     return (
         <>
-            <Header />
+            {!props.hideHeader && <Header />}
             {
                 !props.hideBanners &&
                 <div className="banner-group" data-html2canvas-ignore={true}>

@@ -12,7 +12,7 @@
   color: #000000;
   background-color: #ffffff;
 
-  /* font-synthesis: none; */
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

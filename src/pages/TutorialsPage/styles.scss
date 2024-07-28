@@ -1,0 +1,52 @@
+#tutorials-page {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    .button {
+        margin: 32px 0;
+    }
+
+    >div.tutorials-header {
+        padding: 10vh 5vw;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        >h2 {
+            font-weight: unset;
+        }
+
+        >h1 {
+            margin-bottom: 16px;
+        }
+
+        >p {
+            padding: 0 10vw;
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    #tutorials-page {
+        >div.tutorials-header {
+            >p {
+                padding: 0 5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    #tutorials-page {
+        >div.tutorials-header {
+            >p {
+                padding: 0;
+            }
+        }
+    }
+}

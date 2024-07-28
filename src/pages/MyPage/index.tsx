@@ -36,6 +36,15 @@ export default function MyPage() {
 
                             <Button
                                 className={'logout'}
+                                color="var(--color-blue)"
+                                onClick={() => {
+                                    navigate('/tutorials/account')
+                                }}
+                            >
+                                <span>ACCOUNT TUTORIAL</span>
+                            </Button>
+                            <Button
+                                className={'logout'}
                                 color="#ff3530"
                                 onClick={() => {
                                     authContext.logout()

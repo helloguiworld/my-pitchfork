@@ -30,6 +30,7 @@ export default function RegisterForm() {
         userErrors,
         generalErrors,
         cleanErrors,
+        login,
         register,
     } = useAccess()
 
@@ -59,7 +60,9 @@ export default function RegisterForm() {
         }
         const response = await register(newAccount)
         if (response?.status == 201) {
-            navigate('/login')
+            const response = await login(username, password)
+            if (response?.status == 200) navigate('/tutorials/account')
+            else navigate('/login')
         }
     }
 
