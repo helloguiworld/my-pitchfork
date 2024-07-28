@@ -36,7 +36,7 @@ export default function LoginForm() {
 
         const response = await login(username, password)
         if (response?.status == 200)
-            navigate('/')
+            navigate('/search')
     }
 
     return (
