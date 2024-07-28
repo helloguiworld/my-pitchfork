@@ -89,7 +89,7 @@ export default function ReviewPage() {
     return (
         <Page id='review-page'>
             {
-                fetching && albumFetching ?
+                (fetching || albumFetching) ?
                     <Squares />
                     : albumError?.response?.status == 429 ?
                         <Error429 /> :
