@@ -44,8 +44,8 @@ div.example {
 
             >img.example {
                 border: 1px solid #cccccc;
-                width: min-content;
-                max-width: min(500px, 100%);
+                width: auto;
+                max-width: min(100%, 500px);
                 max-height: 70vh;
 
                 -webkit-box-shadow: 0px 4px 12px 0px rgba(204, 204, 204, 0.6);
@@ -62,22 +62,9 @@ div.example {
         padding: 32px;
         flex-direction: column;
         gap: 32px;
-
-        // &.spaced-top {
-        //     margin-top: 10vh;
-        // }
-        // &.spaced-bottom {
-        //     margin-bottom: 10vh;
-        // }
         
         >div {
             align-items: center;
-
-            // &.text {
-            //     >p.title {
-            //         margin-top: 10vh;
-            //     }
-            // }
         }
     }
 }
