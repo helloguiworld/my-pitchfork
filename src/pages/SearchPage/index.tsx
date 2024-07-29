@@ -5,7 +5,7 @@ import Button from '../../components/Button'
 import AlbumCard from '../../components/AlbumCard'
 import Error429 from '../../components/Error429'
 import Notice from '../../components/Notice'
-import SearchNotice from '../../components/Notice/SearchNotice'
+import Banner from '../../components/Banner'
 
 import Squares from "react-activity/dist/Squares"
 
@@ -66,7 +66,10 @@ export default function SearchPage() {
                                     : albums?.length > 0 ?
                                         <>
                                             {albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)}
-                                            <SearchNotice/>
+                                            <Banner color='#275ac7'>
+                                                <p className='title'>Can't find a new release? 🔍</p>
+                                                <p>It might take a few hours for <strong>new albums</strong> to show up. Try again soon! ⏳😉</p>
+                                            </Banner>
                                         </>
                                         :
                                         <Notice

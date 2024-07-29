@@ -1,19 +1,27 @@
-// import { } from 'react'
+import { ReactNode } from 'react'
 
 // import 
 
 import './styles.scss'
-// export type BannerProps = {
-// }
+export type BannerProps = {
+    children: ReactNode[],
+    color?: string,
+    spaced?: boolean,
+    // html2canvasIgnore?: boolean,
+}
 
-export default function Banner() {
+export default function Banner(props: BannerProps) {
     return (
-        <div className='banner'>
-            <span className='strong'>Show off your music taste!</span>
-            <span>Share your reviews on social media using <strong>#mypitchfork</strong> 📸</span>
-            {/* <span className='strong'>We've just launched our social media profiles! 📱✨</span>
-            <span>Follow us on <a href="https://www.instagram.com/mypitchfork.fun" target="_blank">Instagram</a> and <a href="https://x.com/mypitchforkfun" target="_blank">X</a> for the latest updates, fun content, and more.</span>
-            <span>Share your reviews with <strong>#mypitchfork</strong> - show off your music taste and join the fun! 📸🔥</span> */}
+        <div
+            className={
+                'banner'
+                + (props.spaced ? ' spaced' : '')
+            }
+            style={{
+                '--banner-color': props.color || '#2b2b2b',
+            } as React.CSSProperties}
+        >
+            {props.children}
         </div>
     )
 }
