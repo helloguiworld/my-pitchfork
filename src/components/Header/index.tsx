@@ -81,7 +81,7 @@ export default function Header() {
                         }}
                     >
                         {
-                            authContext?.hasCheckedLocalAuthData &&
+                            authContext?.hasCheckedLocalAuth &&
                             <span>
                                 {authContext?.isAuth ? authContext.authAccount.user.username : "login"}
                             </span>

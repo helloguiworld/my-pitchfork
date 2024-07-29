@@ -1,4 +1,8 @@
-import { ReactNode } from 'react'
+import { ReactNode, useContext } from 'react'
+
+import { AuthContext } from '../../contexts/AuthContext'
+
+import { Squares } from 'react-activity'
 
 import Header from '../Header'
 import Footer from '../Footer'
@@ -8,11 +12,15 @@ import './styles.scss'
 export type PageProps = {
     children: ReactNode | ReactNode[],
     id: string,
+    awaitLocalAuth?: boolean,
     hideHeader?: boolean,
     hideBanners?: boolean | string[],
+    hideFooter?: boolean,
 }
 
 export default function Page(props: PageProps) {
+    const authContext = useContext(AuthContext)
+
     return (
         <>
             {!props.hideHeader && <Header />}
@@ -28,16 +36,25 @@ export default function Page(props: PageProps) {
                         <p>Share your reviews on social media using <strong>#mypitchfork</strong> 📸</p>
                     </Banner>
                     {/* <Banner color='#445500'>
-                        <p className='title'>We've just launched our social media profiles! 📱✨</p>
-                        <p>Follow us on <a href="https://www.instagram.com/mypitchfork.fun" target="_blank">Instagram</a> and <a href="https://x.com/mypitchforkfun" target="_blank">X</a> for the latest updates, fun content, and more.</p>
-                        <p>Share your reviews with <strong>#mypitchfork</strong> - show off your music taste and join the fun! 📸🔥</p>
-                    </Banner> */}
+                            <p className='title'>We've just launched our social media profiles! 📱✨</p>
+                            <p>Follow us on <a href="https://www.instagram.com/mypitchfork.fun" target="_blank">Instagram</a> and <a href="https://x.com/mypitchforkfun" target="_blank">X</a> for the latest updates, fun content, and more.</p>
+                            <p>Share your reviews with <strong>#mypitchfork</strong> - show off your music taste and join the fun! 📸🔥</p>
+                        </Banner> */}
                 </div>
             }
-            <main className='page' id={props.id}>
-                {props.children}
-            </main>
-            <Footer />
+
+            {
+                !authContext?.hasCheckedLocalAuth ?
+                    <Squares className='spaced' />
+                    :
+                    <main className='page' id={props.id}>
+                        {
+                            props.children
+                        }
+                    </main>
+            }
+
+            {!props.hideFooter && <Footer />}
         </>
     )
 }

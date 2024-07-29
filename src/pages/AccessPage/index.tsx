@@ -34,14 +34,13 @@ export default function AccessPage(props: AccessPageProps) {
     return (
         <div className='access-page'>
             {
-                !authContext?.hasCheckedLocalAuthData ?
+                !authContext?.hasCheckedLocalAuth ?
                     <Squares />
                     : authContext?.isAuth ?
                         <Navigate to="/my" replace />
                         :
                         <>
                             <main className="content">
-
                                 <div className="header">
                                     <button className='clean back' onClick={() => navigate(-1)}>
                                         <MdOutlineArrowBackIosNew />

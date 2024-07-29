@@ -129,14 +129,14 @@ export default function useReview(id: string | undefined) {
     }
 
     useEffect(() => {
-        if (authContext?.hasCheckedLocalAuthData) {
+        if (authContext?.hasCheckedLocalAuth) {
             if (authContext?.isAuth && id) readReview(id)
             else setFetching(false)
         }
-    }, [authContext?.hasCheckedLocalAuthData, authContext?.isAuth, id])
+    }, [authContext?.hasCheckedLocalAuth, authContext?.isAuth, id])
 
     useEffect(() => {
-        if (authContext?.hasCheckedLocalAuthData && album) {
+        if (authContext?.hasCheckedLocalAuth && album) {
             if (!authContext?.isAuth) {
                 defineCleanTrackScoresLocalBased()
             } else if (!fetching) {

@@ -62,7 +62,7 @@ export default function SearchPage() {
                         <div className="albums">
                             {
                                 fetching ?
-                                    <Squares />
+                                    <Squares className='spaced'/>
                                     : albums?.length > 0 ?
                                         <>
                                             {albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)}

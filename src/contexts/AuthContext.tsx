@@ -11,7 +11,7 @@ type AuthContextType = {
     authAccount: Account,
     isAuth: boolean,
     fetching: boolean,
-    hasCheckedLocalAuthData: boolean,
+    hasCheckedLocalAuth: boolean,
     login: (token: string) => any,
     logout: () => void,
     authConsole: (...args: any[]) => void,
@@ -26,7 +26,7 @@ const AuthProvider = (props: AuthProviderType) => {
     const [authToken, setAuthToken, removeAuthToken] = useLocalStorage('auth-token', null)
     const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage('auth-account', null)
     const [isAuth, setIsAuth] = useState(false)
-    const [hasCheckedLocalAuthData, setHasCheckedLocalAuthData] = useState(false)
+    const [hasCheckedLocalAuth, sethasCheckedLocalAuth] = useState(false)
     const [fetching, setFetching] = useState(false)
 
     const logout = () => {
@@ -63,12 +63,12 @@ const AuthProvider = (props: AuthProviderType) => {
         const response = await login(authToken)
         if (response.status == 200)
             console.log('LOCAL AUTH LOGIN')
-        setHasCheckedLocalAuthData(true)
+        sethasCheckedLocalAuth(true)
     }
 
     useEffect(() => {
         if (authToken) checkLocalAuthData()
-        else setHasCheckedLocalAuthData(true)
+        else sethasCheckedLocalAuth(true)
     }, [])
 
     return (
@@ -78,7 +78,7 @@ const AuthProvider = (props: AuthProviderType) => {
                 authAccount,
                 isAuth,
                 fetching,
-                hasCheckedLocalAuthData,
+                hasCheckedLocalAuth,
                 login,
                 logout,
                 authConsole

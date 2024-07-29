@@ -1,8 +1,5 @@
 .access-page {
-    // border: 2px solid blue;
     flex: 1;
-    max-height: 100vh;
-    overflow-x: auto;
     display: flex;
 
     h2 {
@@ -20,6 +17,7 @@
     }
 
     >main.content {
+        min-width: min(600px, 100%);
         font-size: 1rem;
         display: flex;
         flex-direction: column;
@@ -32,7 +30,6 @@
             top: 0;
             background-color: #ffffff;
             padding: 8px;
-            // border-bottom: 1px solid #1A1A1A;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -62,7 +59,8 @@
             flex: 1;
             width: 100%;
             max-width: 400px;
-            padding: 32px 16px;
+            padding: 16px;
+            margin-bottom: 16px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -91,9 +89,9 @@
     }
 
     >div.access-banner {
+        height: 100vh;
         position: sticky;
         top: 0;
-        bottom: 0;
         
         flex: 1;
         background-color: #1a1a1a;
