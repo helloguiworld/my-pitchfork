@@ -94,7 +94,7 @@ export default function ReviewPage() {
         <Page id='review-page' banners={['#mypitchfork', 'review-save']}>
             {
                 albumFetching ?
-                    <Squares />
+                    <Squares className='spaced'/>
                     : albumError?.response?.status == 429 ?
                         <Error429 /> :
                         album ?
