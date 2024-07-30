@@ -10,12 +10,14 @@ import { MdOutlineArrowBackIosNew, MdOutlineSearch } from "react-icons/md"
 import { FaCircleUser } from "react-icons/fa6"
 
 import './styles.scss'
-// export type HeaderProps = {
-// }
+export type HeaderProps = {
+    hideSearch?: boolean,
+    hideAccess?: boolean,
+}
 
 const DISPLAY_AUTH = import.meta.env.VITE_DISPLAY_AUTH
 
-export default function Header() {
+export default function Header(props: HeaderProps) {
     const headerRef = useRef<HTMLElement>(null)
 
     const navigate = useNavigate()
@@ -41,22 +43,25 @@ export default function Header() {
     return (
         <header ref={headerRef} className='page-header'>
             <div className="space" data-html2canvas-ignore={true}>
-                <div
-                    className='navigation'
-                    onClick={() => {
-                        if (navigationMode() == 'search')
-                            navigate('/search')
-                        else
-                            navigate(-1)
-                    }}
-                    data-html2canvas-ignore={true}
-                >
-                    {
-                        navigationMode() == 'search' ?
-                            <MdOutlineSearch /> :
-                            <MdOutlineArrowBackIosNew />
-                    }
-                </div>
+                {
+                    !props.hideSearch &&
+                    <div
+                        className='navigation'
+                        onClick={() => {
+                            if (navigationMode() == 'search')
+                                navigate('/search')
+                            else
+                                navigate(-1)
+                        }}
+                        data-html2canvas-ignore={true}
+                    >
+                        {
+                            navigationMode() == 'search' ?
+                                <MdOutlineSearch /> :
+                                <MdOutlineArrowBackIosNew />
+                        }
+                    </div>
+                }
             </div>
 
             <div className='logo'>
@@ -70,7 +75,7 @@ export default function Header() {
 
             <div className="space" data-html2canvas-ignore={true}>
                 {
-                    (DISPLAY_AUTH || authContext?.isAuth) &&
+                    (!props.hideAccess && (DISPLAY_AUTH || authContext?.isAuth)) &&
                     <div
                         className='auth'
                         onClick={() => {

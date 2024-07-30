@@ -15,6 +15,8 @@ export type PageProps = {
     // awaitLocalAuth?: boolean,
     dontAwaitLocalAuth?: boolean,
     hideHeader?: boolean,
+    hideSearch?: boolean,
+    hideAccess?: boolean,
     banners?: string[],
     hideBanners?: boolean,
     hideFooter?: boolean,
@@ -58,26 +60,21 @@ export default function Page(props: PageProps) {
     }
 
     const fixedBanners: JSX.Element[] = [
-        <Banner color='#d19404' spaced key={0}>
-            <p className='title'>🚧 Maintenance Alert 🚧</p>
-            <p>You might experience some instability soon due to upcoming <strong>upgrades</strong> 👀</p>
-        </Banner>
+        (import.meta.env.VITE_MAINTENANCE_ALERT &&
+            <Banner color='#d19404' spaced key={0}>
+                <p className='title'>🚧 MAINTENANCE SOON 🚧</p>
+                <p>You might experience some instability soon due to upcoming <strong>upgrades</strong> 👀</p>
+            </Banner>
+        )
     ]
 
     return (
         <>
-            {!props.hideHeader && <Header />}
+            {!props.hideHeader && <Header hideSearch={props.hideSearch} hideAccess={props.hideAccess} />}
             {
                 (!props.hideBanners && (Boolean(props.banners?.length) || Boolean(fixedBanners.length))) &&
                 <div className="page-banners" data-html2canvas-ignore>
                     {Boolean(fixedBanners.length) && fixedBanners}
-                    {
-                        import.meta.env.VITE_MAINTANCE &&
-                        <Banner color='#d19404' spaced>
-                            <p className='title'>🚧 Maintenance Alert 🚧</p>
-                            <p>You might experience some instability soon due to an upcoming <strong>upgrade</strong> 👀</p>
-                        </Banner>
-                    }
                     {Boolean(props.banners?.length) && props.banners?.map((banner, index) => getBanner(banner, index))}
                 </div>
             }

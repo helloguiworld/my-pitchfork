@@ -23,7 +23,7 @@ import './global.css'
 import "react-activity/dist/Squares.css"
 
 const router = createBrowserRouter(
-  import.meta.env.VITE_MAINTANCE ?
+  import.meta.env.VITE_MAINTENANCE ?
     [
       {
         path: "/",

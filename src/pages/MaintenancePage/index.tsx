@@ -8,11 +8,11 @@ import './styles.scss'
 
 export default function MaintenancePage() {
     return (
-        <Page id='maintenance-page' hideBanners>
+        <Page id='maintenance-page' hideSearch hideAccess hideBanners>
             <div className='main'>
-                <h2>We are in</h2>
-                <h1 className='my-pitchfork'>Maintenance</h1>
-                <p>explore, rate and share music with the world</p>
+                <h2>We are under</h2>
+                <h1 className='my-pitchfork'>🚧 MAINTENANCE 🚧</h1>
+                <p>be right back 🤠</p>
             </div>
         </Page>
     )

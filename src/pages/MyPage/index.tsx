@@ -34,6 +34,7 @@ export default function MyPage() {
                         <Button
                             className={'logout'}
                             color="var(--color-blue)"
+                            colorFilled
                             onClick={() => {
                                 navigate('/tutorials/account')
                             }}
@@ -42,7 +43,7 @@ export default function MyPage() {
                         </Button>
                         <Button
                             className={'logout'}
-                            color="#ff3530"
+                            color="var(--color-red)"
                             onClick={() => {
                                 authContext.logout()
                                 navigate('/')
@@ -63,7 +64,8 @@ export default function MyPage() {
 
                         <Button
                             className={'sign-up'}
-                            color="#193caf"
+                            color="var(--color-blue)"
+                            colorFilled
                             onClick={() => {
                                 navigate('/register')
                             }}
