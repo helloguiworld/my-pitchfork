@@ -49,8 +49,7 @@ const AuthProvider = (props: AuthProviderType) => {
                 return response
             })
             .catch((error) => {
-                if (error.response.status == 401)
-                    logout()
+                logout()
                 return Promise.reject(error)
             })
             .finally(() => setFetching(false))
@@ -61,10 +60,16 @@ const AuthProvider = (props: AuthProviderType) => {
     }
 
     const checkLocalAuthData = async () => {
-        const response = await login(authToken)
-        if (response.status == 200)
-            console.log('LOCAL AUTH LOGIN')
-        sethasCheckedLocalAuth(true)
+        return login(authToken)
+            .then((response) => {
+                if (response.status == 200) console.log('LOCAL AUTH LOGIN')
+                return response
+            })
+            .catch((error) => {
+                console.log('LOCAL AUTH LOGIN FAILED')
+                return error
+            })
+            .finally(() => sethasCheckedLocalAuth(true))
     }
 
     useEffect(() => {
