@@ -1,4 +1,4 @@
-import { useRef, FormEvent, ChangeEvent } from 'react'
+import { useRef, useEffect, FormEvent, ChangeEvent } from 'react'
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
@@ -31,6 +31,10 @@ export default function SearchPage() {
         const response = await searchAlbums(searchQ)
         if (response?.status == 200) await clickServices.postSearchClick(searchQ)
     }
+
+    useEffect(() => {
+        if (searchQ && albums.length == 0) searchAlbums(searchQ)
+    }, [])
 
     return (
         <Page id='search-page' banners={['news']}>
