@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState, useEffect } from 'react'
+import { AxiosResponse } from "axios"
 
 import { setAPIAuthToken, removeAPIAuthToken } from '../services/myPitchforkAPI'
 
@@ -12,7 +13,7 @@ type AuthContextType = {
     isAuth: boolean,
     fetching: boolean,
     hasCheckedLocalAuth: boolean,
-    login: (token: string) => any,
+    login: (token: string) => Promise<AxiosResponse>,
     logout: () => void,
     authConsole: (...args: any[]) => void,
 }
@@ -50,7 +51,7 @@ const AuthProvider = (props: AuthProviderType) => {
             .catch((error) => {
                 if (error.response.status == 401)
                     logout()
-                return error
+                return Promise.reject(error)
             })
             .finally(() => setFetching(false))
     }

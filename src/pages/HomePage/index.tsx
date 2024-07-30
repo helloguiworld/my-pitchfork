@@ -18,7 +18,7 @@ export default function HomePage() {
     const navigate = useNavigate()
 
     return (
-        <Page id='home-page'>
+        <Page id='home-page' banners={['news']}>
             <div className='main'>
                 <h2>Welcome to</h2>
                 <h1 className='my-pitchfork'>myPitchfork</h1>

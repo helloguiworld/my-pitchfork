@@ -11,7 +11,7 @@ export type ButtonProps = {
     color?: string,
     colorFilled?: boolean,
     isOn?: boolean,
-    lowVisibility?: boolean,
+    inactive?: boolean,
     fetching?: boolean,
 }
 
@@ -21,9 +21,9 @@ export default function Button(props: ButtonProps) {
             className={
                 'button' +
                 (props.className ? ` ${props.className}` : '') +
-                (props.isOn ? ' on' : '') +
+                (props.isOn != undefined ? (props.isOn ? ' opacity-hover on' : ' opacity-hover') : '') +
                 (props.colorFilled ? ' color-filled' : '') +
-                (props.lowVisibility ? ' low-visibility' : '') +
+                (props.inactive ? ' inactive' : '') +
                 (props.fetching ? ' fetching' : '')
             }
             type={props.type || 'button'}

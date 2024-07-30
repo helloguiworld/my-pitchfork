@@ -8,6 +8,8 @@ import {
 
 import { AuthProvider } from './contexts/AuthContext.tsx'
 
+import MaintenancePage from './pages/MaintenancePage/index.tsx'
+
 import HomePage from './pages/HomePage/index.tsx'
 import SearchPage from './pages/SearchPage/index.tsx'
 import ReviewPage from './pages/ReviewPage/index.tsx'
@@ -20,53 +22,67 @@ import './fonts.css'
 import './global.css'
 import "react-activity/dist/Squares.css"
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-  },
+const router = createBrowserRouter(
+  import.meta.env.VITE_MAINTANCE ?
+    [
+      {
+        path: "/",
+        element: <MaintenancePage />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
+      },
+    ]
+    :
+    [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
 
-  {
-    path: "/search/*",
-    element: <SearchPage />,
-  },
-  {
-    path: "/review/:id",
-    element: <ReviewPage />,
-  },
+      {
+        path: "/search/*",
+        element: <SearchPage />,
+      },
+      {
+        path: "/review/:id",
+        element: <ReviewPage />,
+      },
 
-  {
-    path: "/login",
-    element: <AccessPage mode='login' />,
-  },
-  {
-    path: "/register",
-    element: <AccessPage mode='register' />,
-  },
-  // {
-  //   path: "/forgot-password",
-  //   element: <AccessPage mode='forgot-password' />,
-  // },
-  // {
-  //   path: "/password-reset",
-  //   element: <AccessPage mode='password-reset' />,
-  // },
+      {
+        path: "/login",
+        element: <AccessPage mode='login' />,
+      },
+      {
+        path: "/register",
+        element: <AccessPage mode='register' />,
+      },
+      // {
+      //   path: "/forgot-password",
+      //   element: <AccessPage mode='forgot-password' />,
+      // },
+      // {
+      //   path: "/password-reset",
+      //   element: <AccessPage mode='password-reset' />,
+      // },
 
-  {
-    path: "/tutorials/account",
-    element: <TutorialsPage />,
-  },
+      {
+        path: "/tutorials/account",
+        element: <TutorialsPage />,
+      },
 
-  {
-    path: "/my",
-    element: <MyPage />,
-  },
+      {
+        path: "/my",
+        element: <MyPage />,
+      },
 
-  {
-    path: "*",
-    element: <Navigate to="/" replace />,
-  },
-])
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
+      },
+    ]
+)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>

@@ -17,7 +17,7 @@ export default function MyPage() {
     const authContext = useContext(AuthContext)
 
     return (
-        <Page id='my-page' hideBanners>
+        <Page id='my-page'>
             {
                 authContext?.isAuth ?
                     <>

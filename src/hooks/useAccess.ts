@@ -28,9 +28,9 @@ export default function useAccess() {
             setFetching(true)
             cleanErrors()
             const response = await accessServices.login(username, password)
-            .then((response) => {
-                return response
-            })
+                .then((response) => {
+                    return response
+                })
                 .catch((error) => {
                     const errors = error.response.data
                     setErrors(errors)
@@ -38,10 +38,15 @@ export default function useAccess() {
                     return error.response
                 })
                 .finally(() => setFetching(false))
-                
+
             if (response?.status == 200) {
                 const token = response.data.token
                 return authContext.login(token)
+                    .catch((error) => {
+                        if (error.response.status == 403)
+                            setGeneralErrors(["This user don't have an account."])
+                        return error
+                    })
             }
 
             return response

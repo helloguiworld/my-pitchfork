@@ -15,27 +15,31 @@
             opacity: .8;
         }
     }
-
+    
     &:not(.color-filled) {
         fill: var(--color);
         color: var(--color);
+        background-color: #ffffff;
         border-color: var(--color);
+        
+        &.opacity-hover:hover {
+            opacity: .8;
+        }
 
-        &:hover,
+        &:not(.opacity-hover):hover,
         &.on {
             fill: #ffffff;
             color: #ffffff;
             background-color: var(--color);
         }
-
-        &.on:hover {
+        &:not(.opacity-hover).on:hover {
             fill: var(--color);
             color: var(--color);
             background-color: #ffffff;
         }
     }
 
-    &.low-visibility {
+    &.inactive {
         opacity: .2;
         pointer-events: none;
     }

@@ -37,7 +37,7 @@ export default function SearchPage() {
     }, [])
 
     return (
-        <Page id='search-page'>
+        <Page id='search-page' banners={['news']}>
             {
                 error?.response?.status == 429 ?
                     <Error429 /> :
