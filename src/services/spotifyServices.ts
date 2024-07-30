@@ -24,7 +24,8 @@ export type Album = {
     cover: string,
     artists: string[],
     date: string,
-    tracks: Track[],
+    tracks?: Track[],
+    total_tracks: number,
 }
 
 // CRUD

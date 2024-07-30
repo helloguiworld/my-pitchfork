@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 
-import useAlbum from './useAlbumX'
+import useAlbum from './useAlbum'
 import { TrackScore } from '../services/myServices'
 import useStoredTrackScores from './useStoredTrackScores'
 import myServices, { Review } from '../services/myServices'

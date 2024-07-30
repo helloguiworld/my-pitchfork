@@ -62,7 +62,7 @@ export default function Page(props: PageProps) {
     const fixedBanners: JSX.Element[] = [
         (import.meta.env.VITE_MAINTENANCE_ALERT &&
             <Banner color='#d19404' spaced key={0}>
-                <p className='title'>🚧 MAINTENANCE SOON 🚧</p>
+                <p className='title'>🚧 MAINTENANCE NOTICE 🚧</p>
                 <p>You might experience some instability due to upcoming <strong>upgrades</strong> 👀</p>
             </Banner>
         )

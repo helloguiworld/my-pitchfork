@@ -9,7 +9,7 @@ import Banner from '../../components/Banner'
 
 import Squares from "react-activity/dist/Squares"
 
-import useAlbums from '../../hooks/useAlbums'
+import useSearch from '../../hooks/useSearch'
 import { Album } from '../../services/spotifyServices'
 import clickServices from '../../services/clickServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
@@ -21,7 +21,7 @@ import './styles.scss'
 export default function SearchPage() {
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    const { albums, fetching, error, searchAlbums } = useAlbums()
+    const { albums, fetching, error, searchAlbums } = useSearch()
 
     const [searchQ, setSearchQ] = useLocalStorage('search-q', "")
 

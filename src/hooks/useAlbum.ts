@@ -1,27 +1,12 @@
 import { useState, useEffect } from 'react'
 import spotifyService, { Album } from '../services/spotifyServices'
 
-import useStoredTrackScores from './useStoredTrackScores'
-
 import { AxiosError } from 'axios'
-
-export type TrackScores = {
-    [key: string]: number,
-}
 
 export default function useAlbum(id: string | undefined) {
     const [album, setAlbum] = useState<Album | null>(null)
-    const [fetching, setFetching] = useState<boolean>(false)
+    const [fetching, setFetching] = useState<boolean>(true)
     const [error, setError] = useState<AxiosError>()
-    const [trackScores, setTrackScores] = useState<TrackScores>({})
-    const [albumScore, setAlbumScore] = useState<number>(0)
-
-    const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()
-
-    function setNewTrackScore(id: string, score: number) {
-        setTrackScores(prevTrackScores => ({ ...prevTrackScores, [id]: score }))
-        setStoredTrackScore(id, score)
-    }
 
     async function readAlbum(id: string) {
         setFetching(true)
@@ -36,6 +21,7 @@ export default function useAlbum(id: string | undefined) {
                     artists: album.artists,
                     date: album.date,
                     tracks: album.tracks,
+                    total_tracks: album.total_tracks,
                 })
                 return response
             })
@@ -48,34 +34,10 @@ export default function useAlbum(id: string | undefined) {
             readAlbum(id)
     }, [id])
 
-    useEffect(() => {
-        if (album?.tracks) {
-            const albumTrackIds = album.tracks.map(track => track.id)
-            const retrievedTrackScores = getStoredTrackScoresByIds(albumTrackIds)
-            const newTrackScores = albumTrackIds.reduce((ts: TrackScores, ts_id: string) => {
-                ts[ts_id] = retrievedTrackScores[ts_id] || 0
-                return ts
-            }, {})
-            setTrackScores(newTrackScores)
-        }
-    }, [album])
-
-    useEffect(() => {
-        if (album && trackScores) {
-            const scores = Object.values(trackScores)
-            const scoresSum = scores.reduce((acc, curr) => acc + curr, 0)
-            const newAlbumScore = scoresSum / scores.length
-            setAlbumScore(newAlbumScore)
-        }
-    }, [trackScores])
-
     return {
         album,
         fetching,
         error,
         readAlbum,
-        trackScores,
-        setNewTrackScore,
-        albumScore,
     }
 }
