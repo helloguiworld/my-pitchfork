@@ -63,7 +63,7 @@ export default function Page(props: PageProps) {
         (import.meta.env.VITE_MAINTENANCE_ALERT &&
             <Banner color='#d19404' spaced key={0}>
                 <p className='title'>🚧 MAINTENANCE SOON 🚧</p>
-                <p>You might experience some instability soon due to upcoming <strong>upgrades</strong> 👀</p>
+                <p>You might experience some instability due to upcoming <strong>upgrades</strong> 👀</p>
             </Banner>
         )
     ]
