@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import spotifyService, { Album } from '../services/spotifyServices'
 
+import useLocalStorage from './useLocalStorage'
+
 import { AxiosError } from 'axios'
 
-export default function useAlbums() {
-    const [albums, setAlbums] = useState<Album[]>([])
+export default function useSearch() {
+    const [albums, setAlbums] = useLocalStorage<Album[]>('search-albums', [])
     const [fetching, setFetching] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
 

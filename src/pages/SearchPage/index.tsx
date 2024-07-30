@@ -32,9 +32,9 @@ export default function SearchPage() {
         if (response?.status == 200) await clickServices.postSearchClick(searchQ)
     }
 
-    useEffect(() => {
-        if (searchQ) searchAlbums(searchQ)
-    }, [])
+    // useEffect(() => {
+    //     if (searchQ) searchAlbums(searchQ)
+    // }, [])
 
     return (
         <Page id='search-page' banners={['news']}>
