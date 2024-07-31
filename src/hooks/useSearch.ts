@@ -6,7 +6,8 @@ import useLocalStorage from './useLocalStorage'
 import { AxiosError } from 'axios'
 
 export default function useSearch() {
-    const [albums, setAlbums] = useLocalStorage<Album[]>('search-albums', [])
+    const [lastSearchQ, setLastSearchQ] = useLocalStorage('last-search-q', '')
+    const [searchResults, setSearchResults] = useLocalStorage<Album[]>('search-results', [])
     const [fetching, setFetching] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
 
@@ -14,7 +15,9 @@ export default function useSearch() {
         setFetching(true)
         return spotifyService.getSearch(q)
             .then(response => {
-                setAlbums(
+                setError(undefined)
+                setLastSearchQ(q)
+                setSearchResults(
                     response.data.map(
                         (album: any) => ({
                             id: album.id,
@@ -30,14 +33,16 @@ export default function useSearch() {
                 return response
             })
             .catch((error) => {
-                setAlbums([])
                 setError(error)
+                setLastSearchQ('')
+                setSearchResults([])
             })
             .finally(() => setFetching(false))
     }
 
     return {
-        albums,
+        searchResults,
+        lastSearchQ,
         fetching,
         error,
         searchAlbums,

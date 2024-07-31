@@ -57,9 +57,9 @@ export default function FormInput(props: FormInputProps) {
                 shownErrors.length > 0 &&
                 <div className='errors'>
                     {
-                        shownErrors.map((error) =>
+                        shownErrors.map((error, index) =>
                             <>
-                                <span className='error'>{error}</span>
+                                <span key={index} className='error'>{error}</span>
                             </>
                         )
                     }

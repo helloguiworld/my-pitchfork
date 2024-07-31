@@ -1,7 +1,12 @@
 import { createContext, ReactNode, useState, useEffect } from 'react'
 import { AxiosResponse } from "axios"
 
-import { setAPIAuthToken, removeAPIAuthToken } from '../services/myPitchforkAPI'
+import {
+    setAPIAuthToken,
+    removeAPIAuthToken,
+    LOCAL_AUTH_TOKEN_KEY,
+    LOCAL_AUTH_ACCOUNT_KEY
+} from '../services/myPitchforkAPI'
 
 import { Account } from '../services/accessServices'
 import useLocalStorage from '../hooks/useLocalStorage'
@@ -24,8 +29,8 @@ type AuthProviderType = {
 }
 
 const AuthProvider = (props: AuthProviderType) => {
-    const [authToken, setAuthToken, removeAuthToken] = useLocalStorage('auth-token', null)
-    const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage('auth-account', null)
+    const [authToken, setAuthToken, removeAuthToken] = useLocalStorage(LOCAL_AUTH_TOKEN_KEY, null)
+    const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage(LOCAL_AUTH_ACCOUNT_KEY, null)
     const [isAuth, setIsAuth] = useState(false)
     const [hasCheckedLocalAuth, sethasCheckedLocalAuth] = useState(false)
     const [fetching, setFetching] = useState(false)

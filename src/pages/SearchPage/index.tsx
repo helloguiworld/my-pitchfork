@@ -1,4 +1,4 @@
-import { useRef, useEffect, FormEvent, ChangeEvent } from 'react'
+import { useRef, useEffect, FormEvent, ChangeEvent, useState } from 'react'
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
@@ -21,20 +21,22 @@ import './styles.scss'
 export default function SearchPage() {
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    const { albums, fetching, error, searchAlbums } = useSearch()
+    const { searchResults, lastSearchQ, fetching, error, searchAlbums } = useSearch()
 
-    const [searchQ, setSearchQ] = useLocalStorage('search-q', "")
+    const [searchQ, setSearchQ] = useLocalStorage('search-q', '')
 
     async function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        searchInputRef.current?.blur()
-        const response = await searchAlbums(searchQ)
-        if (response?.status == 200) await clickServices.postSearchClick(searchQ)
+        if (searchQ && !fetching) {
+            searchInputRef.current?.blur()
+            const response = await searchAlbums(searchQ)
+            if (response?.status == 200) await clickServices.postSearchClick(searchQ)
+        }
     }
 
-    useEffect(() => {
-        if (searchQ && albums.length == 0) searchAlbums(searchQ)
-    }, [])
+    // useEffect(() => {
+    //     if (lastSearchQ) setSearchQ(lastSearchQ)
+    // }, [])
 
     return (
         <Page id='search-page' banners={['news']}>
@@ -42,7 +44,7 @@ export default function SearchPage() {
                 error?.response?.status == 429 ?
                     <Error429 /> :
                     <>
-                        <form className="album-search" onSubmit={fetching ? undefined : handleAlbumSearch}>
+                        <form className="album-search" onSubmit={handleAlbumSearch}>
                             <input
                                 type='text'
                                 placeholder='album or artist'
@@ -53,6 +55,7 @@ export default function SearchPage() {
                             />
                             <Button
                                 type='submit'
+                                inactive={!searchQ}
                                 fetching={fetching}
                             >
                                 SEARCH
@@ -62,10 +65,11 @@ export default function SearchPage() {
                         <div className="albums">
                             {
                                 fetching ?
-                                    <Squares className='spaced'/>
-                                    : albums?.length > 0 ?
+                                    <Squares className='spaced' />
+                                    : searchResults?.length > 0 ?
                                         <>
-                                            {albums.map((album: Album) => <AlbumCard album={album} key={album.id} />)}
+                                            {lastSearchQ && <span className='last-search'>your last search results for <strong>{lastSearchQ}</strong></span>}
+                                            {searchResults.map((album: Album) => <AlbumCard album={album} key={album.id} />)}
                                             <Banner color='#275ac7'>
                                                 <p className='title'>Can't find a new release? 🔍</p>
                                                 <p>It might take a few hours for <strong>new albums</strong> to show up. Try again soon! ⏳😉</p>

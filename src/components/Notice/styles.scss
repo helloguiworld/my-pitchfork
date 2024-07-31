@@ -1,6 +1,7 @@
 div.notice {
     font-size: 1rem;
     text-align: center;
+    padding: 10vh 16px;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -10,9 +11,5 @@ div.notice {
         font-weight: bold;
         font-size: 1.1em;
         margin: 4px 0;
-    }
-    
-    &.spaced {
-        margin: 16px;
     }
 }
