@@ -76,6 +76,7 @@ export default function RegisterForm() {
             <form className='login' onSubmit={handleSubmit}>
                 <FormInput
                     id="username"
+                    maxLength={25}
                     placeholder='enter your @username'
                     label='Username'
                     value={username}

@@ -74,8 +74,6 @@ export default function ReviewPage() {
 
     function saveMyReview() {
         if (authContext?.isAuth && album && albumScore != null && trackScores) {
-            // CHECK IF USER WANNA SAVE 0 SCORE
-
             const review = {
                 'album': album.id,
                 'score': albumScore,

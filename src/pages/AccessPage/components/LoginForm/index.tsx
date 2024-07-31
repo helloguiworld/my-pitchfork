@@ -69,6 +69,7 @@ export default function LoginForm() {
                         <form className='login' onSubmit={handleSubmit}>
                             <FormInput
                                 type="text"
+                                maxLength={25}
                                 id="username"
                                 placeholder='enter your username'
                                 label='Username'

@@ -12,6 +12,7 @@ export type FormInputProps = {
     value: any,
     onChange: ChangeEventHandler<HTMLInputElement>,
     required?: boolean,
+    maxLength?: number,
     errors?: string[],
     generalErrors?: string[],
     showGeneralErrors?: boolean,
@@ -52,6 +53,7 @@ export default function FormInput(props: FormInputProps) {
                 value={props.value}
                 onChange={props.onChange}
                 required={props.required}
+                maxLength={props.maxLength}
             />
             {
                 shownErrors.length > 0 &&

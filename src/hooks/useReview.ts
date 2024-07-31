@@ -164,7 +164,6 @@ export default function useReview(id: string | undefined) {
     }
 
     function checkIfNeedToSave() {
-        console.log('check')
         if (review && review.is_best_new != isBestNew)
             return true
         return !trackScoresAreSame(trackScores, reviewTrackScores)
