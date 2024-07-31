@@ -76,6 +76,10 @@ const router = createBrowserRouter(
         path: "/my",
         element: <MyPage />,
       },
+      {
+        path: "/my/:username",
+        element: <MyPage />,
+      },
 
       {
         path: "*",

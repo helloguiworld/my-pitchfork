@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+// import { useParams } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -10,14 +11,20 @@ import Button from '../../components/Button'
 import './styles.scss'
 // export type MyPageProps = {
 // }
+export type MyPageParams = {
+    username?: string,
+}
 
 export default function MyPage() {
     const navigate = useNavigate()
 
     const authContext = useContext(AuthContext)
 
+    // const { username } = useParams<MyPageParams>()
+
     return (
         <Page id='my-page'>
+            {/* {username ? <span>{username}</span> : <span>NO USERNAME</span>} */}
             {
                 authContext?.isAuth ?
                     <>
@@ -59,10 +66,10 @@ export default function MyPage() {
                             <p>This will be your <strong>profile page</strong>.</p>
                             <p>Here you'll find your <strong>review history</strong>, <br /><strong>album rankings</strong>, <strong>favorites</strong>, and <strong>more</strong>!</p>
                             <p>💖🎶</p>
-                            <p className='special'>Sign up now to be ready when it's live! 🌟</p>
+                            {/* <p className='special'>Sign up now to be ready when it's live! 🌟</p> */}
                         </div>
 
-                        <Button
+                        {/* <Button
                             className={'sign-up'}
                             color="var(--color-blue)"
                             colorFilled
@@ -71,7 +78,7 @@ export default function MyPage() {
                             }}
                         >
                             <span>SIGN UP</span>
-                        </Button>
+                        </Button> */}
                     </>
             }
         </Page>
