@@ -1,4 +1,4 @@
-import { useRef, useEffect, FormEvent, ChangeEvent, useState } from 'react'
+import { useRef, FormEvent, ChangeEvent } from 'react'
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
@@ -33,10 +33,6 @@ export default function SearchPage() {
             if (response?.status == 200) await clickServices.postSearchClick(searchQ)
         }
     }
-
-    // useEffect(() => {
-    //     if (lastSearchQ) setSearchQ(lastSearchQ)
-    // }, [])
 
     return (
         <Page id='search-page' banners={['news']}>
