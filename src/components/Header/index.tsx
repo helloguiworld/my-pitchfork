@@ -69,7 +69,12 @@ export default function Header(props: HeaderProps) {
                     src={myPitchforkLinkLogoImg}
                     alt="myPitchfork link logo"
                     className="mypitchfork-link-logo"
-                    onClick={() => { navigate('/') }}
+                    onClick={() => {
+                        if (location.pathname == '/search')
+                            navigate('/')
+                        else
+                            navigate('/search')
+                    }}
                 />
             </div>
 
