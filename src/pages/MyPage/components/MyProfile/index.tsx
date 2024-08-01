@@ -1,14 +1,11 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../../../contexts/AuthContext'
-// import { useNavigate } from 'react-router-dom'
 
 import { Profile } from '../../../../hooks/useProfile'
 
 import MyHeader from './components/MyHeader'
 import ProfileOwnerButtons from './components/ProfileOwnerButtons'
 import ReviewsList from '../../../../components/ReviewsList'
-
-// import Button from '../../../../components/Button'
 
 import './styles.scss'
 export type MyProfileProps = {
@@ -17,8 +14,6 @@ export type MyProfileProps = {
 
 export default function MyProfile(props: MyProfileProps) {
     const authContext = useContext(AuthContext)
-
-    // const navigate = useNavigate()
 
     return (
         <>
@@ -32,12 +27,25 @@ export default function MyProfile(props: MyProfileProps) {
             />
 
             {
+                props.profile.new_releases.length > 0 &&
+                <>
+                    <ReviewsList
+                        reviews={props.profile.new_releases}
+                        count
+                        small
+                        headerTitle='New Releases'
+                    />
+                </>
+            }
+
+            {
                 props.profile.latest.length > 0 &&
                 <>
                     <ReviewsList
                         reviews={props.profile.latest}
+                        count
                         small
-                        headerTitle='Latest'
+                        headerTitle='Latest Reviews'
                     />
                 </>
             }

@@ -3,6 +3,8 @@
 
     >img.cover {
         height: 12vh;
+        min-height: 50px;
+        max-height: 80px;
     }
 
     >div.album-names {

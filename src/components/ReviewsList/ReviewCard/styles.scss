@@ -3,6 +3,8 @@
 
     >img.cover {
         height: 12vh;
+        min-height: 60px;
+        max-height: 80px;
     }
 
     >div.album-names {
@@ -31,11 +33,24 @@
         }
     }
 
+    &.bext-new {
+        background-color: color-mix(in srgb, var(--color-red) 2%, white);
+        border-color: color-mix(in srgb, var(--color-red) 30%, white);
+        &:hover{   
+            border-color: color-mix(in srgb, var(--color-red) 80%, white);
+        }
+    }
+
     &.small {
         font-size: .9rem;
 
         >img.cover {
             height: 8vh;
         }
+    }
+
+    div.score-display {
+        align-self: center;
+        margin: 0 8px;
     }
 }

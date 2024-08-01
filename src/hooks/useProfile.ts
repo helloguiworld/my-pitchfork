@@ -10,6 +10,7 @@ export type Profile = {
     is_account_owner: boolean
     account: Account
     reviews_count: number
+    new_releases: DynamicReview[]
     latest: DynamicReview[]
 }
 

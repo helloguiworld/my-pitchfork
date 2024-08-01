@@ -61,6 +61,10 @@ div.album-review {
                     width: 100%;
                 }
             }
+
+            >div.score-display {
+                margin-right: 8px;
+            }
         }
 
         &.track-review {
@@ -84,6 +88,7 @@ div.album-review {
         &.resized-text {
             font-size: .75rem;
         }
+
         >div.others {
             gap: 16px;
         }

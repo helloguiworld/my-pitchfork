@@ -3,6 +3,7 @@ div.score-display {
     flex-direction: column;
     align-items: center;
 
+
     >.crown {
         fill: #ff3530;
     }
@@ -39,6 +40,29 @@ div.score-display {
     &.track-review:not(.best-new)>span.score {
         color: #ffffff;
         border-color: #ffffff;
+    }
+
+    &.small {
+        >.crown {
+            max-height: 12px;
+        }
+
+        >span.score {
+            width: 40px;
+            height: 40px;
+            font-size: .85rem;
+            border-width: 2px;
+        }
+
+        >p.target {
+            font-size: .65rem;
+        }
+
+        &.best-new {
+            >span.score {
+                margin: 6px 0 4px;
+            }
+        }
     }
 }
 

@@ -1,11 +1,11 @@
 // import { ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getAlbumType } from '../../../services/spotifyServices'
 import { DynamicReview } from '../../../services/myServices'
 import clickServices from '../../../services/clickServices'
 
 import Card from '../../Card'
+import ScoreDisplay from '../../ScoreDisplay'
 
 import './styles.scss'
 export type ReviewCardProps = {
@@ -23,7 +23,11 @@ export default function ReviewCard(props: ReviewCardProps) {
 
     return (
         <Card
-            className={'review-card' + (props.small ? ' small' : '')}
+            className={
+                'review-card'
+                + (props.small ? ' small' : '')
+                + (props.review.is_best_new ? ' bext-new' : '')
+            }
             onClick={handleClick}
         >
             <img
@@ -35,10 +39,9 @@ export default function ReviewCard(props: ReviewCardProps) {
             <div className="album-names">
                 <p className='album'>{props.review.album.name}</p>
                 <p className="artists">{props.review.album.artists.join(' / ')}</p>
-                <p className="score">{props.review.score}</p>
             </div>
 
-            <div className="tracks-data">
+            {/* <div className="tracks-data">
                 <p className='album-type'>{getAlbumType(props.review.album.type, props.review.album.tracks_count)}</p>
                 {
                     props.review.album.tracks_count > 1 &&
@@ -46,7 +49,13 @@ export default function ReviewCard(props: ReviewCardProps) {
                         {`${props.review.album.tracks_count} tracks`}
                     </p>
                 }
-            </div>
+            </div> */}
+
+            <ScoreDisplay
+                score={props.review.score}
+                isBestNew={props.review.is_best_new}
+                small
+            />
         </Card>
     )
 }

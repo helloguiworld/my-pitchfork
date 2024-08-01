@@ -9,6 +9,7 @@ export type ScoreDisplayProps = {
     score: number | null
     isBestNew?: boolean
     typeTitle?: AlbumType
+    small?: boolean
 }
 
 export default function ScoreDisplay(props: ScoreDisplayProps) {
@@ -18,6 +19,7 @@ export default function ScoreDisplay(props: ScoreDisplayProps) {
                 "score-display"
                 + (props.isBestNew ? ' best-new' : '')
                 + (props.typeTitle == "TRACK" ? ' track-review' : '')
+                + (props.small ? ' small' : '')
             }
         >
             {props.isBestNew &&
@@ -36,7 +38,8 @@ export default function ScoreDisplay(props: ScoreDisplayProps) {
                 }
             </span>
 
-            {props.isBestNew &&
+            {
+                (props.isBestNew && props.typeTitle) &&
                 <p className="target">
                     {`BEST NEW ${props.typeTitle == "TRACK" ? "TRACK" : "MUSIC"}`}
                 </p>

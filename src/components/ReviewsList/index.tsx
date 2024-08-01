@@ -1,13 +1,13 @@
-// import { } from 'react'
-
 import { DynamicReview } from '../../services/myServices'
 
+import ReviewListCount from './ReviewListCount'
 import ReviewCard from './ReviewCard'
 
 import './styles.scss'
 export type ReviewsListProps = {
     message?: string
     reviews: DynamicReview[]
+    count?: boolean
     small?: boolean
     headerTitle?: string
     headerContent?: JSX.Element | JSX.Element[]
@@ -21,6 +21,7 @@ export default function ReviewsList(props: ReviewsListProps) {
                 (props.headerTitle || props.headerContent) &&
                 <div className="reviews-list-header">
                     {props.headerTitle && <p className='title'>{props.headerTitle}</p>}
+                    {props.count && <ReviewListCount count={props.reviews.length}/>}
                     {props.headerContent}
                 </div>
             }

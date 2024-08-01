@@ -62,7 +62,7 @@ export default function SearchPage() {
                                 <Squares className='spaced' />
                                 : searchResults?.length > 0 ?
                                     <AlbumsList
-                                        message={`your last search results for ${lastSearchQ}`}
+                                        message={`your last search results for "${lastSearchQ}"`}
                                         albums={searchResults}
                                         footerContent={
                                             <Banner color='#275ac7'>
