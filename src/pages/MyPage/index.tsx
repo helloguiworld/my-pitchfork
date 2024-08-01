@@ -30,7 +30,7 @@ export default function MyPage() {
     } = useProfile(username)
 
     return (
-        <Page id='my-page'>
+        <Page id='my-page' hideBanners>
             {
                 username ?
                     fetching ?

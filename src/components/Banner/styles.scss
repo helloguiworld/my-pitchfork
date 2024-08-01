@@ -17,9 +17,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: .3s;
     
     &.spaced {
         margin: 16px;
+    }
+
+    &.clickable {
+        cursor: pointer;
+
+        &:hover {
+            border: 2px solid #979797;
+            border-color: color-mix(in srgb, var(--banner-color) 60%, white);
+        }
     }
 
     >.line {
@@ -37,5 +47,6 @@
         color: inherit;
         font-weight: bold;
         transition: .3s;
+        text-decoration: underline;
     }
 }

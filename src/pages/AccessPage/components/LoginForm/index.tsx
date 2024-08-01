@@ -1,6 +1,4 @@
-import { useState, FormEvent, useContext } from 'react'
-
-import { AuthContext } from '../../../../contexts/AuthContext'
+import { useState, FormEvent } from 'react'
 
 import Button from "../../../../components/Button"
 import FormInput from '../../../../components/FormInput'
@@ -17,7 +15,6 @@ export type LoginError = {
 }
 
 export default function LoginForm() {
-    const authContext = useContext(AuthContext)
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -41,75 +38,65 @@ export default function LoginForm() {
 
     return (
         <>
-            {
-                authContext?.isAuth ?
-                    <>
-                        <div className="title">
-                            <h1>Hello!</h1>
-                            <h2>You are logged in 🔑</h2>
-                        </div>
+            <div className="title">
+                <h1>OMG hiiii!</h1>
+                <h2>We've missed you 😊</h2>
+            </div>
 
-                        < Button
-                            type='submit'
-                            color={"#ff9876"}
-                            onClick={() => {
-                                authContext.logout()
-                            }}
-                        >
-                            LOGOUT
-                        </Button>
-                    </>
-                    :
-                    <>
-                        <div className="title">
-                            <h1>OMG hiiii!</h1>
-                            <h2>We've missed you 😊</h2>
-                        </div>
+            <form className='login' onSubmit={handleSubmit}>
+                <FormInput
+                    type="text"
+                    maxLength={25}
+                    id="username"
+                    placeholder='enter your username'
+                    label='Username'
+                    value={username}
+                    onChange={(e) => setUsername(normalizeUsername(e.target.value))}
+                    required
+                    errors={errors.username}
+                    generalErrors={generalErrors}
+                />
+                <FormInput
+                    type="password"
+                    id="password"
+                    placeholder='enter your ********'
+                    label='Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    errors={errors.password}
+                    generalErrors={generalErrors}
+                    showGeneralErrors
+                />
 
-                        <form className='login' onSubmit={handleSubmit}>
-                            <FormInput
-                                type="text"
-                                maxLength={25}
-                                id="username"
-                                placeholder='enter your username'
-                                label='Username'
-                                value={username}
-                                onChange={(e) => setUsername(normalizeUsername(e.target.value))}
-                                required
-                                errors={errors.username}
-                                generalErrors={generalErrors}
-                            />
-                            <FormInput
-                                type="password"
-                                id="password"
-                                placeholder='enter your ********'
-                                label='Password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                errors={errors.password}
-                                generalErrors={generalErrors}
-                                showGeneralErrors
-                            />
+                <Button
+                    type='submit'
+                    // color={"var(--color-green)"}
+                    colorFilled
+                    fetching={fetching}
+                >
+                    LOGIN
+                </Button>
+            </form >
 
-                            <Button
-                                type='submit'
-                                colorFilled
-                                fetching={fetching}
-                            >
-                                LOGIN
-                            </Button>
-                        </form >
+            <div className="buttons">
 
-                        <Button
-                            type='button'
-                            color={"#193caf"}
-                            onClick={() => navigate('/register')}
-                        >
-                            SIGN UP
-                        </Button>
-                    </>
-            }
+                <Button
+                    type='button'
+                    color={"var(--color-blue)"}
+                    // colorFilled
+                    onClick={() => navigate('/register')}
+                >
+                    SIGN UP
+                </Button>
+                <Button
+                    type='button'
+                    color={"var(--color-red)"}
+                    inactive
+                >
+                    RESET PASSWORD SOON
+                </Button>
+            </div>
         </>
     )
 }

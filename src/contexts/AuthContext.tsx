@@ -18,6 +18,7 @@ type AuthContextType = {
     isAuth: boolean,
     fetching: boolean,
     hasCheckedLocalAuth: boolean,
+    didFirstAuth: boolean,
     login: (token: string) => Promise<AxiosResponse>,
     logout: () => void,
     authConsole: (...args: any[]) => void,
@@ -31,6 +32,7 @@ type AuthProviderType = {
 const AuthProvider = (props: AuthProviderType) => {
     const [authToken, setAuthToken, removeAuthToken] = useLocalStorage(LOCAL_AUTH_TOKEN_KEY, null)
     const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage(LOCAL_AUTH_ACCOUNT_KEY, null)
+    const [didFirstAuth, setDidFirstAuth] = useLocalStorage('first-auth', false)
     const [isAuth, setIsAuth] = useState(false)
     const [hasCheckedLocalAuth, sethasCheckedLocalAuth] = useState(false)
     const [fetching, setFetching] = useState(false)
@@ -48,6 +50,7 @@ const AuthProvider = (props: AuthProviderType) => {
         return myServices.getAccount()
             .then((response) => {
                 const myAccount = response.data
+                if (!didFirstAuth) setDidFirstAuth(true)
                 setIsAuth(true)
                 setAuthToken(token)
                 setAuthAccount(myAccount)
@@ -90,6 +93,7 @@ const AuthProvider = (props: AuthProviderType) => {
                 isAuth,
                 fetching,
                 hasCheckedLocalAuth,
+                didFirstAuth,
                 login,
                 logout,
                 authConsole

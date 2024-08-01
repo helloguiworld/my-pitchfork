@@ -1,8 +1,15 @@
 #my-page {
-    padding: 10vh 16px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 64px;
+
+    >div.group {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        gap: 16px;
+    }
 }

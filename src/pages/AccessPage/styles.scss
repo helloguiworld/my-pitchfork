@@ -34,7 +34,7 @@
             justify-content: space-between;
             align-items: center;
 
-            >button.back {
+            >button.navigation {
                 width: 40px;
                 height: 40px;
                 color: #000000;
@@ -55,7 +55,7 @@
             }
         }
 
-        >div.form-box {
+        >div.access-box {
             flex: 1;
             width: 100%;
             max-width: 400px;
@@ -85,6 +85,12 @@
                     margin-top: 8px;
                 }
             }
+
+            >div.buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
         }
     }
 
@@ -92,7 +98,7 @@
         height: 100vh;
         position: sticky;
         top: 0;
-        
+
         flex: 1;
         background-color: #1a1a1a;
         color: #ffffff;

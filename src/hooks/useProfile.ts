@@ -10,8 +10,12 @@ export type Profile = {
     is_account_owner: boolean
     account: Account
     reviews_count: number
+
     new_releases: DynamicReview[]
+    min_new_releases_to_unlock: number
+    
     latest: DynamicReview[]
+    min_latest_to_unlock: number
 }
 
 export default function useProfile(username: string | undefined) {

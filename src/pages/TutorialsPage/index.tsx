@@ -12,8 +12,9 @@ import saveReviewButtonImg from '../../assets/images/tutorials/save review butto
 import reviewIsUpdatedImg from '../../assets/images/tutorials/review is updated.jpeg'
 import saveReviewImg from '../../assets/images/tutorials/save review.jpeg'
 
-import myPageHeaderImg from '../../assets/images/tutorials/my page header.jpeg'
-import myPageMessageImg from '../../assets/images/tutorials/my page message.jpeg'
+import myPageImg from '../../assets/images/tutorials/my page.jpeg'
+import myReviewsListImg from '../../assets/images/tutorials/my reviews list.jpeg'
+import myShareImg from '../../assets/images/tutorials/my share.jpeg'
 
 import './styles.scss'
 export type TutorialsPageProps = {
@@ -56,17 +57,26 @@ export default function TutorialsPage(props: TutorialsPageProps) {
                             title='My Page'
                             description='A space just for you 🌟'
                             texts={['We are gradually expanding the ways you can use myPitchfork.']}
-                            img={myPageHeaderImg}
+                            img={myPageImg}
                         />
                         <UseExample
                             spacedBottom
-                            texts={['For this, it\'s extremely important that you remember to save your reviews! They will be the foundation for your future features. ✨']}
-                            img={myPageMessageImg}
+                            texts={['For this, it\'s extremely important that you SAVE your REVIEWS! They will be the foundation for your future features. ✨']}
+                            img={myReviewsListImg}
+                        />
+                        <UseExample
+                            spacedBottom
+                            description='Share your page! 📲'
+                            texts={[
+                                'You can share your myPitchfork page with everyone. Just use your link:',
+                                `🔗 mypitchfork.fun/my/${authContext?.authAccount.user.username}`
+                            ]}
+                            img={myShareImg}
                         />
 
                         <Button
                             color='var(--color-blue)'
-                            onClick={() => navigate('/search')}
+                            onClick={() => navigate('/my')}
                         >
                             I GOT IT!
                         </Button>

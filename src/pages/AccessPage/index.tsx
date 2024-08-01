@@ -10,7 +10,7 @@ import RegisterForm from './components/RegisterForm'
 
 import myPitchforkLinkLogoImgWhite from '../../assets/mypitchfork link logo.png'
 import myPitchforkLinkLogoImgBlack from '../../assets/mypitchfork link logo black.png'
-import { MdOutlineArrowBackIosNew } from "react-icons/md"
+import { MdOutlineSearch } from "react-icons/md"
 
 import './styles.scss'
 export type AccessPageProps = {
@@ -42,8 +42,11 @@ export default function AccessPage(props: AccessPageProps) {
                         <>
                             <main className="content">
                                 <div className="header">
-                                    <button className='clean back' onClick={() => navigate(-1)}>
-                                        <MdOutlineArrowBackIosNew />
+                                    <button
+                                        className='clean navigation'
+                                        onClick={() => { navigate('/search') }}
+                                    >
+                                        <MdOutlineSearch />
                                     </button>
 
                                     <img
@@ -54,7 +57,7 @@ export default function AccessPage(props: AccessPageProps) {
                                     />
                                 </div>
 
-                                <div className="form-box">
+                                <div className="access-box">
                                     {getForm(props.mode)}
                                 </div>
                             </main>

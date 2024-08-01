@@ -1,7 +1,3 @@
-// import { } from 'react'
-
-// import 
-
 import { Account } from '../../../../../../services/accessServices'
 
 import './styles.scss'
@@ -18,6 +14,7 @@ export default function MyHeader(props: MyHeaderProps) {
             <p className='name'>{props.account.user.name}</p>
             <p className='username'>@{props.account.user.username}</p>
             <p className='reviews-count'>{props.reviewsCount} {props.reviewsCount == 1 ? "review" : "reviews"}</p>
+
             <div className="my-header-content">
                 {props.content}
             </div>

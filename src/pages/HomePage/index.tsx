@@ -1,5 +1,3 @@
-// import { } from 'react'
-
 import Page from '../../components/Page'
 import Button from '../../components/Button'
 import UseExample from '../../components/UseExample'

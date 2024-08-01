@@ -12,9 +12,9 @@ export default function elementCapture(selector: string, fileName?: string, opti
             navigator.share({
                 files: [file],
             }).then(() => {
-                console.log('Share successful')
+                console.log('Share image successful')
             }).catch(err => {
-                console.error('Share failed:', err)
+                console.error('Share image failed:', err)
             })
         } else {
             alert('Unable to save using this browser, please try another one.')

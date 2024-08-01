@@ -41,16 +41,6 @@ export default function ReviewCard(props: ReviewCardProps) {
                 <p className="artists">{props.review.album.artists.join(' / ')}</p>
             </div>
 
-            {/* <div className="tracks-data">
-                <p className='album-type'>{getAlbumType(props.review.album.type, props.review.album.tracks_count)}</p>
-                {
-                    props.review.album.tracks_count > 1 &&
-                    <p className="total-tracks">
-                        {`${props.review.album.tracks_count} tracks`}
-                    </p>
-                }
-            </div> */}
-
             <ScoreDisplay
                 score={props.review.score}
                 isBestNew={props.review.is_best_new}

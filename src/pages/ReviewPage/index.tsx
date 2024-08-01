@@ -43,11 +43,7 @@ export default function ReviewPage() {
     const { id } = useParams<ReviewPageParams>()
 
     const {
-        // review,
-        // fetching,
         saving,
-        // error,
-        // readReview,
         needToSave,
         saveReview,
         album,

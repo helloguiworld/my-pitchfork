@@ -6,7 +6,7 @@ import useResizeObserver from '../../hooks/useResizeObserver'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 import myPitchforkLinkLogoImg from '../../assets/mypitchfork link logo.png'
-import { MdOutlineArrowBackIosNew, MdOutlineSearch } from "react-icons/md"
+import { MdOutlineSearch } from "react-icons/md"
 import { FaCircleUser } from "react-icons/fa6"
 
 import './styles.scss'
@@ -33,33 +33,17 @@ export default function Header(props: HeaderProps) {
     }
     useResizeObserver(headerRef, setCSSHeaderHeightVariable)
 
-    function navigationMode() {
-        if (location.pathname == '/' || location.pathname == '/search' || location.pathname.startsWith('/review/'))
-            return 'search'
-        else
-            'back'
-    }
-
     return (
         <header ref={headerRef} className='page-header'>
-            <div className="space" data-html2canvas-ignore={true}>
+            <div className="space" data-html2canvas-ignore>
                 {
                     !props.hideSearch &&
                     <div
                         className='navigation'
-                        onClick={() => {
-                            if (navigationMode() == 'search')
-                                navigate('/search')
-                            else
-                                navigate(-1)
-                        }}
+                        onClick={() => { navigate('/search') }}
                         data-html2canvas-ignore={true}
                     >
-                        {
-                            navigationMode() == 'search' ?
-                                <MdOutlineSearch /> :
-                                <MdOutlineArrowBackIosNew />
-                        }
+                        <MdOutlineSearch />
                     </div>
                 }
             </div>
@@ -78,16 +62,16 @@ export default function Header(props: HeaderProps) {
                 />
             </div>
 
-            <div className="space" data-html2canvas-ignore={true}>
+            <div className="space" data-html2canvas-ignore>
                 {
-                    (!props.hideAccess && (DISPLAY_AUTH || authContext?.isAuth)) &&
+                    (!props.hideAccess && (authContext?.didFirstAuth || DISPLAY_AUTH)) &&
                     <div
                         className='auth'
                         onClick={() => {
-                            if (authContext?.isAuth)
-                                navigate('/my')
-                            else
-                                navigate('/login')
+                            if (authContext?.isAuth) {
+                                if (location.pathname != '/my' && location.pathname != `/my/${authContext?.authAccount?.user.username}`)
+                                    navigate('/my')
+                            } else navigate('/login')
                         }}
                     >
                         {
