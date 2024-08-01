@@ -2,7 +2,7 @@ import { useRef, FormEvent, ChangeEvent } from 'react'
 
 import Page from '../../components/Page'
 import Button from '../../components/Button'
-import AlbumCard from '../../components/AlbumCard'
+import AlbumsList from '../../components/AlbumsList'
 import Error429 from '../../components/Error429'
 import Notice from '../../components/Notice'
 import Banner from '../../components/Banner'
@@ -10,7 +10,6 @@ import Banner from '../../components/Banner'
 import Squares from "react-activity/dist/Squares"
 
 import useSearch from '../../hooks/useSearch'
-import { Album } from '../../services/spotifyServices'
 import clickServices from '../../services/clickServices'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
@@ -58,27 +57,27 @@ export default function SearchPage() {
                             </Button>
                         </form >
 
-                        <div className="albums">
-                            {
-                                fetching ?
-                                    <Squares className='spaced' />
-                                    : searchResults?.length > 0 ?
-                                        <>
-                                            {lastSearchQ && <span className='last-search'>your last search results for <strong>{lastSearchQ}</strong></span>}
-                                            {searchResults.map((album: Album) => <AlbumCard album={album} key={album.id} />)}
+                        {
+                            fetching ?
+                                <Squares className='spaced' />
+                                : searchResults?.length > 0 ?
+                                    <AlbumsList
+                                        message={`your last search results for ${lastSearchQ}`}
+                                        albums={searchResults}
+                                        footerContent={
                                             <Banner color='#275ac7'>
                                                 <p className='title'>Can't find a new release? 🔍</p>
                                                 <p>It might take a few hours for <strong>new albums</strong> to show up. Try again soon! ⏳😉</p>
                                             </Banner>
-                                        </>
-                                        :
-                                        <Notice
-                                            items={[
-                                                "NO ALBUM LISTED",
-                                            ]}
-                                        />
-                            }
-                        </div>
+                                        }
+                                    />
+                                    :
+                                    <Notice
+                                        items={[
+                                            "NO ALBUM LISTED",
+                                        ]}
+                                    />
+                        }
                     </>
             }
         </Page>

@@ -23,7 +23,7 @@ export default function ProfileOwnerButtons() {
                     navigate('/tutorials/account')
                 }}
             >
-                <span>ACCOUNT TUTORIAL</span>
+                <span>TUTORIAL</span>
             </Button>
             <Button
                 className={'logout'}

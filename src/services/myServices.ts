@@ -1,4 +1,5 @@
 import api from "./myPitchforkAPI"
+import { Album } from "./spotifyServices"
 
 // TYPE
 export type TrackScore = {
@@ -10,6 +11,10 @@ export type Review = {
     score: number
     is_best_new: boolean
     track_scores: TrackScore[]
+}
+export type DynamicReview = Review & {
+    album: Album
+    track_scores?: TrackScore[]
 }
 
 // CRUD

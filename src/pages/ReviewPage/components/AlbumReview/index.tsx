@@ -1,10 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
 
-import Crown from '../../../../components/Crown'
+import ScoreDisplay from '../../../../components/ScoreDisplay'
 
-import Squares from "react-activity/dist/Squares"
-
-import { Album, getAlbumTitleByType } from '../../../../services/spotifyServices'
+import { Album, getAlbumType, AlbumType } from '../../../../services/spotifyServices'
 
 import './styles.scss'
 export type AlbumReviewProps = {
@@ -17,7 +15,7 @@ export type AlbumReviewProps = {
 export default function AlbumReview(props: AlbumReviewProps) {
     const albumBoxRef = useRef<HTMLDivElement>(null)
 
-    const [albumTypeTitle, setAlbumTypeTitle] = useState('')
+    const [albumType, setAlbumType] = useState<AlbumType>()
     const [needTextResizing, setNeedTextResizing] = useState(false)
 
     function calcTextSizeFactor(text: string) {
@@ -39,7 +37,7 @@ export default function AlbumReview(props: AlbumReviewProps) {
 
     useEffect(() => {
         if (props.album && props.album.tracks) {
-            setAlbumTypeTitle(getAlbumTitleByType(props.album.type, props.album.tracks?.length))
+            setAlbumType(getAlbumType(props.album.type, props.album.tracks?.length))
             checkTextAmount()
         }
     }, [props.album])
@@ -49,13 +47,13 @@ export default function AlbumReview(props: AlbumReviewProps) {
             <div
                 className={
                     "review" +
-                    (albumTypeTitle == "TRACK" ? " track-review" : "") +
+                    (albumType == "TRACK" ? " track-review" : "") +
                     (needTextResizing ? " resized-text" : "")
                 }
                 ref={albumBoxRef}
             >
                 <div className="text">
-                    <p className="type">{albumTypeTitle + "S"}</p>
+                    <p className="type">{albumType + "S"}</p>
                     <p className="name">{props.album.name}</p>
                     <p className="artists">{props.album.artists.join(' / ')}</p>
                     <p className="year">{props.album.date.split('-')[0]}</p>
@@ -69,29 +67,11 @@ export default function AlbumReview(props: AlbumReviewProps) {
                         />
                     </div>
 
-                    <div className="score-box">
-                        {props.isBestNew &&
-                            <Crown />
-                        }
-
-                        <span className="score">
-                            {
-                                props.score == null ?
-                                    <Squares />
-                                    :
-                                    props.score != 10 ?
-                                        props.score?.toFixed(1)
-                                        :
-                                        props.score
-                            }
-                        </span>
-
-                        {props.isBestNew &&
-                            <p className="target">
-                                {`BEST NEW ${albumTypeTitle == "TRACK" ? "TRACK" : "MUSIC"}`}
-                            </p>
-                        }
-                    </div>
+                    <ScoreDisplay
+                        score={props.score}
+                        isBestNew={props.isBestNew}
+                        typeTitle={albumType}
+                    />
                 </div>
             </div>
             {props.author && <p className="author">By {props.author}</p>}

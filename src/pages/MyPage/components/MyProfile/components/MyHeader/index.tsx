@@ -8,6 +8,7 @@ import './styles.scss'
 export type MyHeaderProps = {
     account: Account
     reviewsCount: number
+    content?: JSX.Element | JSX.Element[]
 }
 
 export default function MyHeader(props: MyHeaderProps) {
@@ -17,6 +18,9 @@ export default function MyHeader(props: MyHeaderProps) {
             <p className='name'>{props.account.user.name}</p>
             <p className='username'>@{props.account.user.username}</p>
             <p className='reviews-count'>{props.reviewsCount} {props.reviewsCount == 1 ? "review" : "reviews"}</p>
+            <div className="my-header-content">
+                {props.content}
+            </div>
         </div>
     )
 }

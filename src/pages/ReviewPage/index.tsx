@@ -197,7 +197,8 @@ export default function ReviewPage() {
                                             <p className='title'>Track Scores</p>
 
                                             <Button
-                                                className={'small best-new'}
+                                                small
+                                                className={'best-new'}
                                                 isOn={isBestNew}
                                                 onClick={() => setIsBestNew(!isBestNew)}
                                                 color="#ff3530"

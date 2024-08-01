@@ -6,6 +6,7 @@ import './styles.scss'
 export type ButtonProps = {
     onClick?: MouseEventHandler<HTMLButtonElement>,
     children: ReactNode | ReactNode[],
+    small?: boolean,
     className?: string,
     type?: "button" | "submit" | "reset",
     color?: string,
@@ -20,6 +21,7 @@ export default function Button(props: ButtonProps) {
         <button
             className={
                 'button' +
+                (props.small ? ' small' : '') +
                 (props.className ? ` ${props.className}` : '') +
                 (props.isOn != undefined ? (props.isOn ? ' opacity-hover on' : ' opacity-hover') : '') +
                 (props.colorFilled ? ' color-filled' : '') +

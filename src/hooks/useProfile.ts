@@ -3,18 +3,14 @@ import { AuthContext } from '../contexts/AuthContext'
 
 import myServices from '../services/myServices'
 import { Account } from '../services/accessServices'
-import { Review } from '../services/myServices'
-import { Album } from '../services/spotifyServices'
+import { DynamicReview } from '../services/myServices'
 import { AxiosError } from 'axios'
 
-export type ProfileReview = Review & {
-    album: Album
-}
 export type Profile = {
     is_account_owner: boolean
     account: Account
     reviews_count: number
-    top: ProfileReview[]
+    latest: DynamicReview[]
 }
 
 export default function useProfile(username: string | undefined) {

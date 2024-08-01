@@ -4,7 +4,6 @@
     flex-direction: column;
     gap: 16px;
 
-
     form.album-search {
         display: flex;
         justify-content: center;
@@ -14,21 +13,6 @@
             flex: 1;
             max-width: 800px;
             padding: .4rem .8rem;
-        }
-    }
-
-    div.albums {
-        flex: 1;
-        align-self: stretch;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-
-        >span {
-            margin: auto;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            text-align: center;
         }
     }
 }

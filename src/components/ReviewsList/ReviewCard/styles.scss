@@ -1,4 +1,4 @@
-.album-card {
+.review-card {
     cursor: pointer;
 
     >img.cover {
@@ -7,11 +7,14 @@
 
     >div.album-names {
         flex: 1;
+        text-align: start;
 
-        >p.name {
+        >p.album {
             font-family: TiemposHeadline, helvetica, sans-serif;
             font-style: italic;
             font-size: 1.2em;
+            line-height: 1.4;
+            margin-bottom: 2px;
         }
     }
 
@@ -27,14 +30,12 @@
             letter-spacing: 0.06875em;
         }
     }
+
+    &.small {
+        font-size: .9rem;
+
+        >img.cover {
+            height: 8vh;
+        }
+    }
 }
-
-// @media screen and (max-width: 1023px) {
-//     .album-card {
-//         font-size: .9rem;
-
-//         >img.cover {
-//             height: 10vh;
-//         }
-//     }
-// }
