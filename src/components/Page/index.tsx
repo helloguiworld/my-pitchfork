@@ -72,7 +72,7 @@ export default function Page(props: PageProps) {
         ((import.meta.env.VITE_AUTH_BANNER && !authContext?.isAuth) &&
             <Banner color='var(--color-blue)' spaced key={'my'} onClick={() => {navigate('/my')}}>
                 <p className='title'>🤩 Make myPitchfork Yours! 🤩</p>
-                <p>Click here to enjoy the fun. 🎶✨</p>
+                <p>Click here to have a myPitchfork account. 🎶✨</p>
             </Banner>
         ),
     ]
