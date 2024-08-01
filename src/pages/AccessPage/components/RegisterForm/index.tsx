@@ -108,6 +108,16 @@ export default function RegisterForm() {
                     errorColor="#FFAB08"
                 />
                 <FormInput
+                    id="name"
+                    placeholder='enter your name'
+                    label='Name'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    errors={userErrors.name}
+                    generalErrors={generalErrors}
+                />
+                <FormInput
                     type="email"
                     id="email"
                     placeholder='enter your email'
@@ -117,16 +127,6 @@ export default function RegisterForm() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     errors={userErrors.email}
-                    generalErrors={generalErrors}
-                />
-                <FormInput
-                    id="name"
-                    placeholder='enter your name'
-                    label='Name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    errors={userErrors.name}
                     generalErrors={generalErrors}
                 />
 
