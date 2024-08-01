@@ -37,7 +37,7 @@ myPitchforkAPI.interceptors.response.use(function (response) {
     // if (error.response && error.response.status === 404) {
     //     window.location.reload()
     // }
-    console.log(error?.request)
+    console.log(error.request)
     return Promise.reject(error)
 })
 

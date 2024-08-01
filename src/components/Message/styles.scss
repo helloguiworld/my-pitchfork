@@ -1,0 +1,20 @@
+div.message {
+    font-size: 1rem;
+    text-align: center;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    >p {
+        font-size: 1em;
+
+        &.title {
+            font-family: TiemposHeadline, helvetica, sans-serif;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+    }
+}

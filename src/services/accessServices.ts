@@ -2,9 +2,9 @@ import api from "./myPitchforkAPI"
 
 // TYPE
 export type User = {
-    password: string,
+    password?: string,
     username: string,
-    email: string,
+    email?: string,
     name: string,
 }
 export type Account = {

@@ -21,6 +21,7 @@ export const postReview = async (review: Review) => await api.post(`my/reviews/`
 export const getAccount = async () => await api.get('my/account/')
 export const getReviews = async () => await api.get(`my/reviews/`)
 export const getReview = async (album: string) => await api.get(`my/reviews/${album}/`)
+export const getProfile = async (username: string) => await api.get(`my/profile/${username}/`)
 
 // UPDATE
 export const putReview = async (review: Review) => await api.put(`my/reviews/${review.album}/`, review)
@@ -35,5 +36,6 @@ const myServices = {
     getReviews,
     getReview,
     putReview,
+    getProfile,
 }
 export default myServices

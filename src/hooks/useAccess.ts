@@ -35,9 +35,9 @@ export default function useAccess() {
                     const errors = error.response.data
                     setErrors(errors)
                     setGeneralErrors(errors.non_field_errors)
-                    return error.response
+                    setFetching(false)
+                    return error
                 })
-                .finally(() => setFetching(false))
 
             if (response?.status == 200) {
                 const token = response.data.token
@@ -65,8 +65,9 @@ export default function useAccess() {
                 setErrors(errors)
                 setUserErrors(errors.user)
                 setGeneralErrors(errors.non_field_errors)
+                setFetching(false)
+                return error
             })
-            .finally(() => setFetching(false))
     }
 
     return {

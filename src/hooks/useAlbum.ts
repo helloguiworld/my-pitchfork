@@ -20,8 +20,8 @@ export default function useAlbum(id: string | undefined) {
                     cover: album.cover,
                     artists: album.artists,
                     date: album.date,
+                    tracks_count: album.tracks_count,
                     tracks: album.tracks,
-                    total_tracks: album.total_tracks,
                 })
                 return response
             })

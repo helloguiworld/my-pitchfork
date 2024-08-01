@@ -17,5 +17,8 @@ div.my-header {
         font-size: 2em;
     }
 
-    >p.username {}
+    >p.reviews-count {
+        font-weight: bold;
+        margin-top: 16px;
+    }
 }

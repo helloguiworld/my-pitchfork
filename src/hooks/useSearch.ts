@@ -26,7 +26,7 @@ export default function useSearch() {
                             cover: album.cover,
                             artists: album.artists,
                             date: album.date,
-                            total_tracks: album.total_tracks,
+                            tracks_count: album.tracks_count,
                         })
                     )
                 )

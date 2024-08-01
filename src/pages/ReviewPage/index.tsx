@@ -92,7 +92,7 @@ export default function ReviewPage() {
         <Page id='review-page' banners={['#mypitchfork', 'review-save']}>
             {
                 albumFetching ?
-                    <Squares className='spaced'/>
+                    <Squares className='spaced' />
                     : albumError?.response?.status == 429 ?
                         <Error429 /> :
                         album ?
@@ -210,15 +210,17 @@ export default function ReviewPage() {
                                             (album.tracks && trackScores) ?
                                                 <div className="tracks">
                                                     {
-                                                        album.tracks.map(
-                                                            (track: Track) =>
-                                                                <TrackItem
-                                                                    key={track.id}
-                                                                    track={track}
-                                                                    trackScore={trackScores[track.id] || 0}
-                                                                    setNewTrackScore={setNewTrackScore}
-                                                                />
-                                                        )
+                                                        album.tracks
+                                                            .sort((tA: Track, tB: Track) => tA.number < tB.number ? -1 : 1)
+                                                            .map(
+                                                                (track: Track) =>
+                                                                    <TrackItem
+                                                                        key={track.id}
+                                                                        track={track}
+                                                                        trackScore={trackScores[track.id] || 0}
+                                                                        setNewTrackScore={setNewTrackScore}
+                                                                    />
+                                                            )
                                                     }
                                                 </div>
                                                 :
