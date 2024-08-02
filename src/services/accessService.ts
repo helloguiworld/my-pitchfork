@@ -33,8 +33,8 @@ export const register = async (newAccount: Account) => await api.post('accounts/
 
 
 
-const accessServices = {
+const accessService = {
     login,
     register,
 }
-export default accessServices
+export default accessService

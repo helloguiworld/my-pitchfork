@@ -28,8 +28,8 @@ export type Album = {
     date: string,
     tracks_count: number,
     explicit: boolean,
-    reviews_count: number,
-    reviews_score_avg: number,
+    reviews_count?: number,
+    reviews_score_avg?: number,
     tracks?: Track[],
 }
 

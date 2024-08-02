@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 
-import myServices from '../services/myServices'
-import { Account } from '../services/accessServices'
-import { DynamicReview } from '../services/myServices'
+import myService from '../services/myService'
+import { Account } from '../services/accessService'
+import { DynamicReview } from '../services/myService'
 import { AxiosError } from 'axios'
 
 export type Profile = {
@@ -28,7 +28,7 @@ export default function useProfile(username: string | undefined) {
 
     async function readProfile(username: string) {
         setFetching(true)
-        return myServices.getProfile(username)
+        return myService.getProfile(username)
             .then((response: any) => {
                 if (response.status == 200) {
                     const profile: Profile = response.data

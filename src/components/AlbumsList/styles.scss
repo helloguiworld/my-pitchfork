@@ -31,4 +31,10 @@ div.albums-list {
         letter-spacing: 1px;
         text-align: center;
     }
+
+    span.ranking-position {
+        &.top3 {
+            font-size: 1.2em;
+        }
+    }
 }

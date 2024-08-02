@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import spotifyService, { Album } from '../services/spotifyServices'
+import spotifyService, { Album } from '../services/spotifyService'
 
 import { AxiosError } from 'axios'
 

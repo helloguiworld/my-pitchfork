@@ -2,9 +2,9 @@ import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 
 import useAlbum from './useAlbum'
-import { TrackScore } from '../services/myServices'
+import { TrackScore } from '../services/myService'
 import useStoredTrackScores from './useStoredTrackScores'
-import myServices, { Review } from '../services/myServices'
+import myService, { Review } from '../services/myService'
 
 import { AxiosError } from 'axios'
 
@@ -64,7 +64,7 @@ export default function useReview(id: string | undefined) {
 
     async function readReview(id: string) {
         setFetching(true)
-        return myServices.getReview(id)
+        return myService.getReview(id)
             .then((response: any) => {
                 if (response.status == 200) {
                     const review = response.data
@@ -80,7 +80,7 @@ export default function useReview(id: string | undefined) {
 
     async function createReview(newReview: Review) {
         if (album) {
-            return myServices.postReview(newReview)
+            return myService.postReview(newReview)
                 .then((response: any) => {
                     const review = response.data
                     setReview(review)
@@ -93,7 +93,7 @@ export default function useReview(id: string | undefined) {
 
     async function updateReview(newReview: Review) {
         if (album) {
-            return myServices.putReview(newReview)
+            return myService.putReview(newReview)
                 .then((response: any) => {
                     const review = response.data
                     setReview(review)

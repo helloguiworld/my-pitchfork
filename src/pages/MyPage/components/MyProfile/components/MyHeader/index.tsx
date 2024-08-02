@@ -1,4 +1,4 @@
-import { Account } from '../../../../../../services/accessServices'
+import { Account } from '../../../../../../services/accessService'
 
 import './styles.scss'
 export type MyHeaderProps = {

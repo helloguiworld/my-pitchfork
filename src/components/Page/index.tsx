@@ -54,11 +54,18 @@ export default function Page(props: PageProps) {
                 )
             case 'social-media':
                 return (
-                    <Banner color='#445500' key={key}>
+                    <Banner color='#445500' spaced key={key}>
                         <p className='title'>We've just launched our social media profiles! 📱✨</p>
                         <p>Follow us on <a href="https://www.instagram.com/mypitchfork.fun" target="_blank">Instagram</a> and <a href="https://x.com/mypitchforkfun" target="_blank">X</a> for the latest updates, fun content, and more.</p>
                     </Banner>
                 )
+            case 'ranking':
+                return (
+                    < Banner color='var(--color-yellow)' spaced key={key}>
+                        <p>Now you can see the <strong>ranking of the most reviewed new releases</strong> on the platform ⭐</p>
+                    </Banner >
+                )
+
         }
     }
 

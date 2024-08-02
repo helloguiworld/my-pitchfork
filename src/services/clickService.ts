@@ -30,9 +30,9 @@ export const postShareClick = async (shareItem: Share) => await api.post(`report
 
 
 
-const clickServices = {
+const clickService = {
     postSearchClick,
     postAlbumClick,
     postShareClick,
 }
-export default clickServices
+export default clickService

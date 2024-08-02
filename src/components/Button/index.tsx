@@ -11,6 +11,7 @@ export type ButtonProps = {
     type?: "button" | "submit" | "reset",
     color?: string,
     colorFilled?: boolean,
+    biggerIcon?: boolean
     isOn?: boolean,
     inactive?: boolean,
     fetching?: boolean,
@@ -20,13 +21,14 @@ export default function Button(props: ButtonProps) {
     return (
         <button
             className={
-                'button' +
-                (props.small ? ' small' : '') +
-                (props.className ? ` ${props.className}` : '') +
-                (props.isOn != undefined ? (props.isOn ? ' opacity-hover on' : ' opacity-hover') : '') +
-                (props.colorFilled ? ' color-filled' : '') +
-                (props.inactive ? ' inactive' : '') +
-                (props.fetching ? ' fetching' : '')
+                'button'
+                + (props.small ? ' small' : '')
+                + (props.className ? ` ${props.className}` : '')
+                + (props.isOn != undefined ? (props.isOn ? ' opacity-hover on' : ' opacity-hover') : '')
+                + (props.colorFilled ? ' color-filled' : '')
+                + (props.biggerIcon ? ' bigger-icon' : '')
+                + (props.inactive ? ' inactive' : '')
+                + (props.fetching ? ' fetching' : '')
             }
             type={props.type || 'button'}
             onClick={props.onClick}

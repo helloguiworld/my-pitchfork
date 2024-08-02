@@ -1,4 +1,4 @@
-import { AlbumTitle } from "../../services/spotifyServices"
+import { AlbumTitle } from "../../services/spotifyService"
 
 import Crown from "../Crown"
 

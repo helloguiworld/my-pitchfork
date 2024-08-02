@@ -19,8 +19,8 @@ import formatScore from '../../hooks/formatScore'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
 import useReview from '../../hooks/useReview'
-import { Track, AlbumTitle, getAlbumTitle } from '../../services/spotifyServices'
-import clickServices from '../../services/clickServices'
+import { Track, AlbumTitle, getAlbumTitle } from '../../services/spotifyService'
+import clickService from '../../services/clickService'
 
 import squareReviewCapture from '../../functions/squareReviewCapture'
 import storiesReviewCapture from '../../functions/storiesReviewCapture'
@@ -73,7 +73,7 @@ export default function ReviewPage() {
 
     function createShare(type: 'square' | 'stories') {
         if (album)
-            clickServices.postShareClick({
+            clickService.postShareClick({
                 album_id: album.id,
                 album_name: album.name,
                 review_score: Number(albumScore),
@@ -122,7 +122,7 @@ export default function ReviewPage() {
                                     {
                                         authContext?.isAuth ?
                                             <p className='score-avg'>{
-                                                album.reviews_score_avg ?
+                                                (album.reviews_count && album.reviews_score_avg) ?
                                                     formatScoreAvgText(album.reviews_count, album.reviews_score_avg)
                                                     : <>0 reviews saved | be the first to review it!</>
                                             }</p>

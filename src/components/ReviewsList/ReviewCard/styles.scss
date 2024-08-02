@@ -44,14 +44,6 @@
         }
     }
 
-    &.bext-new {
-        background-color: color-mix(in srgb, var(--color-red) 2%, white);
-        border-color: color-mix(in srgb, var(--color-red) 30%, white);
-        &:hover{   
-            border-color: color-mix(in srgb, var(--color-red) 80%, white);
-        }
-    }
-
     &.small {
         font-size: .9rem;
 

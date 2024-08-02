@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 
 import { AuthContext } from "../contexts/AuthContext"
 
-import accessServices, { Account } from "../services/accessServices"
+import accessService, { Account } from "../services/accessService"
 
 export type Errors = {
     [key: string]: string[],
@@ -27,7 +27,7 @@ export default function useAccess() {
         if (authContext) {
             setFetching(true)
             cleanErrors()
-            const response = await accessServices.login(username, password)
+            const response = await accessService.login(username, password)
                 .then((response) => {
                     return response
                 })
@@ -56,7 +56,7 @@ export default function useAccess() {
     async function register(newAccount: Account) {
         setFetching(true)
         cleanErrors()
-        return accessServices.register(newAccount)
+        return accessService.register(newAccount)
             .then((response: any) => {
                 return response
             })

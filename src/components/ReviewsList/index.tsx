@@ -1,4 +1,4 @@
-import { DynamicReview } from '../../services/myServices'
+import { DynamicReview } from '../../services/myService'
 
 import ReviewListCount from './ReviewListCount'
 import ReviewCard from './ReviewCard'

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 
 import ScoreDisplay from '../../../../components/ScoreDisplay'
 
-import { Album, AlbumTitle } from '../../../../services/spotifyServices'
+import { Album, AlbumTitle } from '../../../../services/spotifyService'
 
 import './styles.scss'
 export type AlbumReviewProps = {

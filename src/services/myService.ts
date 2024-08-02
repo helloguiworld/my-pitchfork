@@ -1,5 +1,5 @@
 import api from "./myPitchforkAPI"
-import { Album } from "./spotifyServices"
+import { Album } from "./spotifyService"
 
 // TYPE
 export type TrackScore = {
@@ -35,7 +35,7 @@ export const putReview = async (review: Review) => await api.put(`my/reviews/${r
 
 
 
-const myServices = {
+const myService = {
     getAccount,
     postReview,
     getReviews,
@@ -43,4 +43,4 @@ const myServices = {
     putReview,
     getProfile,
 }
-export default myServices
+export default myService

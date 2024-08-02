@@ -8,9 +8,9 @@ import {
     LOCAL_AUTH_ACCOUNT_KEY
 } from '../services/myPitchforkAPI'
 
-import { Account } from '../services/accessServices'
+import { Account } from '../services/accessService'
 import useLocalStorage from '../hooks/useLocalStorage'
-import myServices from '../services/myServices'
+import myService from '../services/myService'
 
 type AuthContextType = {
     authToken: string | null,
@@ -47,7 +47,7 @@ const AuthProvider = (props: AuthProviderType) => {
     const login = async (token: string) => {
         setFetching(true)
         setAPIAuthToken(token)
-        return myServices.getAccount()
+        return myService.getAccount()
             .then((response) => {
                 const myAccount = response.data
                 if (!didFirstAuth) setDidFirstAuth(true)

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 
-import { Track } from '../../services/spotifyServices'
+import { Track } from '../../services/spotifyService'
 
 import { MdExplicit } from "react-icons/md"
 

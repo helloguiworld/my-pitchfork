@@ -16,13 +16,13 @@
             opacity: .8;
         }
     }
-    
+
     &:not(.color-filled) {
         fill: var(--color);
         color: var(--color);
         background-color: #ffffff;
         border-color: var(--color);
-        
+
         &.opacity-hover:hover {
             opacity: .8;
         }
@@ -33,6 +33,7 @@
             color: #ffffff;
             background-color: var(--color);
         }
+
         &:not(.opacity-hover).on:hover {
             fill: var(--color);
             color: var(--color);
@@ -45,11 +46,6 @@
         pointer-events: none;
     }
 
-    >.rai-container {
-        position: absolute;
-        visibility: hidden;
-    }
-
     &.fetching {
         >*:not(.rai-container) {
             visibility: hidden;
@@ -58,5 +54,16 @@
         >.rai-container {
             visibility: visible;
         }
+    }
+
+    &.bigger-icon {
+        svg {
+            font-size: 1.5em;
+        }
+    }
+
+    >.rai-container {
+        position: absolute;
+        visibility: hidden;
     }
 }
