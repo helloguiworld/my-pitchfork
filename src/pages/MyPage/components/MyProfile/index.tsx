@@ -53,6 +53,13 @@ export default function MyProfile(props: MyProfileProps) {
                         count
                         small
                         headerTitle='Latest Reviews'
+                        footerContent={
+                            props.profile.latest.length == 20 ?
+                                <Banner>
+                                    <p>Soon, you’ll be able to see <strong>all your reviews</strong>. 🙏🏼</p>
+                                </Banner>
+                                : undefined
+                        }
                     />
                     : (
                         IS_ACCOUNT_OWNER &&
