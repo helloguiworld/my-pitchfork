@@ -62,7 +62,7 @@ export default function Page(props: PageProps) {
             case 'ranking':
                 return (
                     < Banner color='var(--color-yellow)' spaced key={key}>
-                        <p>Now you can see the <strong>ranking of the most reviewed new releases</strong> on the platform ⭐</p>
+                        <p>Now you can see the <strong>ranking of the most reviewed new releases</strong> on the platform. ⭐</p>
                     </Banner >
                 )
 
