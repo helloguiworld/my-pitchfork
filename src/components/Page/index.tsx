@@ -25,7 +25,7 @@ export type PageProps = {
 
 export default function Page(props: PageProps) {
     const authContext = useContext(AuthContext)
-    
+
     const navigate = useNavigate()
 
     function getBanner(banner: string, key: number) {
@@ -70,7 +70,7 @@ export default function Page(props: PageProps) {
             </Banner>
         ),
         ((import.meta.env.VITE_AUTH_BANNER && !authContext?.isAuth) &&
-            <Banner color='var(--color-blue)' spaced key={'my'} onClick={() => {navigate('/my')}}>
+            <Banner color='var(--color-blue)' spaced key={'my'} onClick={() => { navigate('/my') }}>
                 <p className='title'>🤩 Make myPitchfork Yours! 🤩</p>
                 <p>Click here to have a myPitchfork account. 🎶✨</p>
             </Banner>
@@ -81,24 +81,25 @@ export default function Page(props: PageProps) {
         <>
             {!props.hideHeader && <Header hideSearch={props.hideSearch} hideAccess={props.hideAccess} />}
             {
-                (!props.hideBanners && (Boolean(props.banners?.length) || Boolean(fixedBanners.length))) &&
-                <div className="page-banners" data-html2canvas-ignore>
-                    {Boolean(fixedBanners.length) && fixedBanners}
-                    {Boolean(props.banners?.length) && props.banners?.map((banner, index) => getBanner(banner, index))}
-                </div>
-            }
-
-            {
                 (!authContext?.hasCheckedLocalAuth) ?
                     <Squares className='spaced' />
                     :
-                    <main className='page' id={props.id}>
+                    <>
                         {
-                            props.children
+                            (!props.hideBanners && (Boolean(props.banners?.length) || Boolean(fixedBanners.length))) &&
+                            <div className="page-banners" data-html2canvas-ignore>
+                                {Boolean(fixedBanners.length) && fixedBanners}
+                                {Boolean(props.banners?.length) && props.banners?.map((banner, index) => getBanner(banner, index))}
+                            </div>
                         }
-                    </main>
-            }
 
+                        <main className='page' id={props.id}>
+                            {
+                                props.children
+                            }
+                        </main>
+                    </>
+            }
             {!props.hideFooter && <Footer />}
         </>
     )
