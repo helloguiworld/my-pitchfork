@@ -13,16 +13,7 @@ export default function useAlbum(id: string | undefined) {
         return spotifyService.getAlbum(id)
             .then((response: any) => {
                 const album: Album = response.data
-                setAlbum({
-                    id: album.id,
-                    name: album.name,
-                    type: album.type,
-                    cover: album.cover,
-                    artists: album.artists,
-                    date: album.date,
-                    tracks_count: album.tracks_count,
-                    tracks: album.tracks,
-                })
+                setAlbum(album)
                 return response
             })
             .catch((error) => setError(error))

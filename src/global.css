@@ -20,6 +20,10 @@
   -webkit-text-size-adjust: 100%;
 
   --color-black: #000000;
+  --color-white: #ffffff;
+  --color-dark-grey: #757575;
+  --color-grey: #979797;
+  --color-light-grey: #cacaca;
   --color-red: #ff3530;
   --color-blue: #193caf;
   --color-green: #168212;

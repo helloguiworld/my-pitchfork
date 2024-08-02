@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { DynamicReview } from '../../../services/myServices'
 import clickServices from '../../../services/clickServices'
 
+import { MdExplicit } from "react-icons/md"
+
 import Card from '../../Card'
 import ScoreDisplay from '../../ScoreDisplay'
 
@@ -37,7 +39,10 @@ export default function ReviewCard(props: ReviewCardProps) {
             />
 
             <div className="album-names">
-                <p className='album'>{props.review.album.name}</p>
+                <p className='album'>
+                    {props.review.album.explicit && <MdExplicit className='explicit' />}
+                    {props.review.album.name}
+                </p>
                 <p className="artists">{props.review.album.artists.join(' / ')}</p>
             </div>
 

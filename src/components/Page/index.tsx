@@ -48,7 +48,7 @@ export default function Page(props: PageProps) {
             case '#mypitchfork':
                 return (
                     <Banner color='#bd0995' spaced key={key}>
-                        <p className='title'>Show off your music taste!</p>
+                        {/* <p className='title'>Show off your music taste!</p> */}
                         <p>Share your reviews using <strong>#mypitchfork</strong>. 📸</p>
                     </Banner>
                 )

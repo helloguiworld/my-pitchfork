@@ -1,6 +1,6 @@
 import api from './myPitchforkAPI'
 
-export function getAlbumType(type: string, tracks: number) {
+export function getAlbumTitle(type: string, tracks: number) {
     if (type != 'single')
         return "ALBUM"
 
@@ -11,11 +11,12 @@ export function getAlbumType(type: string, tracks: number) {
 }
 
 // TYPE
-export type AlbumType = "TRACK" | "TRACK ALBUM" | "ALBUM"
+export type AlbumTitle = "TRACK" | "TRACK ALBUM" | "ALBUM"
 export type Track = {
     id: string,
     name: string,
     artists: string[],
+    explicit: boolean,
     number: number,
 }
 export type Album = {
@@ -26,6 +27,9 @@ export type Album = {
     artists: string[],
     date: string,
     tracks_count: number,
+    explicit: boolean,
+    reviews_count: number,
+    reviews_score_avg: number,
     tracks?: Track[],
 }
 

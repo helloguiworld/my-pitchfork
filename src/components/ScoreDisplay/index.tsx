@@ -1,4 +1,4 @@
-import { AlbumType } from "../../services/spotifyServices"
+import { AlbumTitle } from "../../services/spotifyServices"
 
 import Crown from "../Crown"
 
@@ -8,7 +8,7 @@ import './styles.scss'
 export type ScoreDisplayProps = {
     score: number | null
     isBestNew?: boolean
-    typeTitle?: AlbumType
+    typeTitle?: AlbumTitle
     small?: boolean
 }
 

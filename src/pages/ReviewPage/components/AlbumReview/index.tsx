@@ -2,11 +2,12 @@ import { useRef, useState, useEffect } from 'react'
 
 import ScoreDisplay from '../../../../components/ScoreDisplay'
 
-import { Album, getAlbumType, AlbumType } from '../../../../services/spotifyServices'
+import { Album, AlbumTitle } from '../../../../services/spotifyServices'
 
 import './styles.scss'
 export type AlbumReviewProps = {
     album: Album,
+    albumTitle?: AlbumTitle,
     isBestNew: boolean,
     score: number | null,
     author: string,
@@ -15,7 +16,6 @@ export type AlbumReviewProps = {
 export default function AlbumReview(props: AlbumReviewProps) {
     const albumBoxRef = useRef<HTMLDivElement>(null)
 
-    const [albumType, setAlbumType] = useState<AlbumType>()
     const [needTextResizing, setNeedTextResizing] = useState(false)
 
     function calcTextSizeFactor(text: string) {
@@ -37,7 +37,6 @@ export default function AlbumReview(props: AlbumReviewProps) {
 
     useEffect(() => {
         if (props.album && props.album.tracks) {
-            setAlbumType(getAlbumType(props.album.type, props.album.tracks?.length))
             checkTextAmount()
         }
     }, [props.album])
@@ -47,13 +46,13 @@ export default function AlbumReview(props: AlbumReviewProps) {
             <div
                 className={
                     "review" +
-                    (albumType == "TRACK" ? " track-review" : "") +
+                    (props.albumTitle == "TRACK" ? " track-review" : "") +
                     (needTextResizing ? " resized-text" : "")
                 }
                 ref={albumBoxRef}
             >
                 <div className="text">
-                    <p className="type">{albumType + "S"}</p>
+                    {props.albumTitle && <p className="title">{props.albumTitle + "S"}</p>}
                     <p className="name">{props.album.name}</p>
                     <p className="artists">{props.album.artists.join(' / ')}</p>
                     <p className="year">{props.album.date.split('-')[0]}</p>
@@ -70,7 +69,7 @@ export default function AlbumReview(props: AlbumReviewProps) {
                     <ScoreDisplay
                         score={props.score}
                         isBestNew={props.isBestNew}
-                        typeTitle={albumType}
+                        typeTitle={props.albumTitle}
                     />
                 </div>
             </div>

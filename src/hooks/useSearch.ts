@@ -17,19 +17,8 @@ export default function useSearch() {
             .then(response => {
                 setError(undefined)
                 setLastSearchQ(q)
-                setSearchResults(
-                    response.data.map(
-                        (album: any) => ({
-                            id: album.id,
-                            name: album.name,
-                            type: album.type,
-                            cover: album.cover,
-                            artists: album.artists,
-                            date: album.date,
-                            tracks_count: album.tracks_count,
-                        })
-                    )
-                )
+                const albums = response.data
+                setSearchResults(albums)
                 return response
             })
             .catch((error) => {

@@ -24,7 +24,7 @@ div.album-review {
             align-items: center;
             gap: 1rem;
 
-            >p.type {
+            >p.title {
                 font-weight: bold;
                 font-size: .75rem;
                 letter-spacing: 0.06875em;
@@ -71,7 +71,7 @@ div.album-review {
             background-color: #000000;
             color: #ffffff;
 
-            >div.text>p.type {
+            >div.text>p.title {
                 color: #ff3530;
             }
         }

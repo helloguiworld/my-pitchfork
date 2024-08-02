@@ -15,8 +15,15 @@
             font-family: TiemposHeadline, helvetica, sans-serif;
             font-style: italic;
             font-size: 1.2em;
-            line-height: 1.4;
+            line-height: 1.2;
             margin-bottom: 2px;
+
+            .explicit {
+                font-size: .7em;
+                color: var(--color-dark-grey);
+                margin-right: .4em;
+                transform: scale(1.2);
+            }
         }
 
         >p.artists {

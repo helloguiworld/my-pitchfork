@@ -16,7 +16,7 @@ export default function RegisterInvitation() {
             <Message title='Make myPitchfork Yours!'>
                 <p>How about having a place <br />where you can find all your <strong>reviews</strong>, <strong>album rankings</strong>, <strong>favorites</strong>, and <strong>more</strong>?</p>
                 <p>👀🎶</p>
-                <p className='special'>Sign up now to have yours! 🌟</p>
+                <p className='special'>Sign up now to have it! 🌟</p>
             </Message>
 
             <Button
