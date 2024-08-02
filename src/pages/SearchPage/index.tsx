@@ -24,19 +24,25 @@ export default function SearchPage() {
     const searchInputRef = useRef<HTMLInputElement>(null);
 
     const [searchMode, setSearchMode] = useLocalStorage<'search' | 'ranking'>('search-list-mode', 'ranking')
-    const [searchQ, setSearchQ] = useLocalStorage('search-q', '')
+    const [searchQ, setSearchQ] = useLocalStorage<string>('search-q', '')
 
     const { searchResults, lastSearchQ, fetching: fetchingSearch, error: searchError, searchAlbums } = useSearch()
     const { ranking, fetching: fetchingRanking, readRanking } = useRanking()
 
+    async function performSearch() {
+        if (searchQ && !fetchingSearch && !fetchingRanking) {
+            const cleanSearchQ = searchQ.trimEnd()
+            setSearchQ(cleanSearchQ)
+            const response = await searchAlbums(cleanSearchQ)
+            if (response?.status == 200) await clickService.postSearchClick(cleanSearchQ)
+        }
+    }
+
     async function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        if (searchQ && !fetchingSearch && !fetchingRanking) {
-            searchInputRef.current?.blur()
-            setSearchMode('search')
-            const response = await searchAlbums(searchQ)
-            if (response?.status == 200) await clickService.postSearchClick(searchQ)
-        }
+        searchInputRef.current?.blur()
+        setSearchMode('search')
+        performSearch()
     }
 
     useEffect(() => {
@@ -59,12 +65,16 @@ export default function SearchPage() {
                                     value={searchQ}
                                     onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value.toLowerCase())}
                                     ref={searchInputRef}
+                                    required
                                 />
                                 <Button
-                                    type='submit'
                                     colorFilled={searchMode == 'search'}
                                     inactive={!searchQ}
                                     fetching={fetchingSearch}
+                                    onClick={() => {
+                                        if (searchMode == 'search' || !searchResults?.length) performSearch()
+                                        else setSearchMode('search')
+                                    }}
                                 >
                                     SEARCH
                                 </Button>
