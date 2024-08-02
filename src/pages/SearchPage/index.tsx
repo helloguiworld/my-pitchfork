@@ -32,12 +32,10 @@ export default function SearchPage() {
     async function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         if (searchQ && !fetchingSearch && !fetchingRanking) {
-            if (searchMode == 'search') {
-                searchInputRef.current?.blur()
-                setSearchMode('search')
-                const response = await searchAlbums(searchQ)
-                if (response?.status == 200) await clickService.postSearchClick(searchQ)
-            } else setSearchMode('search')
+            searchInputRef.current?.blur()
+            setSearchMode('search')
+            const response = await searchAlbums(searchQ)
+            if (response?.status == 200) await clickService.postSearchClick(searchQ)
         }
     }
 
@@ -51,7 +49,7 @@ export default function SearchPage() {
                 searchError?.response?.status == 429 ?
                     <Error429 /> :
                     <>
-                    <p>{}</p>
+                        <p>{ }</p>
                         <div className="search-header">
                             <form className="album-search" onSubmit={handleAlbumSearch}>
                                 <input
@@ -82,7 +80,6 @@ export default function SearchPage() {
                                         if (!ranking) readRanking()
                                     }
                                 }}
-                                // inactive={Boolean(searchMode == 'ranking' && ranking)}
                                 fetching={fetchingRanking}
                             >
                                 <FaRankingStar />
