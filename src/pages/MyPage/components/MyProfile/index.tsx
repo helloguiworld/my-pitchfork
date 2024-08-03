@@ -54,7 +54,8 @@ export default function MyProfile(props: MyProfileProps) {
                         small
                         headerTitle='Latest Reviews'
                         footerContent={
-                            props.profile.latest.length == 20 ?
+                            (props.profile.latest.length == 20 && IS_ACCOUNT_OWNER) ?
+                            
                                 <Banner>
                                     <p>Soon, you’ll be able to see <strong>all your reviews</strong>. 🙏🏼</p>
                                 </Banner>
