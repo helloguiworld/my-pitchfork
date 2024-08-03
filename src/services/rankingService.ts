@@ -6,6 +6,7 @@ export type AlbumRanking = [{
     position: number
     album: Album
     reviews_count: number
+    reviews_sum: number
     reviews_avg: number
 }]
 

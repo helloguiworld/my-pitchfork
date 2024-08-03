@@ -1,6 +1,7 @@
 div.albums-list {
-    flex: 1;
-    align-self: stretch;
+    align-self: center;
+    width: 100%;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 16px;
