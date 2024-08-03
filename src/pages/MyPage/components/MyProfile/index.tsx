@@ -25,7 +25,7 @@ export default function MyProfile(props: MyProfileProps) {
                 reviewsCount={props.profile.reviews_count}
                 content={
                     (IS_ACCOUNT_OWNER) ?
-                        <ProfileOwnerButtons /> : undefined
+                        <ProfileOwnerButtons username={props.profile.account.user.username}/> : undefined
                 }
             />
 
@@ -53,14 +53,6 @@ export default function MyProfile(props: MyProfileProps) {
                         count
                         small
                         headerTitle='Latest Reviews'
-                        footerContent={
-                            (props.profile.latest.length == 20 && IS_ACCOUNT_OWNER) ?
-                            
-                                <Banner>
-                                    <p>Soon, you’ll be able to see <strong>all your reviews</strong>. 🙏🏼</p>
-                                </Banner>
-                                : undefined
-                        }
                     />
                     : (
                         IS_ACCOUNT_OWNER &&
@@ -74,12 +66,12 @@ export default function MyProfile(props: MyProfileProps) {
             {
                 IS_ACCOUNT_OWNER &&
                 <div className="group">
-                    <Banner color='var(--color-blue)'>
+                    <Banner color='var(--color-purple)'>
                         <p className='title'>This is just the beginning!</p>
                         <p>New features <strong>coming soon</strong>. ✨</p>
                     </Banner>
-                    <Banner color='var(--color-yellow)'>
-                        <p className='title'>This page is under construction 🏗️</p>
+                    <Banner color='var(--color-blue)'>
+                        <p className='title'>This page is under development 👨‍💻</p>
                         <p>If you have any issues, <strong><a href="mailto:mypitchfork.fun@gmail.com">contact us</a></strong>.</p>
                     </Banner>
                 </div>

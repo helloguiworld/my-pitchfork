@@ -17,6 +17,7 @@ import ReviewPage from './pages/ReviewPage/index.tsx'
 import AccessPage from './pages/AccessPage/index.tsx'
 import TutorialsPage from './pages/TutorialsPage/index.tsx'
 import MyPage from './pages/MyPage/index.tsx'
+import MyReviewsPage from './pages/MyReviewsPage/index.tsx'
 
 import './fonts.css'
 import './global.css'
@@ -79,6 +80,10 @@ const router = createBrowserRouter(
       {
         path: "/my/:username",
         element: <MyPage />,
+      },
+      {
+        path: "/my/:username/reviews",
+        element: <MyReviewsPage />,
       },
 
       {

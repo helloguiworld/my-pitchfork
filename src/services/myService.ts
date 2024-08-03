@@ -16,16 +16,26 @@ export type DynamicReview = Review & {
     album: Album
     track_scores?: TrackScore[]
 }
+export type ReviewsOrder = 'created_at' | '-created_at' | 'score' | '-score'
+export type ReviewsPageParams = {
+    page?: number
+    q?: string
+    order?: ReviewsOrder
+}
 
 // CRUD
 
 // CREATE
-export const postReview = async (review: Review) => await api.post(`my/reviews/`, review)
+export const postReview = async (review: Review) => await api.post('my/reviews/', review)
 
 // READ
 export const getAccount = async () => await api.get('my/account/')
-export const getReviews = async () => await api.get(`my/reviews/`)
 export const getReview = async (album: string) => await api.get(`my/reviews/${album}/`)
+export const getReviews = async (pageParams?: ReviewsPageParams) => (
+    await api.get(
+        `my/reviews/?page=${pageParams?.page || 1}&search=${pageParams?.q || ''}&ordering=${pageParams?.order || '-created_at'}`
+    )
+)
 export const getProfile = async (username: string) => await api.get(`my/profile/${username}/`)
 
 // UPDATE

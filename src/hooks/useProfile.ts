@@ -23,7 +23,6 @@ export default function useProfile(username: string | undefined) {
 
     const [profile, setProfile] = useState<Profile | null>(null)
     const [fetching, setFetching] = useState<boolean>(true)
-    // const [saving, setSaving] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
 
     async function readProfile(username: string) {

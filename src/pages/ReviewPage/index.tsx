@@ -15,7 +15,7 @@ import Notice from '../../components/Notice'
 
 import Squares from "react-activity/dist/Squares"
 
-import formatScore from '../../hooks/formatScore'
+import formatScore from '../../functions/formatScore'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
 import useReview from '../../hooks/useReview'

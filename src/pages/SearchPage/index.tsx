@@ -1,8 +1,9 @@
-import { useRef, FormEvent, ChangeEvent, useEffect } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 
 import { FaRankingStar } from "react-icons/fa6"
 
 import Page from '../../components/Page'
+import SearchBar from '../../components/SearchBar'
 import Button from '../../components/Button'
 import AlbumsList from '../../components/AlbumsList'
 import Error429 from '../../components/Error429'
@@ -21,8 +22,6 @@ import './styles.scss'
 // }
 
 export default function SearchPage() {
-    const searchInputRef = useRef<HTMLInputElement>(null);
-
     const [searchMode, setSearchMode] = useLocalStorage<'search' | 'ranking'>('search-list-mode', 'ranking')
     const [searchQ, setSearchQ] = useLocalStorage<string>('search-q', '')
 
@@ -38,9 +37,7 @@ export default function SearchPage() {
         }
     }
 
-    async function handleAlbumSearch(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        searchInputRef.current?.blur()
+    async function handleAlbumSearch() {
         setSearchMode('search')
         performSearch()
     }
@@ -55,35 +52,26 @@ export default function SearchPage() {
                 searchError?.response?.status == 429 ?
                     <Error429 /> :
                     <>
-                        <p>{ }</p>
                         <div className="search-header">
-                            <form className="album-search" onSubmit={handleAlbumSearch}>
-                                <input
-                                    type='text'
-                                    placeholder='album or artist'
-                                    maxLength={50}
-                                    value={searchQ}
-                                    onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchQ(event.target.value.toLowerCase())}
-                                    ref={searchInputRef}
-                                    required
-                                />
-                                <Button
-                                    colorFilled={searchMode == 'search'}
-                                    inactive={!searchQ}
-                                    fetching={fetchingSearch}
-                                    onClick={() => {
-                                        if (searchMode == 'search' || !searchResults?.length) performSearch()
-                                        else setSearchMode('search')
-                                    }}
-                                >
-                                    SEARCH
-                                </Button>
-                            </form >
+                            <SearchBar
+                                value={searchQ}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                    setSearchQ(event.target.value.toLowerCase())
+                                }}
+                                onSubmit={handleAlbumSearch}
+                                onClick={() => {
+                                    if (searchMode == 'search' || !searchResults?.length) performSearch()
+                                    else setSearchMode('search')
+                                }}
+                                colorFilled={searchMode == 'search'}
+                                inactive={!searchQ}
+                                fetching={fetchingSearch}
+                            />
 
                             <Button
                                 biggerIcon
-                                colorFilled={searchMode == 'ranking'}
                                 color='var(--color-yellow)'
+                                colorFilled={searchMode == 'ranking'}
                                 onClick={() => {
                                     if (searchMode != 'ranking' && !fetchingRanking && !fetchingSearch) {
                                         setSearchMode('ranking')

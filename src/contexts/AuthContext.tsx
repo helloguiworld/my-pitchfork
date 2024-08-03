@@ -4,8 +4,7 @@ import { AxiosResponse } from "axios"
 import {
     setAPIAuthToken,
     removeAPIAuthToken,
-    LOCAL_AUTH_TOKEN_KEY,
-    LOCAL_AUTH_ACCOUNT_KEY
+    LOCAL_AUTH_TOKEN_KEY
 } from '../services/myPitchforkAPI'
 
 import { Account } from '../services/accessService'
@@ -14,7 +13,7 @@ import myService from '../services/myService'
 
 type AuthContextType = {
     authToken: string | null,
-    authAccount: Account,
+    authAccount?: Account,
     isAuth: boolean,
     fetching: boolean,
     hasCheckedLocalAuth: boolean,
@@ -31,7 +30,7 @@ type AuthProviderType = {
 
 const AuthProvider = (props: AuthProviderType) => {
     const [authToken, setAuthToken, removeAuthToken] = useLocalStorage(LOCAL_AUTH_TOKEN_KEY, null)
-    const [authAccount, setAuthAccount, removeAuthAccount] = useLocalStorage(LOCAL_AUTH_ACCOUNT_KEY, null)
+    const [authAccount, setAuthAccount] = useState()
     const [didFirstAuth, setDidFirstAuth] = useLocalStorage('first-auth', false)
     const [isAuth, setIsAuth] = useState(false)
     const [hasCheckedLocalAuth, sethasCheckedLocalAuth] = useState(false)
@@ -40,7 +39,6 @@ const AuthProvider = (props: AuthProviderType) => {
     const logout = () => {
         removeAPIAuthToken()
         removeAuthToken()
-        removeAuthAccount()
         setIsAuth(false)
     }
 

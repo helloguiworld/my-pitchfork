@@ -77,7 +77,7 @@ export default function Header(props: HeaderProps) {
                         {
                             authContext?.hasCheckedLocalAuth &&
                             <span>
-                                {authContext?.isAuth ? authContext.authAccount.user.username : "login"}
+                                {authContext?.authAccount ? authContext.authAccount.user.username : "login"}
                             </span>
                         }
                         <FaCircleUser />

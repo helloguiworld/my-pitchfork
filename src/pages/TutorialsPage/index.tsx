@@ -64,15 +64,18 @@ export default function TutorialsPage(props: TutorialsPageProps) {
                             texts={['For this, it\'s extremely important that you SAVE your REVIEWS! They will be the foundation for your future features. ✨']}
                             img={myReviewsListImg}
                         />
-                        <UseExample
-                            spacedBottom
-                            description='Share your page! 📲'
-                            texts={[
-                                'You can share your myPitchfork page with everyone. Just use your link:',
-                                `🔗 mypitchfork.fun/my/${authContext?.authAccount.user.username}`
-                            ]}
-                            img={myShareImg}
-                        />
+                        {
+                            authContext?.authAccount &&
+                            <UseExample
+                                spacedBottom
+                                description='Share your page! 📲'
+                                texts={[
+                                    'You can share your myPitchfork page with everyone. Just use your link:',
+                                    `🔗 mypitchfork.fun/my/${authContext?.authAccount?.user.username}`
+                                ]}
+                                img={myShareImg}
+                            />
+                        }
 
                         <Button
                             color='var(--color-blue)'

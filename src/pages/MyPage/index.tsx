@@ -49,8 +49,8 @@ export default function MyPage() {
                                     <p>If the problem persists, <strong><a href="mailto:mypitchfork.fun@gmail.com">contact us</a></strong>.</p>
                                 </Message>
                     :
-                    authContext?.isAuth ?
-                        <Navigate to={`/my/${authContext.authAccount.user.username}`} replace />
+                    (authContext?.isAuth && authContext.authAccount) ?
+                        <Navigate to={`/my/${authContext.authAccount?.user.username}`} replace />
                         :
                         <RegisterInvitation />
             }
