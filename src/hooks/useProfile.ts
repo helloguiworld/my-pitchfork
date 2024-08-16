@@ -8,12 +8,15 @@ import { AxiosError } from 'axios'
 
 export type Profile = {
     is_account_owner: boolean
+    is_followed_by?: boolean
+    is_following?: boolean
+
     account: Account
     reviews_count: number
 
     new_releases: DynamicReview[]
     min_new_releases_to_unlock: number
-    
+
     latest: DynamicReview[]
     min_latest_to_unlock: number
 }
@@ -23,6 +26,7 @@ export default function useProfile(username: string | undefined) {
 
     const [profile, setProfile] = useState<Profile | null>(null)
     const [fetching, setFetching] = useState<boolean>(true)
+    const [fetchingFollow, setFetchingFollow] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
 
     async function readProfile(username: string) {
@@ -41,6 +45,30 @@ export default function useProfile(username: string | undefined) {
             .finally(() => setFetching(false))
     }
 
+    async function follow() {
+        if (username && profile) {
+            setFetchingFollow(true)
+            return myService.postFollow(username)
+                .then(response => {
+                    if (response.status == 200)
+                        setProfile({ ...profile, "is_following": true })
+                })
+                .finally(() => {setFetchingFollow(false)})
+        }
+    }
+
+    async function unfollow() {
+        if (username && profile) {
+            setFetchingFollow(true)
+            return myService.postUnfollow(username)
+                .then(response => {
+                    if (response.status == 200)
+                        setProfile({ ...profile, "is_following": false })
+                })
+                .finally(() => {setFetchingFollow(false)})
+        }
+    }
+
     useEffect(() => {
         if (authContext?.hasCheckedLocalAuth) {
             if (username) readProfile(username)
@@ -51,7 +79,10 @@ export default function useProfile(username: string | undefined) {
     return {
         profile,
         fetching,
+        fetchingFollow,
         error,
         readProfile,
+        follow,
+        unfollow,
     }
 }

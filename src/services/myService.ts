@@ -37,6 +37,8 @@ export const getReviews = async (pageParams?: ReviewsPageParams) => (
     )
 )
 export const getProfile = async (username: string) => await api.get(`my/profile/${username}/`)
+export const postFollow = async (username: string) => await api.post(`my/profile/${username}/follow/`)
+export const postUnfollow = async (username: string) => await api.post(`my/profile/${username}/unfollow/`)
 
 // UPDATE
 export const putReview = async (review: Review) => await api.put(`my/reviews/${review.album}/`, review)
@@ -47,10 +49,15 @@ export const putReview = async (review: Review) => await api.put(`my/reviews/${r
 
 const myService = {
     getAccount,
-    postReview,
-    getReviews,
+
     getReview,
+    postReview,
     putReview,
+
+    getReviews,
+    
     getProfile,
+    postFollow,
+    postUnfollow,
 }
 export default myService

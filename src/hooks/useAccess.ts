@@ -32,9 +32,11 @@ export default function useAccess() {
                     return response
                 })
                 .catch((error) => {
-                    const errors = error.response.data
-                    setErrors(errors)
-                    setGeneralErrors(errors.non_field_errors)
+                    if (error.response) {
+                        const errors = error.response.data
+                        setErrors(errors)
+                        setGeneralErrors(errors.non_field_errors)
+                    }
                     setFetching(false)
                     return error
                 })
@@ -45,9 +47,10 @@ export default function useAccess() {
                     .catch((error) => {
                         if (error.response.status == 403)
                             setGeneralErrors(["This user don't have an account."])
+                        setFetching(false)
                         return error
                     })
-            }
+            } else setFetching(false)
 
             return response
         }

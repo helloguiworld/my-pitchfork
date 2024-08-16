@@ -28,7 +28,6 @@ header.page-header {
 
         &.logo {
             // border: 2px solid purple;
-            flex: 2;
             align-self: stretch;
             display: flex;
             justify-content: center;
@@ -64,10 +63,6 @@ header.page-header {
 @media screen and (max-width: 767px) {
     header {
         div {
-            &.logo {
-                flex: 6;
-            }
-
             &.navigation,
             &.auth {
                 flex: unset;

@@ -15,9 +15,12 @@ export default function MyHeader(props: MyHeaderProps) {
             <p className='username'>@{props.account.user.username}</p>
             <p className='reviews-count'>{props.reviewsCount} {props.reviewsCount == 1 ? "review" : "reviews"}</p>
 
-            <div className="my-header-content">
-                {props.content}
-            </div>
+            {
+                props.content &&
+                <div className="my-header-content">
+                    {props.content}
+                </div>
+            }
         </div>
     )
 }

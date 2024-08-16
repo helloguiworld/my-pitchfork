@@ -31,7 +31,7 @@ export default function ProfileOwnerButtons(props: ProfileButtonsProps) {
                 Boolean(navigator.share) &&
                 <Button
                     className={'share'}
-                    color="var(--color-purple)"
+                    color="var(--color-blue)"
                     colorFilled
                     onClick={() => {
                         shareLink(

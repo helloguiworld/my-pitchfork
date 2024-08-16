@@ -9,7 +9,7 @@ import UseExample from '../../components/UseExample'
 import { useNavigate, Navigate } from 'react-router-dom'
 
 import saveReviewButtonImg from '../../assets/images/tutorials/save review button.jpeg'
-import reviewIsUpdatedImg from '../../assets/images/tutorials/review is updated.jpeg'
+import reviewUpdatedImg from '../../assets/images/tutorials/review updated.jpeg'
 import saveReviewImg from '../../assets/images/tutorials/save review.jpeg'
 
 import myPageImg from '../../assets/images/tutorials/my page.jpeg'
@@ -48,8 +48,8 @@ export default function TutorialsPage(props: TutorialsPageProps) {
                             img={saveReviewImg}
                         />
                         <UseExample
-                            texts={['When your review is saved and updated, you will see the message REVIEW IS UPDATED.']}
-                            img={reviewIsUpdatedImg}
+                            texts={['When your review is saved and updated, you will see the message REVIEW UPDATED.']}
+                            img={reviewUpdatedImg}
                         />
 
                         <UseExample

@@ -26,7 +26,10 @@ export default function MyPage() {
     const {
         profile,
         fetching,
+        fetchingFollow,
         error,
+        follow,
+        unfollow,
     } = useProfile(username)
 
     return (
@@ -37,7 +40,12 @@ export default function MyPage() {
                         <Squares />
                         :
                         profile ?
-                            <MyProfile profile={profile} />
+                            <MyProfile
+                                profile={profile}
+                                fetchingFollow={fetchingFollow}
+                                follow={follow}
+                                unfollow={unfollow}
+                            />
                             :
                             error?.response?.status == 400 ?
                                 <Message title='User not found 🧐'>

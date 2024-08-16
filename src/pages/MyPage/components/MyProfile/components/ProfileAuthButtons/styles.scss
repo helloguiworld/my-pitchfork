@@ -1,0 +1,21 @@
+.my-profile-auth-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    // button.unfollow {
+    //     &:hover {
+    //         background-color: red;
+    //         border-color: red;
+    //     }
+    // }
+}
+
+@media screen and (max-width: 767px) {
+    .my-profile-auth-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

@@ -1,15 +1,24 @@
+import { useContext } from 'react'
+import { AuthContext } from '../../../../contexts/AuthContext'
+
 import { Profile } from '../../../../hooks/useProfile'
 
 import MyHeader from './components/MyHeader'
 import ProfileOwnerButtons from './components/ProfileOwnerButtons'
+import ProfileAuthButtons from './components/ProfileAuthButtons'
 import ReviewsList from '../../../../components/ReviewsList'
 import Banner from '../../../../components/Banner'
 
 export type MyProfileProps = {
     profile: Profile
+    fetchingFollow: boolean
+    follow: Function
+    unfollow: Function
 }
 
 export default function MyProfile(props: MyProfileProps) {
+    const authContext = useContext(AuthContext)
+
     const IS_ACCOUNT_OWNER = props.profile.is_account_owner
 
     const NEW_RELEASES_MIN = props.profile.min_new_releases_to_unlock
@@ -25,7 +34,21 @@ export default function MyProfile(props: MyProfileProps) {
                 reviewsCount={props.profile.reviews_count}
                 content={
                     (IS_ACCOUNT_OWNER) ?
-                        <ProfileOwnerButtons username={props.profile.account.user.username}/> : undefined
+                        <ProfileOwnerButtons username={props.profile.account.user.username} />
+                        :
+                        (
+                            authContext?.isAuth
+                            && props.profile.is_following != undefined
+                            && props.profile.is_followed_by != undefined
+                        ) ?
+                            <ProfileAuthButtons
+                                isFollowing={props.profile.is_following}
+                                isFollowedBy={props.profile.is_followed_by}
+                                fetchingFollow={props.fetchingFollow}
+                                follow={props.follow}
+                                unfollow={props.unfollow}
+                            />
+                            : undefined
                 }
             />
 

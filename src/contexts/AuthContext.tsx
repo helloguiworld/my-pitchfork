@@ -39,6 +39,7 @@ const AuthProvider = (props: AuthProviderType) => {
     const logout = () => {
         removeAPIAuthToken()
         removeAuthToken()
+        setAuthAccount(undefined)
         setIsAuth(false)
     }
 

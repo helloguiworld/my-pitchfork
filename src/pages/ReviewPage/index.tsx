@@ -211,7 +211,7 @@ export default function ReviewPage() {
                                                 <span>{
                                                     trackScoresIsClean ?
                                                         "FILL BEFORE SAVE" :
-                                                        needToSave ? "SAVE REVIEW" : "REVIEW IS UPDATED"
+                                                        needToSave ? "SAVE REVIEW" : "REVIEW UPDATED"
                                                 }</span>
                                             </Button>
                                         }
