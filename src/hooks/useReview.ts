@@ -22,9 +22,15 @@ export default function useReview(id: string | undefined) {
     const [error, setError] = useState<AxiosError>()
 
     const [isBestNew, setIsBestNew] = useState(false)
+
+    const [textReview, setTextReview] = useState<string>("")
+    const TEXT_REVIEW_LIMIT = 1000
+
     const [trackScores, setTrackScores] = useState<HashTrackScores | null>(null)
     const [trackScoresIsClean, setTrackScoresIsClean] = useState(true)
+
     const [albumScore, setAlbumScore] = useState<number | null>(null)
+
     const [needToSave, setNeedToSave] = useState(false)
 
     const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()
@@ -115,6 +121,26 @@ export default function useReview(id: string | undefined) {
         } else console.log('Cant save review without auth.')
     }
 
+    function trackScoresCleanCheck(trackScores: HashTrackScores) {
+        const trackScoresArray = Object.values(trackScores)
+        return trackScoresArray.every(s => s == 0)
+    }
+
+    function trackScoresAreSame(trackScoresA: HashTrackScores | null, trackScoresB: HashTrackScores | null) {
+        if (trackScoresA && trackScoresB) {
+            const trackScoresArray = Object.entries(trackScoresA)
+            if (trackScoresArray.length != Object.keys(trackScoresB).length)
+                return false
+            return trackScoresArray.every(([t, s]) => trackScoresB[t] == s)
+        } else return false
+    }
+
+    function checkIfNeedToSave() {
+        if (review && (review.is_best_new != isBestNew || review.text != textReview))
+            return true
+        return !trackScoresAreSame(trackScores, reviewTrackScores)
+    }
+
     useEffect(() => {
         if (authContext?.hasCheckedLocalAuth) {
             if (authContext?.isAuth && id) readReview(id)
@@ -129,6 +155,7 @@ export default function useReview(id: string | undefined) {
             } else if (!fetching) {
                 if (review) {
                     setIsBestNew(review.is_best_new)
+                    setTextReview(review.text)
                     const newTrackScores = hashTrackScores(review.track_scores)
                     setReviewTrackScores(newTrackScores)
                     setTrackScores(newTrackScores)
@@ -149,30 +176,10 @@ export default function useReview(id: string | undefined) {
         }
     }, [trackScores])
 
-    function trackScoresCleanCheck(trackScores: HashTrackScores) {
-        const trackScoresArray = Object.values(trackScores)
-        return trackScoresArray.every(s => s == 0)
-    }
-
-    function trackScoresAreSame(trackScoresA: HashTrackScores | null, trackScoresB: HashTrackScores | null) {
-        if (trackScoresA && trackScoresB) {
-            const trackScoresArray = Object.entries(trackScoresA)
-            if (trackScoresArray.length != Object.keys(trackScoresB).length)
-                return false
-            return trackScoresArray.every(([t, s]) => trackScoresB[t] == s)
-        } else return false
-    }
-
-    function checkIfNeedToSave() {
-        if (review && review.is_best_new != isBestNew)
-            return true
-        return !trackScoresAreSame(trackScores, reviewTrackScores)
-    }
-
     useEffect(() => {
         if (review || reviewTrackScores && trackScores)
             setNeedToSave(checkIfNeedToSave())
-    }, [review, isBestNew, reviewTrackScores, trackScores])
+    }, [review, isBestNew, textReview, reviewTrackScores, trackScores])
 
     useEffect(() => {
         if (trackScores)
@@ -194,6 +201,10 @@ export default function useReview(id: string | undefined) {
 
         isBestNew,
         setIsBestNew,
+
+        textReview,
+        setTextReview,
+        TEXT_REVIEW_LIMIT,
 
         trackScores,
         trackScoresIsClean,

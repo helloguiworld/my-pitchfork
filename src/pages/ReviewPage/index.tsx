@@ -8,6 +8,7 @@ import { FaSpotify, FaInstagram } from "react-icons/fa6"
 import Page from '../../components/Page'
 import AlbumReview from './components/AlbumReview'
 import Button from '../../components/Button'
+import Input from '../../components/Input'
 import Crown from '../../components/Crown'
 import TrackItem from '../../components/TrackItem'
 import Error429 from '../../components/Error429'
@@ -18,6 +19,7 @@ import Squares from "react-activity/dist/Squares"
 import formatScore from '../../functions/formatScore'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
+import { Review } from '../../services/myService'
 import useReview from '../../hooks/useReview'
 import { Track, AlbumTitle, getAlbumTitle } from '../../services/spotifyService'
 import clickService from '../../services/clickService'
@@ -52,8 +54,14 @@ export default function ReviewPage() {
         album,
         albumError,
         albumFetching,
+
         isBestNew,
         setIsBestNew,
+
+        textReview,
+        setTextReview,
+        TEXT_REVIEW_LIMIT,
+
         trackScores,
         trackScoresIsClean,
         setNewTrackScore,
@@ -83,10 +91,11 @@ export default function ReviewPage() {
 
     function saveMyReview() {
         if (authContext?.isAuth && album && albumScore != null && trackScores) {
-            const review = {
+            const review: Review = {
                 'album': album.id,
                 'score': albumScore,
                 'is_best_new': isBestNew,
+                'text': textReview,
                 'track_scores': unhashTrackScores(trackScores),
             }
             saveReview(review)
@@ -118,7 +127,7 @@ export default function ReviewPage() {
                                     author={authContext?.authAccount ? `@${author}` : author}
                                 />
 
-                                <div className="review-settings">
+                                <div className="review-options">
                                     {
                                         authContext?.isAuth ?
                                             <p className='score-avg'>{
@@ -129,9 +138,12 @@ export default function ReviewPage() {
                                             :
                                             <>
                                                 <div className="author-input">
-                                                    Author
+                                                    <label htmlFor="author">
+                                                        Author
+                                                    </label>
                                                     <input
                                                         className='author'
+                                                        id='author'
                                                         type='text'
                                                         placeholder='Regina George'
                                                         value={author}
@@ -197,60 +209,83 @@ export default function ReviewPage() {
                                                     </Button> */}
                                             </>
                                         }
-
-                                        {
-                                            authContext?.isAuth &&
-                                            <Button
-                                                className={'save-review'}
-                                                color="var(--color-blue)"
-                                                colorFilled
-                                                inactive={!needToSave || trackScoresIsClean}
-                                                onClick={saveMyReview}
-                                                fetching={saving}
-                                            >
-                                                <span>{
-                                                    trackScoresIsClean ?
-                                                        "FILL BEFORE SAVE" :
-                                                        needToSave ? "SAVE REVIEW" : "REVIEW UPDATED"
-                                                }</span>
-                                            </Button>
-                                        }
                                     </div>
 
-                                    <div className="track-scores">
-                                        <div className="track-scores-header">
-                                            <p className='title'>Track Scores</p>
+                                    <div className="review-settings">
+                                        <div className="track-scores">
+                                            <div className="track-scores-header">
+                                                <p className='title'>Track Scores</p>
 
-                                            <Button
-                                                small
-                                                className={'best-new'}
-                                                isOn={isBestNew}
-                                                onClick={() => setIsBestNew(!isBestNew)}
-                                                color="#ff3530"
-                                            >
-                                                <Crown />
-                                            </Button>
+                                                <Button
+                                                    small
+                                                    className={'best-new'}
+                                                    isOn={isBestNew}
+                                                    onClick={() => setIsBestNew(!isBestNew)}
+                                                    color="#ff3530"
+                                                >
+                                                    <Crown />
+                                                </Button>
+                                            </div>
+
+                                            {
+                                                (album.tracks && trackScores) ?
+                                                    <div className="tracks">
+                                                        {
+                                                            album.tracks
+                                                                .sort((tA: Track, tB: Track) => tA.number < tB.number ? -1 : 1)
+                                                                .map(
+                                                                    (track: Track) =>
+                                                                        <TrackItem
+                                                                            key={track.id}
+                                                                            track={track}
+                                                                            trackScore={trackScores[track.id] || 0}
+                                                                            setNewTrackScore={setNewTrackScore}
+                                                                        />
+                                                                )
+                                                        }
+                                                    </div>
+                                                    :
+                                                    <Squares />
+                                            }
                                         </div>
 
                                         {
-                                            (album.tracks && trackScores) ?
-                                                <div className="tracks">
-                                                    {
-                                                        album.tracks
-                                                            .sort((tA: Track, tB: Track) => tA.number < tB.number ? -1 : 1)
-                                                            .map(
-                                                                (track: Track) =>
-                                                                    <TrackItem
-                                                                        key={track.id}
-                                                                        track={track}
-                                                                        trackScore={trackScores[track.id] || 0}
-                                                                        setNewTrackScore={setNewTrackScore}
-                                                                    />
-                                                            )
+                                            authContext?.isAuth &&
+                                            <>
+                                                <Input
+                                                    type='textarea'
+                                                    id='review-comment'
+                                                    label="Review"
+                                                    message={`${textReview.length}/${TEXT_REVIEW_LIMIT}`}
+                                                    placeholder=""
+                                                    color={
+                                                        textReview.length > TEXT_REVIEW_LIMIT ?
+                                                            'var(--color-red)' :
+                                                            textReview.length > TEXT_REVIEW_LIMIT * 0.9 ?
+                                                                'var(--color-yellow)' :
+                                                                undefined
+
                                                     }
-                                                </div>
-                                                :
-                                                <Squares />
+                                                    value={textReview}
+                                                    onChange={(e) => setTextReview(e.target.value)}
+                                                    maxLength={TEXT_REVIEW_LIMIT * 1.1}
+                                                />
+
+                                                <Button
+                                                    className={'save-review'}
+                                                    color="var(--color-blue)"
+                                                    colorFilled
+                                                    inactive={!needToSave || trackScoresIsClean}
+                                                    onClick={saveMyReview}
+                                                    fetching={saving}
+                                                >
+                                                    <span>{
+                                                        trackScoresIsClean ?
+                                                            "FILL BEFORE SAVE" :
+                                                            needToSave ? "SAVE REVIEW" : "REVIEW UPDATED"
+                                                    }</span>
+                                                </Button>
+                                            </>
                                         }
                                     </div>
                                 </div>

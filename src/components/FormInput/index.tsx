@@ -6,9 +6,9 @@ import './styles.scss'
 export type FormInputProps = {
     type?: string,
     id: string,
-    placeholder: string,
     label: string,
     message?: string,
+    placeholder: string,
     value: any,
     onChange: ChangeEventHandler<HTMLInputElement>,
     required?: boolean,

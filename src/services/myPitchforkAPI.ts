@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const NETWORK_IP = "192.168.0.12"
+const NETWORK_IP = "192.168.0.14"
 // const LOCALHOST = "localhost"
 
 export const myPitchforkAPIBaseURL =

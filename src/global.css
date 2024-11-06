@@ -109,7 +109,8 @@ button:focus {
   box-shadow: none;
 }
 
-input {
+input,
+textarea {
   font-size: .85rem;
   color: #000000;
   background-color: #ffffff;
@@ -117,6 +118,14 @@ input {
   border: 1px solid #757575;
   border-radius: unset;
   transition: .3s;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+textarea {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .my-pitchfork {

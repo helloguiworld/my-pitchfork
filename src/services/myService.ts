@@ -10,6 +10,7 @@ export type Review = {
     album: string
     score: number
     is_best_new: boolean
+    text: string
     track_scores: TrackScore[]
 }
 export type DynamicReview = Review & {

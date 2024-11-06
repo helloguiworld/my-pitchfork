@@ -1,11 +1,14 @@
-div.form-input {
+div.input-component {
     display: flex;
     flex-direction: column;
+    transition: .3s;
 
     label {
         display: flex;
         justify-content: space-between;
         align-items: end;
+        color: var(--color);
+        transition: inherit;
 
         >span.label {
             white-space: nowrap
@@ -19,23 +22,17 @@ div.form-input {
         }
     }
 
-    input {
+    input,
+    textarea {
         padding: 8px;
-
-        &.error {
-            border-color: var(--error-color);
-        }
+        opacity: .9;
+        letter-spacing: .02em;
+        // color: var(--color);
+        border-color: var(--color);
+        border-color: color-mix(in srgb, var(--color) 60%, white);
     }
 
-    div.errors {
-        margin: 2px;
-        display: flex;
-        flex-direction: column;
-
-        span.error {
-            font-size: .8rem;
-            color: var(--error-color);
-            line-height: 1.2;
-        }
+    textarea {
+        resize: none;
     }
 }
