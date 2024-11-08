@@ -54,10 +54,10 @@ export default function Header(props: HeaderProps) {
                     alt="myPitchfork link logo"
                     className="mypitchfork-link-logo"
                     onClick={() => {
-                        if (location.pathname == '/search')
-                            navigate('/')
-                        else
+                        if (location.pathname == '/')
                             navigate('/search')
+                        else
+                            navigate('/')
                     }}
                 />
             </div>

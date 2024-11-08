@@ -61,7 +61,7 @@ export default function RegisterForm() {
         const response = await register(newAccount)
         if (response?.status == 201) {
             const response = await login(username, password)
-            if (response?.status == 200) navigate('/tutorials/account')
+            if (response?.status == 200) navigate('/tutorials/new-account')
             else navigate('/login')
         }
     }

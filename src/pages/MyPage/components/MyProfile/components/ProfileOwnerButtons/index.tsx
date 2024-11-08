@@ -49,7 +49,7 @@ export default function ProfileOwnerButtons(props: ProfileButtonsProps) {
                     className={'tutorial'}
                     color="var(--color-blue)"
                     onClick={() => {
-                        navigate('/tutorials/account')
+                        navigate('/tutorials/new-account')
                     }}
                 >
                     <span>TUTORIAL</span>

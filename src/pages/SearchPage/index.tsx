@@ -100,11 +100,9 @@ export default function SearchPage() {
                                             }
                                         />
                                         :
-                                        <Notice
-                                            items={[
-                                                "NO ALBUM LISTED",
-                                            ]}
-                                        />
+                                        <Notice>
+                                            <p>NO ALBUM LISTED</p>
+                                        </Notice>
                                 :
                                 fetchingRanking ?
                                     <Squares className='spaced' />
@@ -115,11 +113,9 @@ export default function SearchPage() {
                                             albums={ranking.map(item => item.album)}
                                         />
                                         :
-                                        <Notice
-                                            items={[
-                                                "NO ALBUM RANKED",
-                                            ]}
-                                        />
+                                        <Notice>
+                                            <p>NO ALBUM RANKED</p>
+                                        </Notice>
                         }
                     </>
             }

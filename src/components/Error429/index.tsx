@@ -8,15 +8,10 @@ import Notice from "../Notice"
 
 export default function Error429() {
     return (
-        <Notice
-            items={[
-                {
-                    text: "THE SITE HAS EXCEEDED ITS RATE LIMITS FOR SPOTIFY API",
-                    type: 'strong'
-                },
-                "We're working to prevent this from happening in the future!",
-                "Please try again later ⏳",
-            ]}
-        />
+        <Notice>
+            <p className="title">THE SITE HAS EXCEEDED ITS RATE LIMITS FOR SPOTIFY API</p>
+            <p>We're working to prevent this from happening in the future!</p>
+            <p>Please try again later ⏳</p>
+        </Notice>
     )
 }

@@ -41,15 +41,15 @@ export default function Page(props: PageProps) {
                 if (!authContext?.isAuth) return
                 return (
                     <Banner color='#193caf' spaced key={key}>
-                        <p className='title'>Don’t forget to save your reviews! 📝</p>
-                        <p>They will be the foundation for your <strong>future features</strong>. ✨</p>
+                        <p>Don’t forget to <b>save your reviews!</b> 📝</p>
+                        {/* <p>They will be the foundation for your <strong>future features</strong>. ✨</p> */}
                     </Banner>
                 )
             case '#mypitchfork':
                 return (
                     <Banner color='#bd0995' spaced key={key}>
                         {/* <p className='title'>Show off your music taste!</p> */}
-                        <p>Share your reviews using <strong>#mypitchfork</strong>. 📸</p>
+                        <p>Share your reviews using <strong>#mypitchfork</strong> 📸</p>
                     </Banner>
                 )
             case 'social-media':
@@ -81,7 +81,12 @@ export default function Page(props: PageProps) {
                 <p className='title'>🤩 Make myPitchfork Yours! 🤩</p>
                 <p>Click here to have a myPitchfork account. 🎶✨</p>
             </Banner>
-        ),
+        ), (
+            authContext?.isAuth &&
+            <Banner color='var(--color-purple)' spaced key={'new-features'} onClick={() => { navigate('/tutorials/new-features') }}>
+                <p><b>Click here</b> to learn about the <b>new features!</b> ⭐</p>
+            </Banner>
+        )
     ]
 
     return (

@@ -8,18 +8,19 @@ export type useExampleProps = {
     img?: string,
     spacedTop?: boolean,
     spacedBottom?: boolean,
+    textCenter?: boolean,
 }
 
 export default function UseExample(props: useExampleProps) {
     return (
         <div
             className={
-                'example' +
-                (props.spacedTop ? ' spaced-top' : '') +
-                (props.spacedBottom ? ' spaced-bottom' : '')
+                'example'
+                + (props.spacedTop ? ' spaced-top' : '')
+                + (props.spacedBottom ? ' spaced-bottom' : '')
             }
         >
-            <div className="text">
+            <div className={"text" + (props.textCenter ? ' center' : '')}>
                 {props.title && <p className='title'>{props.title}</p>}
                 {props.description && <p className='description'>{props.description}</p>}
                 {props.texts?.map((text, index) => <p key={index}>{text}</p>)}

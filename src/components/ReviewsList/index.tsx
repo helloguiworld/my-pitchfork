@@ -53,12 +53,9 @@ export default function ReviewsList(props: ReviewsListProps) {
                                     />
                                 )
                                 :
-
-                                <Notice
-                                    items={[
-                                        "NO REVIEW LISTED",
-                                    ]}
-                                />
+                                <Notice>
+                                    <p>NO REVIEW LISTED</p>
+                                </Notice>
                         }
 
                         {props.footerContent}

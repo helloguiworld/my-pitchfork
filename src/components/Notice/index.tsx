@@ -1,6 +1,4 @@
-// import { } from 'react'
-
-// import 
+import { ReactElement } from 'react'
 
 import './styles.scss'
 type NoticeItem = {
@@ -8,15 +6,15 @@ type NoticeItem = {
     type?: 'strong',
 }
 export type NoticeProps = {
-    items: (string | NoticeItem)[],
     className?: string,
     html2canvasIgnore?: boolean,
     ownSpace?: boolean,
+    children: ReactElement<HTMLParagraphElement> | ReactElement<HTMLParagraphElement>[]
 }
 
 export default function Notice(props: NoticeProps) {
     return (
-        <div
+        <span
             className={
                 'notice' +
                 (props.className ? ` ${props.className}` : '') +
@@ -24,15 +22,7 @@ export default function Notice(props: NoticeProps) {
             }
             data-html2canvas-ignore={props.html2canvasIgnore}
         >
-            {
-                props.items.map((item: string | NoticeItem, index: number) =>
-                    typeof item == 'string' ?
-                        <span key={index}>{item}</span> :
-                        <span key={index} className={item.type ? item.type : ''}>
-                            {item.text}
-                        </span>
-                )
-            }
-        </div>
+            {props.children}
+        </span>
     )
 }

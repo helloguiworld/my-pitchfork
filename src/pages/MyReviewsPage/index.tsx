@@ -57,11 +57,6 @@ export default function MyReviewsPage() {
             {
                 authContext?.isAuth && authContext?.authAccount?.user.username == username ?
                     <>
-                        <Banner color='var(--color-blue)'>
-                            <p className='title'>This page is under development 👨‍💻</p>
-                            <p>Only you can access all your reviews for now.</p>
-                        </Banner>
-
                         <div className="search-header">
                             <SearchBar
                                 value={searchQ}
@@ -99,12 +94,9 @@ export default function MyReviewsPage() {
                                 footerContent={
                                     nextPageParams ?
                                         <Button
-                                        color={listMode == 'all' ? 'var(--color-blue)': undefined}
+                                            color={listMode == 'all' ? 'var(--color-blue)' : undefined}
                                             fetching={fetchingMore}
-                                            onClick={() => {
-                                                console.log(nextPageParams)
-                                                readReviews(nextPageParams)
-                                            }}
+                                            onClick={() => readReviews(nextPageParams)}
                                         >
                                             <span>LOAD MORE</span>
                                         </Button>

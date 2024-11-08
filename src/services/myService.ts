@@ -1,5 +1,6 @@
 import api from "./myPitchforkAPI"
 import { Album } from "./spotifyService"
+import { User } from "./accessService"
 
 // TYPE
 export type TrackScore = {
@@ -23,6 +24,11 @@ export type ReviewsPageParams = {
     q?: string
     order?: ReviewsOrder
 }
+export type FeedReview = {
+    review: DynamicReview
+    account_user: User
+    created_at: string
+}
 
 // CRUD
 
@@ -37,6 +43,7 @@ export const getReviews = async (pageParams?: ReviewsPageParams) => (
         `my/reviews/?page=${pageParams?.page || 1}&search=${pageParams?.q || ''}&ordering=${pageParams?.order || '-created_at'}`
     )
 )
+export const getFeed = async (page?: number) => await api.get(`my/feed/${page ? `?page=${page}`: ''}`)
 export const getProfile = async (username: string) => await api.get(`my/profile/${username}/`)
 export const postFollow = async (username: string) => await api.post(`my/profile/${username}/follow/`)
 export const postUnfollow = async (username: string) => await api.post(`my/profile/${username}/unfollow/`)
@@ -56,7 +63,8 @@ const myService = {
     putReview,
 
     getReviews,
-    
+    getFeed,
+
     getProfile,
     postFollow,
     postUnfollow,

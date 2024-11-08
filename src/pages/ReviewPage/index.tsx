@@ -291,11 +291,9 @@ export default function ReviewPage() {
                                 </div>
                             </>
                             :
-                            <Notice
-                                items={[
-                                    "ALBUM NOT FOUND",
-                                ]}
-                            />
+                            <Notice>
+                                <p>ALBUM NOT FOUND</p>
+                            </Notice>
             }
         </Page>
     )

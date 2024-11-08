@@ -1,6 +1,4 @@
 .banner {
-    // --banner-color: #275ac7 !important; 
-
     color: #3a3a3a;
     background-color: #f8f8f8;
     border: 2px solid #cacaca;
@@ -11,14 +9,14 @@
 
     align-self: stretch;
     text-align: center;
-    padding: 15px;
+    padding: 10px 15px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: .3s;
-    
+
     &.spaced {
         margin: 16px;
     }
@@ -37,10 +35,12 @@
         gap: 20px;
     }
 
-    .title {
-        font-weight: bold;
-        font-size: 1.1em;
-        margin: 4px 0;
+    p {
+        &.title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 4px 0;
+        }
     }
 
     a {

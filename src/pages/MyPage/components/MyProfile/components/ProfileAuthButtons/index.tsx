@@ -10,6 +10,16 @@ export type ProfileAuthButtonsProps = {
 }
 
 export default function ProfileAuthButtons(props: ProfileAuthButtonsProps) {
+    function followButtonText(isFollowing: boolean, isFollowedBy: boolean) {
+        if (isFollowing) {
+            if (isFollowedBy) return "MUTUALS"
+            else return "FOLLOWING"
+        } else {
+            if (isFollowedBy) return "FOLLOW BACK"
+            else return "FOLLOW"
+        }
+    }
+
     return (
         <div className='my-profile-auth-buttons'>
             <Button
@@ -27,15 +37,7 @@ export default function ProfileAuthButtons(props: ProfileAuthButtonsProps) {
                 fetching={props.fetchingFollow}
             >
                 <span>
-                    {
-                        props.isFollowing ?
-                            props.isFollowedBy ?
-                                "MUTUALS"
-                                :
-                                "FOLLOWING"
-                            :
-                            "FOLLOW"
-                    }
+                    {followButtonText(props.isFollowing, props.isFollowedBy)}
                 </span>
             </Button >
         </div>

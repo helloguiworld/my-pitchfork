@@ -69,7 +69,7 @@ const router = createBrowserRouter(
       // },
 
       {
-        path: "/tutorials/account",
+        path: "/tutorials/:tutorial",
         element: <TutorialsPage />,
       },
 
