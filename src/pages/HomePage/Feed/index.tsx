@@ -31,11 +31,6 @@ export default function Feed() {
     return (
         <>
             <div id="feed">
-                <div className="title">
-                    <p className='title'>Feed</p>
-                    <p className='subtitle'>Explore last reviews from your community</p>
-                </div>
-
                 {
                     fetching ?
                         <Squares />
@@ -47,27 +42,34 @@ export default function Feed() {
                             </Notice>
                             :
                             feedReviews?.length ?
-                                <section id='feed-list'>
-                                    {
-                                        feedReviews?.map((feedReview, index) => (
-                                            <FeedItem
-                                                key={index}
-                                                feedReview={feedReview}
-                                            />
-                                        ))
-                                    }
+                                <>
+                                    <div className="title">
+                                        <p className='title'>Feed</p>
+                                        <p className='subtitle'>Explore last reviews from your community</p>
+                                    </div>
 
-                                    {
-                                        nextPage &&
-                                        <Button
-                                            color={'var(--color-blue)'}
-                                            fetching={fetchingMore}
-                                            onClick={() => { readFeed((nextPage)) }}
-                                        >
-                                            <span>LOAD MORE</span>
-                                        </Button>
-                                    }
-                                </section>
+                                    <section id='feed-list'>
+                                        {
+                                            feedReviews?.map((feedReview, index) => (
+                                                <FeedItem
+                                                    key={index}
+                                                    feedReview={feedReview}
+                                                />
+                                            ))
+                                        }
+
+                                        {
+                                            nextPage &&
+                                            <Button
+                                                color={'var(--color-blue)'}
+                                                fetching={fetchingMore}
+                                                onClick={() => { readFeed((nextPage)) }}
+                                            >
+                                                <span>LOAD MORE</span>
+                                            </Button>
+                                        }
+                                    </section>
+                                </>
                                 :
                                 <Notice>
                                     <p className="title">NO REVIEW TO SHOW</p>
