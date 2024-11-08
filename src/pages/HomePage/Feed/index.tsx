@@ -9,10 +9,10 @@ import Button from '../../../components/Button'
 import useFeed from '../../../hooks/useFeed'
 
 import './styles.scss'
-export type FeedProps = {
-}
+// export type FeedProps = {
+// }
 
-export default function Feed(props: FeedProps) {
+export default function Feed() {
     const authContext = useContext(AuthContext)
 
     const {
@@ -40,33 +40,39 @@ export default function Feed(props: FeedProps) {
                     fetching ?
                         <Squares />
                         :
-                        feedReviews?.length ?
-                            <section id='feed-list'>
-                                {
-                                    feedReviews?.map((feedReview, index) => (
-                                        <FeedItem
-                                            key={index}
-                                            feedReview={feedReview}
-                                        />
-                                    ))
-                                }
-
-                                {
-                                    nextPage &&
-                                    <Button
-                                        color={'var(--color-blue)'}
-                                        fetching={fetchingMore}
-                                        onClick={() => { readFeed((nextPage)) }}
-                                    >
-                                        <span>LOAD MORE</span>
-                                    </Button>
-                                }
-                            </section>
-                            :
+                        error ?
                             <Notice>
-                                <p className="title">NO REVIEW TO SHOW</p>
-                                <p>Start reviewing or follow other accounts to see their reviews</p>
+                                <p className="title">⚠️ SOMETHING WENT WRONG ⚠️</p>
+                                <p>Please try again or contact us.</p>
                             </Notice>
+                            :
+                            feedReviews?.length ?
+                                <section id='feed-list'>
+                                    {
+                                        feedReviews?.map((feedReview, index) => (
+                                            <FeedItem
+                                                key={index}
+                                                feedReview={feedReview}
+                                            />
+                                        ))
+                                    }
+
+                                    {
+                                        nextPage &&
+                                        <Button
+                                            color={'var(--color-blue)'}
+                                            fetching={fetchingMore}
+                                            onClick={() => { readFeed((nextPage)) }}
+                                        >
+                                            <span>LOAD MORE</span>
+                                        </Button>
+                                    }
+                                </section>
+                                :
+                                <Notice>
+                                    <p className="title">NO REVIEW TO SHOW</p>
+                                    <p>Start reviewing or follow other accounts to see their reviews</p>
+                                </Notice>
                 }
             </div>
         </>

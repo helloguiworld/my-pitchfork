@@ -8,10 +8,10 @@ import albumReviewImg from '../../../assets/images/home/album review.png'
 import { useNavigate } from 'react-router-dom'
 
 import './styles.scss'
-export type WelcomeContentProps = {
-}
+// export type WelcomeContentProps = {
+// }
 
-export default function WelcomeContent(props: WelcomeContentProps) {
+export default function WelcomeContent() {
     const navigate = useNavigate()
 
     return (

@@ -6,13 +6,9 @@ import { AuthContext } from '../../../contexts/AuthContext'
 import UseExample from '../../../components/UseExample'
 import Button from '../../../components/Button'
 
-import saveReviewButtonImg from '../../../assets/images/tutorials/save review button.jpeg'
 import reviewUpdatedImg from '../../../assets/images/tutorials/review updated.jpeg'
 import reviewTextImg from '../../../assets/images/tutorials/review text.jpeg'
-import reviewWithoutTextImg from '../../../assets/images/tutorials/review without text.jpeg'
 
-import myPageImg from '../../../assets/images/tutorials/my page.jpeg'
-import myReviewsListImg from '../../../assets/images/tutorials/my reviews list.jpeg'
 import myShareImg from '../../../assets/images/tutorials/my share.jpeg'
 
 import followImg from '../../../assets/images/tutorials/follow.jpeg'

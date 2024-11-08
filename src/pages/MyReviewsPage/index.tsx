@@ -7,7 +7,6 @@ import Page from '../../components/Page'
 import SearchBar from '../../components/SearchBar'
 import Button from '../../components/Button'
 import ReviewsList from '../../components/ReviewsList'
-import Banner from '../../components/Banner'
 
 import useReviews from '../../hooks/useReviews'
 

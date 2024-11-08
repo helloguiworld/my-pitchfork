@@ -1,10 +1,6 @@
 import { ReactElement } from 'react'
 
 import './styles.scss'
-type NoticeItem = {
-    text: string,
-    type?: 'strong',
-}
 export type NoticeProps = {
     className?: string,
     html2canvasIgnore?: boolean,

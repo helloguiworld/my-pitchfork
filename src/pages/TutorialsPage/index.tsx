@@ -1,10 +1,4 @@
-import { useContext } from 'react'
-
-import { AuthContext } from '../../contexts/AuthContext'
-
 import Page from '../../components/Page'
-import Button from '../../components/Button'
-import UseExample from '../../components/UseExample'
 
 import { useParams, Navigate } from 'react-router-dom'
 
@@ -12,16 +6,13 @@ import NewAccountTutorial from './NewAccountTutorial'
 import NewFeaturesTutorial from './NewFeaturesTutorial'
 
 import './styles.scss'
-export type TutorialsPageProps = {
-    free?: boolean,
-}
+// export type TutorialsPageProps = {
+// }
 type TutorialsPageParams = {
     tutorial: string
 }
 
-export default function TutorialsPage(props: TutorialsPageProps) {
-    const authContext = useContext(AuthContext)
-
+export default function TutorialsPage() {
     const { tutorial } = useParams<TutorialsPageParams>()
 
     function selectTutorial(tutorial?: string) {
