@@ -5,8 +5,11 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate, Navigate } from 'react-router-dom'
 
 import { Squares } from 'react-activity'
+
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import ForgotPasswordForm from './components/ForgotPasswordForm'
+import PasswordResetForm from './components/PasswordResetForm'
 
 import myPitchforkLinkLogoImgWhite from '../../assets/mypitchfork link logo.png'
 import myPitchforkLinkLogoImgBlack from '../../assets/mypitchfork link logo black.png'
@@ -26,6 +29,10 @@ export default function AccessPage(props: AccessPageProps) {
         switch (mode) {
             case 'register':
                 return <RegisterForm />
+            case 'forgot-password':
+                return <ForgotPasswordForm />
+            case 'password-reset':
+                return <PasswordResetForm />
             default:
                 return <LoginForm />
         }

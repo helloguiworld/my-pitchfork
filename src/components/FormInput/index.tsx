@@ -14,14 +14,20 @@ export type FormInputProps = {
     required?: boolean,
     maxLength?: number,
     errors?: string[],
+    errorColor?: string,
     generalErrors?: string[],
     showGeneralErrors?: boolean,
-    errorColor?: string,
+    generalErrorsColor?: string,
 }
 
 export default function FormInput(props: FormInputProps) {
     const [shownErrors, setShownErrors] = useState<string[]>([])
     const [hasErrors, setHasErrors] = useState(false)
+
+    function errorColor() {
+        if (props.generalErrors) return props.generalErrorsColor || 'var(--color-error)'
+        return props.errorColor || 'var(--color-error)'
+    }
 
     useEffect(() => {
         if (props.errors?.length || props.generalErrors?.length) {
@@ -38,8 +44,8 @@ export default function FormInput(props: FormInputProps) {
 
     return (
         <div
-            className='form-input'
-            style={{ '--error-color': props.errorColor || '#ff3530' } as React.CSSProperties}
+            className={'form-input' + (hasErrors ? ' error' : '')}
+            style={{ '--error-color': errorColor() } as React.CSSProperties}
         >
             <label htmlFor={props.id}>
                 <span className='label'>{props.label}</span>
@@ -48,7 +54,6 @@ export default function FormInput(props: FormInputProps) {
             <input
                 type={props.type || 'text'}
                 id={props.id}
-                className={hasErrors ? 'error' : ''}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.onChange}

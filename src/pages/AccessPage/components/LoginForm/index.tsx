@@ -5,7 +5,7 @@ import FormInput from '../../../../components/FormInput'
 
 import normalizeUsername from '../../../../functions/normalizeUsername'
 import { useNavigate } from 'react-router-dom'
-import useAccess from '../../../../hooks/useAccess'
+import useAccess from '../../../../hooks/Access/useAccess'
 
 // import './styles.scss'
 // export type LoginFormProps = {
@@ -42,7 +42,7 @@ export default function LoginForm() {
                 <h2>We've missed you 😊</h2>
             </div>
 
-            <form className='login' onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormInput
                     type="text"
                     maxLength={25}
@@ -70,7 +70,6 @@ export default function LoginForm() {
 
                 <Button
                     type='submit'
-                    // color={"var(--color-green)"}
                     colorFilled
                     fetching={fetching}
                 >
@@ -79,9 +78,7 @@ export default function LoginForm() {
             </form >
 
             <div className="buttons">
-
                 <Button
-                    type='button'
                     color={"var(--color-blue)"}
                     // colorFilled
                     onClick={() => navigate('/register')}
@@ -89,11 +86,11 @@ export default function LoginForm() {
                     SIGN UP
                 </Button>
                 <Button
-                    type='button'
-                    color={"var(--color-red)"}
-                    inactive
+                    color={"var(--color-purple)"}
+                    onClick={() => navigate('/forgot-password')}
+                    inactive={!import.meta.env.VITE_FORGOT_PASSWORD}
                 >
-                    RESET PASSWORD SOON
+                    RESET PASSWORD
                 </Button>
             </div>
         </>

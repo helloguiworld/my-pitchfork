@@ -36,10 +36,15 @@
     }
 
     p {
+        font-size: .95em;
+
         &.title {
             font-weight: bold;
-            font-size: 1.1em;
-            margin: 4px 0;
+            font-size: 1.05em;
+        }
+
+        &.little {
+            font-size: .8em;
         }
     }
 

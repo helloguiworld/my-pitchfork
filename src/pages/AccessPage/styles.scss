@@ -69,9 +69,15 @@
 
             >div.title {
                 text-align: center;
+
+                p {
+                    &.margin {
+                        margin: 16px 0;
+                    }
+                }
             }
 
-            >form.login {
+            >form {
                 display: flex;
                 flex-direction: column;
                 gap: 8px;

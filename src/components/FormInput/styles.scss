@@ -21,10 +21,6 @@ div.form-input {
 
     input {
         padding: 8px;
-
-        &.error {
-            border-color: var(--error-color);
-        }
     }
 
     div.errors {
@@ -36,6 +32,14 @@ div.form-input {
             font-size: .8rem;
             color: var(--error-color);
             line-height: 1.2;
+        }
+    }
+
+    &.error {
+        // color: var(--error-color);
+
+        input {
+            border-color: var(--error-color);
         }
     }
 }

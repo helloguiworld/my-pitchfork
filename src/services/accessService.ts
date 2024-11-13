@@ -22,6 +22,10 @@ export const login = async (username: string, password: string) => await api.pos
     password,
 })
 export const register = async (newAccount: Account) => await api.post('accounts/', newAccount)
+export const forgotPassword = async (email: string) => await api.post('users/password-reset-request', { email })
+export const passwordReset = async (uId: string, token: string, newPassword: string) => (
+    await api.post(`users/password-reset/${uId}/${token}/`, { new_password: newPassword })
+)
 
 // READ
 
@@ -36,5 +40,7 @@ export const register = async (newAccount: Account) => await api.post('accounts/
 const accessService = {
     login,
     register,
+    forgotPassword,
+    passwordReset,
 }
 export default accessService

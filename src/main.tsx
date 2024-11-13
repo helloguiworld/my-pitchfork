@@ -59,14 +59,14 @@ const router = createBrowserRouter(
         path: "/register",
         element: <AccessPage mode='register' />,
       },
-      // {
-      //   path: "/forgot-password",
-      //   element: <AccessPage mode='forgot-password' />,
-      // },
-      // {
-      //   path: "/password-reset",
-      //   element: <AccessPage mode='password-reset' />,
-      // },
+      {
+        path: "/forgot-password",
+        element: <AccessPage mode='forgot-password' />,
+      },
+      {
+        path: "/password-reset",
+        element: <AccessPage mode='password-reset' />,
+      },
 
       {
         path: "/tutorials/:tutorial",

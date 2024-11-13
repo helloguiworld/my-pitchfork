@@ -4,7 +4,7 @@ import Button from "../../../../components/Button"
 import FormInput from '../../../../components/FormInput'
 
 import { useNavigate } from 'react-router-dom'
-import useAccess from '../../../../hooks/useAccess'
+import useAccess from '../../../../hooks/Access/useAccess'
 import normalizeUsername from '../../../../functions/normalizeUsername'
 
 // import './styles.scss'
@@ -73,7 +73,7 @@ export default function RegisterForm() {
                 <h2>Let's get you started 😃</h2>
             </div>
 
-            <form className='login' onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormInput
                     id="username"
                     maxLength={25}
@@ -122,7 +122,7 @@ export default function RegisterForm() {
                     id="email"
                     placeholder='enter your email'
                     label='Email'
-                    message='important for future password reset'
+                    message='important for password reset'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
