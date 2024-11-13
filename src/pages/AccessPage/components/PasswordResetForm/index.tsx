@@ -52,7 +52,7 @@ export default function PasswordResetForm() {
         cleanErrors()
         if (!checkPasswords(password, passwordConfirmation))
             return
-        
+
         // @ts-ignore
         const response = await passwordReset(u_id, token, password)
         if (response?.status == 200)
@@ -65,7 +65,7 @@ export default function PasswordResetForm() {
         <>
             <div className="title">
                 <h1>Time to reset!</h1>
-                <h2>Enter your new passwords below</h2>
+                <h2>Enter your new password below</h2>
             </div>
 
             {
