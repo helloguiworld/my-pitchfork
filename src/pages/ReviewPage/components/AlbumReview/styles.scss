@@ -38,6 +38,10 @@ div.album-review {
 
             >p.artists {
                 font-size: 1.75em;
+
+                >span.artist {
+                    cursor: pointer;
+                }
             }
 
             >p.year {

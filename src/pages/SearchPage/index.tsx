@@ -17,33 +17,42 @@ import useRanking from '../../hooks/useRanking'
 import clickService from '../../services/clickService'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
+import { useSearchParams } from 'react-router-dom'
+
 import './styles.scss'
 // export type SearchPageProps = {
 // }
 
 export default function SearchPage() {
+    const [searchParams] = useSearchParams()
+
     const [searchMode, setSearchMode] = useLocalStorage<'search' | 'ranking'>('search-list-mode', 'ranking')
     const [searchQ, setSearchQ] = useLocalStorage<string>('search-q', '')
+    
+    const q = searchParams.get('q')
 
     const { searchResults, lastSearchQ, fetching: fetchingSearch, error: searchError, searchAlbums } = useSearch()
     const { ranking, fetching: fetchingRanking, readRanking } = useRanking()
 
-    async function performSearch() {
-        if (searchQ && !fetchingSearch && !fetchingRanking) {
-            const cleanSearchQ = searchQ.trimEnd()
+    async function performSearch(q: string) {
+        if (q && !fetchingSearch && !fetchingRanking) {
+            const cleanSearchQ = q.trimEnd()
             setSearchQ(cleanSearchQ)
             const response = await searchAlbums(cleanSearchQ)
             if (response?.status == 200) await clickService.postSearchClick(cleanSearchQ)
         }
     }
 
-    async function handleAlbumSearch() {
+    async function handleAlbumSearch(q: string) {
         setSearchMode('search')
-        performSearch()
+        performSearch(q)
     }
 
     useEffect(() => {
-        if (searchMode == 'ranking') readRanking()
+        if (q) {
+            setSearchQ(q)
+            handleAlbumSearch(q)
+        } else if (searchMode == 'ranking') readRanking()
     }, [])
 
     return (
@@ -58,9 +67,9 @@ export default function SearchPage() {
                                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                     setSearchQ(event.target.value.toLowerCase())
                                 }}
-                                onSubmit={handleAlbumSearch}
+                                onSubmit={() => handleAlbumSearch(searchQ)}
                                 onClick={() => {
-                                    if (searchMode == 'search' || !searchResults?.length) performSearch()
+                                    if (searchMode == 'search' || !searchResults?.length) performSearch(searchQ)
                                     else setSearchMode('search')
                                 }}
                                 colorFilled={searchMode == 'search'}

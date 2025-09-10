@@ -4,6 +4,8 @@ import ScoreDisplay from '../../../../components/ScoreDisplay'
 
 import { Album, AlbumTitle } from '../../../../services/spotifyService'
 
+import { useNavigate } from 'react-router-dom'
+
 import './styles.scss'
 export type AlbumReviewProps = {
     album: Album,
@@ -17,6 +19,8 @@ export default function AlbumReview(props: AlbumReviewProps) {
     const albumBoxRef = useRef<HTMLDivElement>(null)
 
     const [needTextResizing, setNeedTextResizing] = useState(false)
+
+    const navigate = useNavigate()
 
     function calcTextSizeFactor(text: string) {
         return [...text].reduce((acc, curr) => acc + ('A' <= curr && curr <= 'Z' ? 1.3 : 1), 0)
@@ -54,7 +58,18 @@ export default function AlbumReview(props: AlbumReviewProps) {
                 <div className="text">
                     {props.albumTitle && <p className="title">{props.albumTitle + "S"}</p>}
                     <p className="name">{props.album.name}</p>
-                    <p className="artists">{props.album.artists.join(' / ')}</p>
+                    <p className="artists">{
+                        props.album.artists
+                            .map((artist, index, artists) => <>
+                                <span
+                                    className='artist'
+                                    onClick={() => navigate(`/search?q=${artist.toLowerCase()}`)}
+                                >
+                                    {artist}
+                                </span>
+                                {index < artists.length-1 &&  <span> / </span>}
+                            </>)
+                    }</p>
                     <p className="year">{props.album.date.split('-')[0]}</p>
                 </div>
                 <div className={"others" + (props.isBestNew ? " best-new" : "")}>
