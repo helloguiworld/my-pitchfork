@@ -6,6 +6,9 @@ import { AuthContext } from '../../../contexts/AuthContext'
 import UseExample from '../../../components/UseExample'
 import Button from '../../../components/Button'
 
+import reviewSectionImg from '../../../assets/images/tutorials/review section.jpeg'
+import searchImg from '../../../assets/images/tutorials/search.jpeg'
+
 import reviewUpdatedImg from '../../../assets/images/tutorials/review updated.jpeg'
 import reviewTextImg from '../../../assets/images/tutorials/review text.jpeg'
 
@@ -33,6 +36,18 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                     <h1 className='my-pitchfork'>Latest Updates!</h1>
                     <p>Are you ready to connect? 👀</p>
                 </div>
+
+                <UseExample
+                    title='Explore the Artist'
+                    description='Discover more with just one click! 👆'
+                    texts={['In a review page, click the artist\'s name to instantly search for it.']}
+                    img={reviewSectionImg}
+                />
+                <UseExample
+                    texts={['This way, you\'ll easily find a variety of related content.']}
+                    img={searchImg}
+                    spacedBottom
+                />
 
                 <UseExample
                     title='Reviews'
