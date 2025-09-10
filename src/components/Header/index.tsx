@@ -64,7 +64,7 @@ export default function Header(props: HeaderProps) {
 
             <div className="space" data-html2canvas-ignore>
                 {
-                    (!props.hideAccess && (authContext?.didFirstAuth || DISPLAY_AUTH)) &&
+                    !props.hideAccess &&
                     <div
                         className='auth'
                         onClick={() => {
