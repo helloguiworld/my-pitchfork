@@ -29,14 +29,14 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
         (props.free || authContext?.isAuth) ?
             <>
                 <div className='tutorials-header'>
-                    <h2>Check out our</h2>
-                    <h1 className='my-pitchfork'>Latest Updates!</h1>
+                    <h2>We have some</h2>
+                    <h1 className='my-pitchfork'>New Features!</h1>
                     <p>Are you ready to connect? 👀</p>
                 </div>
 
                 <UseExample
                     title='Reviews'
-                    description='You can add flair and share your thoughts! ✍️'
+                    description='Now you can add flair and share your thoughts! ✍️'
                     img={reviewUpdatedImg}
                 />
                 <UseExample
@@ -48,7 +48,7 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                 <UseExample
                     title='Feed'
                     description='Connect and share 📢'
-                    texts={['Your homepage features your feed, with the latest reviews from your community.']}
+                    texts={['Your homepage now features your feed, with the latest reviews from your community.']}
                     img={feedImg}
                 />
                 <UseExample
@@ -61,8 +61,8 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                     <UseExample
                         description='How to follow?'
                         texts={[
-                            'You can follow an account on its profile page.',
-                            'Share your profile page link with others and ask them to send you theirs:',
+                            'You can follow an account on its page.',
+                            'Share your page link with others and ask them to send you theirs:',
                             `🔗 mypitchfork.fun/my/${authContext?.authAccount?.user.username}`,
                         ]}
                         img={myShareImg}
@@ -105,7 +105,7 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                     />
                 <UseExample
                     description={'Account'}
-                    texts={['Update your informations, reset your password, delete your account.']}
+                    texts={['Update your informations, reset your password, or delete your account.']}
                     spacedBottom
                     textCenter
                 />
