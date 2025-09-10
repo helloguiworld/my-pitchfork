@@ -15,8 +15,6 @@ export type HeaderProps = {
     hideAccess?: boolean,
 }
 
-const DISPLAY_AUTH = import.meta.env.VITE_DISPLAY_AUTH
-
 export default function Header(props: HeaderProps) {
     const headerRef = useRef<HTMLElement>(null)
 
