@@ -84,9 +84,15 @@ export default function Page(props: PageProps) {
         ), (
             authContext?.isAuth &&
             <Banner color='var(--color-purple)' spaced key={'new-features'} onClick={() => { navigate('/tutorials/new-features') }}>
-                <p><b>Click here</b> to learn about the <b>latest updates!</b> ⭐</p>
+                <p><b>Delete a review</b> with one click! 👆</p>
             </Banner>
         )
+        // (
+        //     authContext?.isAuth &&
+        //     <Banner color='var(--color-purple)' spaced key={'new-features'} onClick={() => { navigate('/tutorials/new-features') }}>
+        //         <p><b>Click here</b> to learn about the <b>latest updates!</b> ⭐</p>
+        //     </Banner>
+        // )
     ]
 
     return (

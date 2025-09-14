@@ -37,7 +37,7 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                 <div className='tutorials-header'>
                     <h2>Check out our</h2>
                     <h1 className='my-pitchfork'>Latest Updates!</h1>
-                    <p>Are you ready to connect? 👀</p>
+                    {/* <p>Are you ready to connect? 👀</p> */}
                 </div>
 
                 <UseExample
@@ -126,11 +126,6 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                 <UseExample
                     description={'Search accounts'}
                     texts={['Easily search for accounts by usernames.']}
-                    textCenter
-                    />
-                <UseExample
-                    description={'Delete review'}
-                    texts={['Delete a review you made.']}
                     textCenter
                     />
                 <UseExample
