@@ -24,7 +24,7 @@ export default function elementCapture(selector: string, fileName?: string, opti
     html2canvas(
         elementToCapture,
         {
-            proxy: `/proxy`,
+            proxy: "http://mypitchfork.fun/proxy/",
             // scrollY: 0,
             ...options
         }
