@@ -6,6 +6,9 @@ import { AuthContext } from '../../../contexts/AuthContext'
 import UseExample from '../../../components/UseExample'
 import Button from '../../../components/Button'
 
+import deleteButtonImg from '../../../assets/images/tutorials/delete button.jpeg'
+import deleteReviewImg from '../../../assets/images/tutorials/delete review.jpeg'
+
 import reviewSectionImg from '../../../assets/images/tutorials/review section.jpeg'
 import searchImg from '../../../assets/images/tutorials/search.jpeg'
 
@@ -36,6 +39,18 @@ export default function NewFeaturesTutorial(props: NewFeaturesTutorialProps) {
                     <h1 className='my-pitchfork'>Latest Updates!</h1>
                     <p>Are you ready to connect? 👀</p>
                 </div>
+
+                <UseExample
+                    title='Keep It Tidy'
+                    titleText={['Not happy with a review?']}
+                    description='Just hit DELETE 🗑️'
+                    img={deleteButtonImg}
+                />
+                <UseExample
+                    texts={['You can find the DELETE REVIEW button at the bottom of your review section.']}
+                    img={deleteReviewImg}
+                    spacedBottom
+                />
 
                 <UseExample
                     title='Explore the Artist'

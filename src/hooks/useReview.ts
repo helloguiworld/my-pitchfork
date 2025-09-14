@@ -16,9 +16,11 @@ export default function useReview(id: string | undefined) {
     const authContext = useContext(AuthContext)
 
     const [review, setReview] = useState<Review | null>(null)
+    const [hasReview, setHasReview] = useState<boolean>(false)
     const [reviewTrackScores, setReviewTrackScores] = useState<HashTrackScores | null>(null)
     const [fetching, setFetching] = useState<boolean>(true)
     const [saving, setSaving] = useState<boolean>(false)
+    const [deleting, setDeleting] = useState<boolean>(false)
     const [error, setError] = useState<AxiosError>()
 
     const [isBestNew, setIsBestNew] = useState(false)
@@ -33,7 +35,7 @@ export default function useReview(id: string | undefined) {
 
     const [needToSave, setNeedToSave] = useState(false)
 
-    const { setStoredTrackScore, getStoredTrackScoresByIds } = useStoredTrackScores()
+    const { setStoredTrackScore, updateStoredTrackScores, getStoredTrackScoresByIds } = useStoredTrackScores()
 
     const { album, fetching: albumFetching, error: albumError } = useAlbum(id)
 
@@ -120,6 +122,24 @@ export default function useReview(id: string | undefined) {
             } else console.log('Wait review fetching before save.')
         } else console.log('Cant save review without auth.')
     }
+    
+    async function deleteReview(id?: string | null) {
+        if (authContext?.isAuth) {
+            if (!fetching) {
+                id = id || review?.album || null;
+                if (id) {
+                    setDeleting(true)
+                    await myService.deleteReview(id)
+                        .then((response: any) => {
+                            setReview(null)
+                            return response
+                        })
+                        .catch((error) => setError(error))
+                        .finally(() => setDeleting(false))
+                } else console.log('Cant delete unknown review, please provide an id.')
+            } else console.log('Wait review fetching before deleting.')
+        } else console.log('Cant delete review without auth.')
+    }
 
     function trackScoresCleanCheck(trackScores: HashTrackScores) {
         const trackScoresArray = Object.values(trackScores)
@@ -136,7 +156,7 @@ export default function useReview(id: string | undefined) {
     }
 
     function checkIfNeedToSave() {
-        if (review && (review.is_best_new != isBestNew || review.text != textReview))
+        if (review?.is_best_new != isBestNew || review?.text != textReview)
             return true
         return !trackScoresAreSame(trackScores, reviewTrackScores)
     }
@@ -159,14 +179,21 @@ export default function useReview(id: string | undefined) {
                     const newTrackScores = hashTrackScores(review.track_scores)
                     setReviewTrackScores(newTrackScores)
                     setTrackScores(newTrackScores)
+                    updateStoredTrackScores(newTrackScores)
                 } else {
-                    defineCleanTrackScoresLocalBased()
+                    if (reviewTrackScores) {
+                        updateStoredTrackScores({...reviewTrackScores})
+                        setReviewTrackScores(null)
+                    } else {
+                        defineCleanTrackScoresLocalBased()
+                    }
                     setNeedToSave(true)
                 }
             }
         }
     }, [album, authContext?.isAuth, fetching, review])
 
+    // Updates the albumScore based on trackScores
     useEffect(() => {
         if (trackScores) {
             const scores = Object.values(trackScores)
@@ -176,24 +203,33 @@ export default function useReview(id: string | undefined) {
         }
     }, [trackScores])
 
+    // Verifies if trackScores is all clean.
+    useEffect(() => {
+        if (trackScores)
+            setTrackScoresIsClean(trackScoresCleanCheck(trackScores))
+    }, [trackScores])
+
     useEffect(() => {
         if (review || reviewTrackScores && trackScores)
             setNeedToSave(checkIfNeedToSave())
     }, [review, isBestNew, textReview, reviewTrackScores, trackScores])
 
     useEffect(() => {
-        if (trackScores)
-            setTrackScoresIsClean(trackScoresCleanCheck(trackScores))
-    }, [trackScores])
+        if (review) setHasReview(true)
+        else setHasReview(false)
+    }, [review])
 
     return {
         review,
+        hasReview,
         fetching,
         saving,
+        deleting,
         error,
         readReview,
         needToSave,
         saveReview,
+        deleteReview,
 
         album,
         albumError,

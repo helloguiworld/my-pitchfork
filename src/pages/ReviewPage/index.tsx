@@ -48,9 +48,13 @@ export default function ReviewPage() {
     const { id } = useParams<ReviewPageParams>()
 
     const {
+        hasReview,
         saving,
+        deleting,
         needToSave,
         saveReview,
+        deleteReview,
+
         album,
         albumError,
         albumFetching,
@@ -100,6 +104,11 @@ export default function ReviewPage() {
             }
             saveReview(review)
         }
+    }
+
+    function deleteMyReview() {
+        if (confirm("Are you sure you want to delete this review?"))
+            deleteReview()
     }
 
     useEffect(() => {
@@ -282,9 +291,22 @@ export default function ReviewPage() {
                                                     <span>{
                                                         trackScoresIsClean ?
                                                             "FILL BEFORE SAVE" :
-                                                            needToSave ? "SAVE REVIEW" : "REVIEW UPDATED"
+                                                            needToSave ?
+                                                                hasReview ? "UPDATE REVIEW" : "SAVE REVIEW" :
+                                                                "REVIEW UPDATED"
                                                     }</span>
                                                 </Button>
+                                                {
+                                                    hasReview &&
+                                                    <Button
+                                                        className={'delete-review'}
+                                                        color="var(--color-red)"
+                                                        onClick={deleteMyReview}
+                                                        fetching={deleting}
+                                                    >
+                                                        <span>DELETE REVIEW</span>
+                                                    </Button>
+                                                }
                                             </>
                                         }
                                     </div>

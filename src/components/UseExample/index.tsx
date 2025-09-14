@@ -3,6 +3,7 @@
 import './styles.scss'
 export type useExampleProps = {
     title?: string,
+    titleText?: string[],
     description?: string,
     texts?: string[],
     img?: string,
@@ -22,6 +23,7 @@ export default function UseExample(props: useExampleProps) {
         >
             <div className={"text" + (props.textCenter ? ' center' : '')}>
                 {props.title && <p className='title'>{props.title}</p>}
+                {props.titleText?.map((text, index) => <p key={index}>{text}</p>)}
                 {props.description && <p className='description'>{props.description}</p>}
                 {props.texts?.map((text, index) => <p key={index}>{text}</p>)}
             </div>

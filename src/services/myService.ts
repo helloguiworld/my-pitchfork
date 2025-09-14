@@ -52,7 +52,7 @@ export const postUnfollow = async (username: string) => await api.post(`my/profi
 export const putReview = async (review: Review) => await api.put(`my/reviews/${review.album}/`, review)
 
 // DELETE
-
+export const deleteReview = async (album: string) => await api.delete(`my/reviews/${album}/`)
 
 
 const myService = {
@@ -61,6 +61,7 @@ const myService = {
     getReview,
     postReview,
     putReview,
+    deleteReview,
 
     getReviews,
     getFeed,
